@@ -10,6 +10,14 @@ export default function About() {
     window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
   };
 
+  const LinkedInIcon = () => (
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+      <rect x="2" y="9" width="4" height="12"/>
+      <circle cx="4" cy="4" r="2"/>
+    </svg>
+  );
+
   return (
     <main>
       {/* PAGE HEADER */}
@@ -82,12 +90,18 @@ export default function About() {
               </p>
 
               <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
-                <button onClick={() => handleWhatsAppContact('Jay')} className="btn-primary" style={{ fontSize: '0.85rem', padding: '0.65rem 1.1rem' }}>
-                  Connect with Jay <MessageSquare size={16} />
+                <a 
+                  href="https://www.linkedin.com/in/jay-parmar-b5190b309/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="btn-primary" 
+                  style={{ fontSize: '0.85rem', padding: '0.65rem 1.1rem', background: '#0A66C2', borderColor: '#0A66C2' }}
+                >
+                  LinkedIn Profile <LinkedInIcon />
+                </a>
+                <button onClick={() => handleWhatsAppContact('Jay')} className="btn-outline" style={{ fontSize: '0.85rem', padding: '0.65rem 1.1rem' }}>
+                  Chat with Jay <MessageSquare size={15} />
                 </button>
-                <Link to="/contact" className="btn-outline" style={{ fontSize: '0.85rem', padding: '0.65rem 1.1rem' }}>
-                  Book Project <ArrowRight size={15} />
-                </Link>
               </div>
             </div>
           </div>
@@ -149,7 +163,7 @@ export default function About() {
                   className="btn-primary" 
                   style={{ fontSize: '0.85rem', padding: '0.65rem 1.1rem', background: '#0A66C2', borderColor: '#0A66C2' }}
                 >
-                  LinkedIn Profile <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                  LinkedIn Profile <LinkedInIcon />
                 </a>
                 <button onClick={() => handleWhatsAppContact('Saurav')} className="btn-outline" style={{ fontSize: '0.85rem', padding: '0.65rem 1.1rem' }}>
                   Chat with Saurav <MessageSquare size={15} />
