@@ -2,27 +2,29 @@ import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 export default function Estimator({ triggerToast }) {
-  const [baseCost, setBaseCost] = useState(6000);
-  const [baseDays, setBaseDays] = useState(5);
+  const [baseCost, setBaseCost] = useState(7000);
+  const [baseDays, setBaseDays] = useState(10);
   const [toggles, setToggles] = useState({
     cms: false,
-    analytics: false,
     speed: false,
-    ads: false
+    maintenance: false,
+    catalog: false
   });
 
   const projects = [
-    { label: 'Business Website', cost: 6000, days: 5 },
-    { label: 'E-commerce Store', cost: 15000, days: 10 },
-    { label: 'SEO & Growth', cost: 9000, days: 7 },
-    { label: 'Full Digital Launch', cost: 22000, days: 14 }
+    { label: 'Starter Website', cost: 7000, days: 10 },
+    { label: 'Standard Website', cost: 12000, days: 14 },
+    { label: 'Website Redesign', cost: 8000, days: 7 },
+    { label: 'Local SEO Boost', cost: 6999, days: 14 },
+    { label: 'Google & Meta Ads', cost: 9999, days: 5 },
+    { label: 'Social Media Pack', cost: 7499, days: 7 }
   ];
 
   const addons = [
     { key: 'cms', label: 'CMS integration (edit content yourself)', cost: 2000 },
-    { key: 'analytics', label: 'Analytics dashboard & tracking', cost: 1500 },
-    { key: 'speed', label: 'Speed optimization pass (95+ score)', cost: 1000 },
-    { key: 'ads', label: 'Meta & Google Ads setup', cost: 3000 }
+    { key: 'speed', label: 'Speed optimization pass (95+ score)', cost: 1500 },
+    { key: 'maintenance', label: '1-Month extended maintenance pass', cost: 2500 },
+    { key: 'catalog', label: 'E-commerce product catalog setup', cost: 3000 }
   ];
 
   const toggleAddon = (key) => {
@@ -34,15 +36,15 @@ export default function Estimator({ triggerToast }) {
   const pct = Math.min(100, (totalCost / 30000) * 100);
 
   const handleBook = () => {
-    const text = encodeURIComponent(`Hi Nexivo! I calculated my project estimate: ₹${totalCost.toLocaleString('en-IN')} (${baseDays} days delivery). I would like to lock this in.`);
+    const text = encodeURIComponent(`Hi Nexivo! I calculated my project estimate on the website: ₹${totalCost.toLocaleString('en-IN')} (${baseDays} days turnaround). I would like to lock this package in.`);
     window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
-    if (triggerToast) triggerToast('WhatsApp chat opened with project estimate!');
+    if (triggerToast) triggerToast('WhatsApp chat opened with your calculated estimate!');
   };
 
   return (
     <div className="estimator-panel">
       <div>
-        <div className="field-label">Select Project Type</div>
+        <div className="field-label">Select Project Package</div>
         <div className="chip-row">
           {projects.map((p, idx) => (
             <button
@@ -72,10 +74,12 @@ export default function Estimator({ triggerToast }) {
       <div className="estimate-out">
         <div>
           <div className="field-label">Estimated Budget</div>
-          <div className="estimate-big">₹{totalCost.toLocaleString('en-IN')}</div>
+          <div className="estimate-big" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+            ₹{totalCost.toLocaleString('en-IN')}
+          </div>
           <div className="estimate-line">
             <span>Delivery Timeline</span>
-            <span style={{ color: '#5DCAA5', fontWeight: '700' }}>{baseDays} days</span>
+            <span style={{ color: '#5DCAA5', fontWeight: '700' }}>~{baseDays} days</span>
           </div>
           <div className="gauge-track">
             <div className="gauge-fill" style={{ width: `${pct}%` }}></div>
