@@ -1,10 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ShieldCheck, Target, Zap, Heart, MapPin, Users } from 'lucide-react';
+import { ShieldCheck, Target, Zap, MapPin, MessageSquare, ArrowRight } from 'lucide-react';
+import jayParmarImg from '../assets/jay-parmar.jpg';
 
 export default function About() {
+  const handleWhatsAppContact = () => {
+    const text = encodeURIComponent("Hi Jay! I would like to chat about a website / digital marketing project for my business.");
+    window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
+  };
+
   return (
     <main>
+      {/* PAGE HEADER */}
       <section className="page-header">
         <div className="eyebrow"><MapPin size={16} /> Based in Ahmedabad, Gujarat</div>
         <h1 className="page-title">
@@ -15,6 +22,57 @@ export default function About() {
         </p>
       </section>
 
+      {/* MEET THE FOUNDER SECTION */}
+      <section style={{ paddingTop: '1rem' }}>
+        <div className="glass-card" style={{ padding: '2.8rem', border: '1px solid var(--teal-light)' }}>
+          <div className="grid-2" style={{ gap: '3rem', alignItems: 'center' }}>
+            <div style={{ position: 'relative' }}>
+              <div style={{
+                borderRadius: '24px', overflow: 'hidden', border: '2px solid rgba(29, 158, 117, 0.4)',
+                boxShadow: '0 20px 50px rgba(0, 0, 0, 0.6)', maxMaxHeight: '480px'
+              }}>
+                <img 
+                  src={jayParmarImg} 
+                  alt="Jay Parmar — Founder & Creative Director at Nexivo" 
+                  style={{ width: '100%', height: '440px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
+                />
+              </div>
+              <span className="metric-badge" style={{ position: 'absolute', bottom: '1.2rem', right: '1.2rem', background: 'rgba(26,26,24,0.92)' }}>
+                📍 Ahmedabad, India
+              </span>
+            </div>
+
+            <div>
+              <div className="section-kicker">Meet The Founder</div>
+              <h2 className="section-title" style={{ fontSize: '2.2rem', marginBottom: '0.4rem' }}>
+                Jay Parmar
+              </h2>
+              <div style={{ fontSize: '0.95rem', fontWeight: '700', color: 'var(--teal-light)', marginBottom: '1.2rem' }}>
+                Founder & Creative Director @ Nexivo
+              </div>
+
+              <p style={{ fontSize: '1rem', color: 'rgba(244,242,235,0.78)', lineHeight: '1.7', marginBottom: '1.2rem' }}>
+                "I founded Nexivo in Ahmedabad to bridge the gap between traditional, slow web agencies and ambitious Indian brands needing real digital growth. Every site we craft is engineered to load in sub-seconds and convert visitors into active WhatsApp leads."
+              </p>
+
+              <p style={{ fontSize: '0.92rem', color: 'rgba(244,242,235,0.6)', lineHeight: '1.65', marginBottom: '2rem' }}>
+                Under Jay's lead, Nexivo has shipped high-converting platforms for clinics, videography studios, local retail brands, and e-commerce stores across Gujarat and India.
+              </p>
+
+              <div style={{ display: 'flex', gap: '1rem', flexWrap: 'wrap' }}>
+                <button onClick={handleWhatsAppContact} className="btn-primary">
+                  Connect with Jay on WhatsApp <MessageSquare size={18} />
+                </button>
+                <Link to="/contact" className="btn-outline">
+                  Book Project <ArrowRight size={16} />
+                </Link>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CORE VALUES */}
       <section>
         <div className="grid-3">
           <div className="glass-card">
@@ -41,6 +99,7 @@ export default function About() {
         </div>
       </section>
 
+      {/* WHY CHOOSE NEXIVO */}
       <section>
         <div className="section-head center">
           <div className="section-kicker">Why Choose Nexivo</div>
@@ -50,7 +109,7 @@ export default function About() {
           <div className="glass-card">
             <h4 style={{ fontFamily: 'Syne', color: '#5DCAA5', marginBottom: '0.5rem' }}>Local Ahmedabad Presence</h4>
             <p style={{ fontSize: '0.92rem', color: 'rgba(244,242,235,0.65)' }}>
-              We understand Gujarati business culture, consumer habits, and local search patterns. You deal directly with our founders, not an outsourced agency rep.
+              We understand Gujarati business culture, consumer habits, and local search patterns. You deal directly with our founder Jay Parmar, not an outsourced agency rep.
             </p>
           </div>
           <div className="glass-card">
