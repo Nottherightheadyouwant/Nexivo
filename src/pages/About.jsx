@@ -31,7 +31,7 @@ export default function About() {
           <p className="section-desc">Meet the visionaries behind Nexivo turning ambitious brands into market leaders across India, the UK, USA, UAE, and worldwide.</p>
         </div>
 
-        <div className="grid-2" style={{ gap: '2rem' }}>
+        <div className="grid-2 founder-grid" style={{ gap: '2rem' }}>
           {/* FOUNDER 1: JAY PARMAR */}
           <div className="glass-card founder-card">
             <div className="founder-img-wrap" style={{ position: 'relative', marginBottom: '1.8rem' }}>
@@ -78,7 +78,7 @@ export default function About() {
                 <img 
                   src={sauravVaghelaImg} 
                   alt="Saurav Vaghela - Co-Founder & Growth / SEO Lead at Nexivo" 
-                  style={{ width: '100%', height: '360px', objectFit: 'cover', objectPosition: 'center 10%', display: 'block' }}
+                  style={{ width: '100%', height: '360px', objectFit: 'cover', objectPosition: 'center 65%', display: 'block' }}
                 />
               </div>
               <div className="location-badge founder-badge" style={{ border: '1px solid rgba(55, 138, 221, 0.4)', color: '#378ADD' }}>

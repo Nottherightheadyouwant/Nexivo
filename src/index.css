@@ -1538,3 +1538,10 @@ body, p, li, a, button, input, select, textarea,
     padding: 0.3rem 0.6rem !important;
   }
 }
+
+/* ===== FOUNDER GRID STACKING & FRAMING FIX ===== */
+@media (max-width: 992px) {
+  .founder-grid, .grid-2 {
+    grid-template-columns: 1fr !important;
+  }
+}
