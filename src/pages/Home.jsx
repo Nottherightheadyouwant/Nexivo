@@ -10,7 +10,7 @@ export default function Home({ triggerToast }) {
     <main>
       {/* HERO */}
       <section className="hero-section">
-        <div className="eyebrow"><span className="pulse-dot"></span> Now accepting new projects in Ahmedabad</div>
+        <div className="eyebrow"><span className="pulse-dot"></span> Now accepting new clients</div>
         <h1 className="hero-title kinetic">
           <span>Websites that</span>
           <span>do the selling <span className="accent">before you say a word.</span></span>
