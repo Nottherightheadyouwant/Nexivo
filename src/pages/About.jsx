@@ -34,7 +34,7 @@ export default function About() {
                 <img 
                   src={jayParmarImg} 
                   alt="Jay Parmar - Founder & Creative Director at Nexivo" 
-                  style={{ width: '100%', height: '440px', objectFit: 'cover', objectPosition: 'center 75%', display: 'block' }}
+                  style={{ width: '100%', height: '440px', objectFit: 'cover', objectPosition: '35% 55%', display: 'block' }}
                 />
               </div>
               <div style={{
