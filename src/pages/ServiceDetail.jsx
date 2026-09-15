@@ -76,11 +76,11 @@ export const servicesMap = {
     icon: <Search size={36} color="#5DCAA5" />,
     tag: 'Visibility',
     title: 'SEO (Search Engine Optimization)',
-    subtitle: 'Dominate Google search results and rank top 3 in Google Maps "near me" local business searches in Ahmedabad.',
+    subtitle: 'Dominate Google search results and rank top 3 in Google Maps "near me" local business searches in your target market.',
     fullDesc: 'Get found by customers actively searching for your services in your city. We optimize your website code, Google Business Profile (GBP), and local citations to place your business at the top of Google search and the Google Maps local pack.',
     deliverables: [
       'Google Business Profile (GBP) Verification & Full Optimization',
-      'Local "Near Me" Keyword Domination (Ahmedabad & Gujarat)',
+      'Local "Near Me" Keyword Domination (Global & Local Markets)',
       'Technical On-Page & Schema Markup SEO',
       'High-Authority Local Citations & Backlink Building',
       'Google Maps Pack Top 3 Ranking Strategy',

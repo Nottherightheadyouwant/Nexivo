@@ -32,7 +32,7 @@ export default function Services() {
       icon: <Search size={30} color="#5DCAA5" />,
       tag: 'Visibility',
       title: 'SEO (Search Engine Optimization)',
-      shortDesc: 'Dominate Google search results and rank top 3 in Ahmedabad Google Maps "near me" local business searches.',
+      shortDesc: 'Dominate Google search results and rank top 3 in local and international target markets.',
       budget: 'Starts at ₹6,999 / mo',
       timeline: '~14 Days Setup',
       highlights: ['Google Business Profile Ranking', 'Local "Near Me" Domination', 'Maps Pack Top Position']

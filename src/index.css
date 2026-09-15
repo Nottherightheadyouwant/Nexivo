@@ -1426,3 +1426,115 @@ body, p, li, a, button, input, select, textarea,
   70% { box-shadow: 0 0 0 14px rgba(37, 211, 102, 0); }
   100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
 }
+
+
+/* ===== COMPREHENSIVE MOBILE RESPONSIVE OPTIMIZATION ===== */
+.location-badge {
+  position: absolute;
+  bottom: 0.8rem;
+  right: 0.8rem;
+  background: rgba(15, 23, 20, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(93, 202, 165, 0.4);
+  color: #5DCAA5;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  white-space: nowrap;
+  z-index: 2;
+}
+
+@media (max-width: 768px) {
+  header nav {
+    padding: 0.8rem 1rem !important;
+  }
+
+  main {
+    padding: 1.2rem 1rem 3rem !important;
+  }
+
+  .hero-title, .page-title {
+    font-size: clamp(1.8rem, 6.5vw, 2.6rem) !important;
+    line-height: 1.15 !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.4rem, 5vw, 2.0rem) !important;
+  }
+
+  .page-desc, .section-desc, .hero-subtitle {
+    font-size: 0.95rem !important;
+    line-height: 1.55 !important;
+  }
+
+  .grid-2, .grid-3, .grid-4, .pricing-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+  }
+
+  .glass-card {
+    padding: 1.4rem !important;
+    border-radius: 16px !important;
+  }
+
+  .founder-card {
+    padding: 1.4rem !important;
+  }
+
+  .founder-img-container img {
+    height: 300px !important;
+  }
+
+  .founder-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    width: 100%;
+  }
+
+  .founder-actions button,
+  .founder-actions a {
+    width: 100% !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .mobile-menu {
+    border-radius: 16px;
+    padding: 1.2rem;
+  }
+
+  .stat-row {
+    flex-direction: column;
+    gap: 1.2rem !important;
+  }
+
+  .stat-item {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title, .page-title {
+    font-size: 1.75rem !important;
+  }
+
+  .eyebrow {
+    font-size: 0.75rem !important;
+    padding: 0.35rem 0.75rem !important;
+  }
+
+  .nav-logo {
+    font-size: 1.4rem !important;
+  }
+
+  .location-badge {
+    font-size: 0.72rem !important;
+    padding: 0.3rem 0.6rem !important;
+  }
+}

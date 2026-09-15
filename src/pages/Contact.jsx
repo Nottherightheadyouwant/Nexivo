@@ -38,7 +38,7 @@ export default function Contact({ triggerToast }) {
               <div className="contact-icon"><MapPin size={20} /></div>
               <div className="contact-details">
                 <h5>Our Office</h5>
-                <p>Ahmedabad, Gujarat, India</p>
+                <p>London, United Kingdom & Ahmedabad, India</p>
               </div>
             </div>
 

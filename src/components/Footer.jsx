@@ -13,7 +13,7 @@ export default function Footer() {
       <span className="logo-teal">ivo</span>
     </span>
   </div>
-          <div className="footer-loc"><MapPin size={16} /> Ahmedabad, Gujarat, India</div>
+          <div className="footer-loc"><MapPin size={16} /> Global Agency — London, UK & Ahmedabad, India</div>
           <p style={{ fontSize: '0.85rem', color: 'rgba(244,242,235,0.5)', marginTop: '0.8rem', maxWidth: '280px' }}>
             High-converting digital builds and revenue marketing for growing Indian brands.
           </p>
@@ -46,7 +46,7 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <div>© {new Date().getFullYear()} Nexivo Digital. All rights reserved.</div>
-        <div>Made with precision in Ahmedabad</div>
+        <div>Engineered for global performance — London & Ahmedabad</div>
       </div>
     </footer>
   );

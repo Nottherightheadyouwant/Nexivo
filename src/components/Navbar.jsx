@@ -66,7 +66,7 @@ export default function Navbar() {
                   <div className="mega-icon"><Search size={18} color="#5DCAA5" /></div>
                   <div>
                     <div className="mega-link-title">SEO & Maps Ranking</div>
-                    <div className="mega-link-desc">Ahmedabad local "near me" domination</div>
+                    <div className="mega-link-desc">Global & local search domination</div>
                   </div>
                 </Link>
                 <Link to="/services/social-media" className="mega-link" onClick={() => setDropdownOpen(false)}>
