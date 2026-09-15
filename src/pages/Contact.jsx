@@ -14,7 +14,7 @@ export default function Contact({ triggerToast }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const text = encodeURIComponent(`Hi Nexivo! My name is ${formData.name} (${formData.phone}). Interested in ${formData.service}. Message: ${formData.message}`);
-    window.open(`https://wa.me/?text=${text}`, '_blank');
+    window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
     if (triggerToast) triggerToast('Thank you! Redirecting to WhatsApp chat...');
     setFormData({ name: '', phone: '', email: '', service: 'Business Website', message: '' });
   };
@@ -46,7 +46,7 @@ export default function Contact({ triggerToast }) {
               <div className="contact-icon"><MessageSquare size={20} /></div>
               <div className="contact-details">
                 <h5>Instant WhatsApp</h5>
-                <p><a href="https://wa.me/?text=Hi%20Nexivo!%20I'd%20like%20to%20chat." target="_blank" rel="noopener noreferrer">+91 WhatsApp Chat</a></p>
+                <p><a href="https://wa.me/919724470737?text=Hi%20Nexivo!%20I'd%20like%20to%20chat." target="_blank" rel="noopener noreferrer">+91 97244 70737</a></p>
               </div>
             </div>
 
@@ -88,7 +88,7 @@ export default function Contact({ triggerToast }) {
                   type="tel"
                   required
                   className="form-control"
-                  placeholder="e.g. +91 98765 43210"
+                  placeholder="e.g. +91 97244 70737"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                 />

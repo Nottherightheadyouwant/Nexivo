@@ -203,7 +203,7 @@ export default function ServiceDetail() {
 
   const handleEnquire = () => {
     const text = encodeURIComponent(`Hi Nexivo! I would like to enquire about your ${service.title} service.`);
-    window.open(`https://wa.me/?text=${text}`, '_blank');
+    window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
   };
 
   return (

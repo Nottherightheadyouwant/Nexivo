@@ -20,7 +20,7 @@ export default function ServiceMatrix() {
 
   const handleEnquire = (serviceName) => {
     const text = encodeURIComponent(`Hi Nexivo! I would like to enquire about ${serviceName}.`);
-    window.open(`https://wa.me/?text=${text}`, '_blank');
+    window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
   };
 
   return (

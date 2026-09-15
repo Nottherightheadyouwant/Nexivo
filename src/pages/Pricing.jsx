@@ -297,7 +297,7 @@ export default function Pricing({ triggerToast }) {
     const categoryObj = pricingCategories.find(c => c.id === activeCategory);
     const categoryName = categoryObj ? categoryObj.label : 'Project';
     const text = encodeURIComponent(`Hi Nexivo! I am interested in the ${tierName} package for ${categoryName} (${price}). Please provide details.`);
-    window.open(`https://wa.me/?text=${text}`, '_blank');
+    window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
     if (triggerToast) triggerToast(`Opening WhatsApp for ${tierName} package!`);
   };
 

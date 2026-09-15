@@ -35,7 +35,7 @@ export default function Estimator({ triggerToast }) {
 
   const handleBook = () => {
     const text = encodeURIComponent(`Hi Nexivo! I calculated my project estimate: ₹${totalCost.toLocaleString('en-IN')} (${baseDays} days delivery). I would like to lock this in.`);
-    window.open(`https://wa.me/?text=${text}`, '_blank');
+    window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
     if (triggerToast) triggerToast('WhatsApp chat opened with project estimate!');
   };
 
