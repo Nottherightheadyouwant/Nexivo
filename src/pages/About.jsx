@@ -38,7 +38,7 @@ export default function About() {
               <div className="founder-img-container">
                 <img 
                   src={jayParmarImg} 
-                  alt="Jay Parmar - Founder & Creative Director at Nexivo" 
+                  alt="Jay Parmar - Founder & Creative Director / Lead Developer at Nexivo" 
                   style={{ width: '100%', height: '360px', objectFit: 'cover', objectPosition: '35% 55%', display: 'block' }}
                 />
               </div>
@@ -53,7 +53,7 @@ export default function About() {
                 Jay Parmar
               </h3>
               <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--teal-light)', marginBottom: '1rem' }}>
-                Founder & Creative Director @ Nexivo
+                Founder & Creative Director / Lead Developer @ Nexivo
               </div>
 
               <p style={{ fontSize: '0.92rem', color: 'rgba(244,242,235,0.78)', lineHeight: '1.65', marginBottom: '1.5rem' }}>
@@ -77,7 +77,7 @@ export default function About() {
               <div className="founder-img-container" style={{ border: '2px solid rgba(55, 138, 221, 0.4)' }}>
                 <img 
                   src={sauravVaghelaImg} 
-                  alt="Saurav Vaghela - Co-Founder & Growth / SEO Lead at Nexivo" 
+                  alt="Saurav Vaghela - Co-Founder & Technical Lead at Nexivo" 
                   style={{ width: '100%', height: '360px', objectFit: 'cover', objectPosition: 'center 65%', display: 'block' }}
                 />
               </div>
@@ -92,7 +92,7 @@ export default function About() {
                 Saurav Vaghela
               </h3>
               <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#378ADD', marginBottom: '1rem' }}>
-                Co-Founder & Digital Growth / SEO Lead @ Nexivo
+                Co-Founder & Technical Lead @ Nexivo
               </div>
 
               <p style={{ fontSize: '0.92rem', color: 'rgba(244,242,235,0.78)', lineHeight: '1.65', marginBottom: '1.5rem' }}>
