@@ -54,7 +54,7 @@ export default function Contact({ triggerToast }) {
               <div className="contact-icon"><Mail size={20} /></div>
               <div className="contact-details">
                 <h5>Email Inquiry</h5>
-                <p><a href="mailto:hello@nexivo.in">hello@nexivo.in</a></p>
+                <p><a href="mailto:studio.nexivo@gmail.com">studio.nexivo@gmail.com</a></p>
               </div>
             </div>
 
