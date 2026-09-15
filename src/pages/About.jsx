@@ -33,13 +33,31 @@ export default function About() {
               }}>
                 <img 
                   src={jayParmarImg} 
-                  alt="Jay Parmar — Founder & Creative Director at Nexivo" 
+                  alt="Jay Parmar - Founder & Creative Director at Nexivo" 
                   style={{ width: '100%', height: '440px', objectFit: 'cover', objectPosition: 'center top', display: 'block' }}
                 />
               </div>
-              <span className="metric-badge" style={{ position: 'absolute', bottom: '1.2rem', right: '1.2rem', background: 'rgba(26,26,24,0.92)' }}>
-                📍 Ahmedabad, India
-              </span>
+              <div style={{
+                position: 'absolute',
+                bottom: '1rem',
+                right: '1rem',
+                background: 'rgba(15, 23, 20, 0.92)',
+                backdropFilter: 'blur(10px)',
+                border: '1px solid rgba(93, 202, 165, 0.4)',
+                color: '#5DCAA5',
+                fontSize: '0.8rem',
+                fontWeight: '600',
+                padding: '0.45rem 0.85rem',
+                borderRadius: '20px',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '0.4rem',
+                boxShadow: '0 4px 15px rgba(0,0,0,0.5)',
+                whiteSpace: 'nowrap',
+                zIndex: 2
+              }}>
+                <MapPin size={14} /> Ahmedabad, India
+              </div>
             </div>
 
             <div>
