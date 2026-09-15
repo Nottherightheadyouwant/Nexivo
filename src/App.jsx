@@ -4,6 +4,7 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import ScrollProgress from './components/ScrollProgress';
 import Toast from './components/Toast';
+import FloatingWhatsApp from './components/FloatingWhatsApp';
 import Home from './pages/Home';
 import About from './pages/About';
 import Services from './pages/Services';
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="/pricing" element={<Pricing triggerToast={triggerToast} />} />
         <Route path="/contact" element={<Contact triggerToast={triggerToast} />} />
       </Routes>
+      <FloatingWhatsApp />
       <Footer />
       <Toast message={toastMessage} visible={toastVisible} />
     </BrowserRouter>
