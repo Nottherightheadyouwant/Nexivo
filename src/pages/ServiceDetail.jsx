@@ -31,8 +31,8 @@ export const servicesMap = {
       { step: 'Phase 03', title: 'React Coding & Speed Optimization', desc: 'Developing clean, lightweight React code with zero bloat.' },
       { step: 'Phase 04', title: 'Testing, Launch & Handoff', desc: 'Domain pointing, SSL activation, speed audit, and owner training.' }
     ],
-    budget: 'Starts at ₹5,999',
-    timeline: '5 - 7 Days Delivery',
+    budget: 'Starts at ₹7,000',
+    timeline: '~10 Days Delivery',
     faqs: [
       { q: 'Will my website work well on slow mobile internet?', a: 'Yes! Our React & Vite architecture compiles into ultra-lightweight static assets that load in under 1 second even on 3G/4G networks.' },
       { q: 'Can I edit photos and prices myself?', a: 'Absolutely. We include a simple CMS dashboard so you can update text, upload images, or edit pricing without writing code.' }

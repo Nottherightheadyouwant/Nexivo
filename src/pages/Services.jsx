@@ -6,15 +6,15 @@ import {
 } from 'lucide-react';
 
 export default function Services() {
-  const servicesList = [
+    const servicesList = [
     {
       slug: 'website-development',
       icon: <Code size={30} color="#5DCAA5" />,
       tag: 'Development',
       title: 'Website Development',
       shortDesc: 'Custom fast React & Vite websites, clinic portals, e-commerce stores, and high-converting redesigns built for sub-second speed.',
-      budget: 'Starts at ₹5,999',
-      timeline: '5 - 7 Days Delivery',
+      budget: 'Starts at ₹7,000',
+      timeline: '~10 Days Delivery',
       highlights: ['React + Vite Sub-Second Load', '95+ Google Lighthouse Score', 'WhatsApp Direct Inquiry Flow']
     },
     {
@@ -34,7 +34,7 @@ export default function Services() {
       title: 'SEO (Search Engine Optimization)',
       shortDesc: 'Dominate Google search results and rank top 3 in Ahmedabad Google Maps "near me" local business searches.',
       budget: 'Starts at ₹6,999 / mo',
-      timeline: '30-Day Initial Lift',
+      timeline: '~14 Days Setup',
       highlights: ['Google Business Profile Ranking', 'Local "Near Me" Domination', 'Maps Pack Top Position']
     },
     {
@@ -44,7 +44,7 @@ export default function Services() {
       title: 'Social Media Marketing',
       shortDesc: 'Consistent Instagram & Facebook brand management, reel strategies, and community engagement built for modern brands.',
       budget: 'Starts at ₹7,499 / mo',
-      timeline: 'Monthly Package',
+      timeline: '~7 Days Setup',
       highlights: ['Monthly Content Calendar', 'Reel Scripts & Visual Grid', 'DM & Comment Engagement']
     },
     {
@@ -54,7 +54,7 @@ export default function Services() {
       title: 'Content Creation',
       shortDesc: 'High-converting copywriting, ad creative graphics, promotional video scripts, and visual brand assets.',
       budget: 'Starts at ₹4,999',
-      timeline: '3 - 5 Days Delivery',
+      timeline: '3 - 5 Days Turnaround',
       highlights: ['Persuasive Web Copywriting', 'Meta & Google Ad Banners', 'Short-Form Video Scripts']
     },
     {
@@ -64,7 +64,7 @@ export default function Services() {
       title: 'Google Ads & Meta Ads',
       shortDesc: 'Laser-targeted Facebook, Instagram, and Google PPC ad campaigns built for high ROAS and instant lead generation.',
       budget: 'Starts at ₹9,999 / mo',
-      timeline: 'Instant Leads in 24h',
+      timeline: '~5 Days Setup',
       highlights: ['Google Search PPC Setup', 'Meta Instagram & Facebook Lead Ads', 'High ROAS Campaign Tracking']
     }
   ];
@@ -113,9 +113,9 @@ export default function Services() {
               </div>
 
               <div>
-                <div style={{ display: 'flex', justify: 'space-between', fontSize: '0.85rem', color: 'rgba(244,242,235,0.5)', marginBottom: '1.2rem', paddingTop: '0.8rem', borderTop: '1px solid var(--line)' }}>
-                  <span style={{ display: 'flex', alignItems: 'center', gap: '4px' }}><Clock size={14} /> {service.timeline}</span>
-                  <span style={{ fontWeight: '700', color: 'var(--offwhite)' }}>{service.budget}</span>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', fontSize: '0.85rem', color: 'rgba(244,242,235,0.6)', marginBottom: '1.2rem', paddingTop: '0.8rem', borderTop: '1px solid var(--line)', gap: '1rem' }}>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '6px' }}><Clock size={15} color="#5DCAA5" /> {service.timeline}</span>
+                  <span style={{ fontWeight: '700', color: 'var(--teal-light)' }}>{service.budget}</span>
                 </div>
 
                 <Link 
