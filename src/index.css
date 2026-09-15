@@ -1545,3 +1545,159 @@ body, p, li, a, button, input, select, textarea,
     grid-template-columns: 1fr !important;
   }
 }
+
+
+/* ===== MASTER MOBILE & TABLET RESPONSIVE FIXES ===== */
+.portfolio-grid-3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+@media (max-width: 992px) {
+  .portfolio-grid-3,
+  .portfolio-grid,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .pricing-grid,
+  .founder-grid,
+  .estimator-panel,
+  .roi-panel,
+  .contact-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+  }
+
+  .desktop-only-cta {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  header nav {
+    padding: 0.75rem 1rem !important;
+  }
+
+  main {
+    padding: 1rem 0.85rem 3.5rem !important;
+  }
+
+  /* Prevent text overflow */
+  h1, h2, h3, h4, .hero-title, .page-title, .section-title {
+    word-break: break-word !important;
+    hyphens: auto !important;
+  }
+
+  .hero-title, .page-title {
+    font-size: clamp(1.75rem, 6.5vw, 2.5rem) !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.02em !important;
+  }
+
+  .section-title {
+    font-size: clamp(1.35rem, 5vw, 1.85rem) !important;
+    line-height: 1.18 !important;
+  }
+
+  .hero-subtitle, .page-desc, .section-desc {
+    font-size: 0.92rem !important;
+    line-height: 1.5 !important;
+  }
+
+  /* Cards & Boxes */
+  .glass-card, .portfolio-card, .service-card, .founder-card {
+    padding: 1.25rem !important;
+    border-radius: 16px !important;
+  }
+
+  /* Stats grid on mobile */
+  .stat-row {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 1rem !important;
+  }
+
+  .stat-item {
+    text-align: center;
+    padding: 0.75rem 0.5rem;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 12px;
+    border: 1px solid var(--line);
+  }
+
+  .stat-num {
+    font-size: 1.6rem !important;
+  }
+
+  .stat-label {
+    font-size: 0.75rem !important;
+  }
+
+  /* Full width mobile buttons */
+  .hero-btns, .founder-actions, .cta-btns {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 0.75rem !important;
+  }
+
+  .hero-btns button,
+  .hero-btns a,
+  .founder-actions button,
+  .founder-actions a,
+  .cta-btns button,
+  .cta-btns a {
+    width: 100% !important;
+    justify-content: center !important;
+    text-align: center !important;
+  }
+
+  /* Floating WhatsApp Button Mobile Optimization */
+  .floating-wa-wrap {
+    bottom: 1rem !important;
+    right: 1rem !important;
+    z-index: 999999 !important;
+  }
+
+  .floating-wa-btn {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .wa-tooltip {
+    display: none !important; /* Never cover mobile text */
+  }
+
+  /* Mobile menu drawer styling */
+  .mobile-menu {
+    border-radius: 16px !important;
+    padding: 1.2rem !important;
+    background: rgba(18, 22, 20, 0.98) !important;
+    border: 1px solid var(--line-strong) !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-title, .page-title {
+    font-size: 1.65rem !important;
+  }
+
+  .eyebrow {
+    font-size: 0.72rem !important;
+    padding: 0.3rem 0.65rem !important;
+  }
+
+  .nav-logo {
+    font-size: 1.3rem !important;
+  }
+
+  .estimator-chips {
+    gap: 0.4rem !important;
+  }
+
+  .chip {
+    font-size: 0.78rem !important;
+    padding: 0.4rem 0.7rem !important;
+  }
+}

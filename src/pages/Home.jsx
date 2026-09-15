@@ -73,7 +73,7 @@ export default function Home({ triggerToast }) {
           <div className="section-kicker">Client Success Stories</div>
           <h2 className="section-title">Proof of performance for real Indian brands.</h2>
         </div>
-        <div className="portfolio-grid" style={{ gridTemplateColumns: 'repeat(3, 1fr)' }}>
+        <div className="portfolio-grid-3">
           <div className="portfolio-card">
             <div className="portfolio-thumb" style={{ background: 'linear-gradient(135deg, rgba(229,184,66,0.25), rgba(29,158,117,0.2))' }}>
               Reel Crafterr

@@ -92,7 +92,7 @@ export default function Navbar() {
           <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>Contact Us</NavLink></li>
         </ul>
 
-        <Link to="/contact" className="nav-cta">
+        <Link to="/contact" className="nav-cta desktop-only-cta">
           Get Started <ArrowUpRight size={16} />
         </Link>
         <button className="mobile-toggle" onClick={() => setMenuOpen(!menuOpen)}>
