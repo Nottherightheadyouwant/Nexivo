@@ -57,7 +57,7 @@ export default function Estimator({ triggerToast }) {
           ))}
         </div>
 
-        <div className="field-label">Optional Add-ons</div>
+        <div className="field-label" style={{ marginTop: '1.5rem' }}>Optional Add-ons</div>
         {addons.map((a) => (
           <div key={a.key} className="toggle-row">
             <span>{a.label} (+₹{a.cost.toLocaleString('en-IN')})</span>
@@ -74,7 +74,7 @@ export default function Estimator({ triggerToast }) {
       <div className="estimate-out">
         <div>
           <div className="field-label">Estimated Budget</div>
-          <div className="estimate-big" style={{ fontFamily: "'Plus Jakarta Sans', sans-serif" }}>
+          <div className="estimate-big">
             ₹{totalCost.toLocaleString('en-IN')}
           </div>
           <div className="estimate-line">

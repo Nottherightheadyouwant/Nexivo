@@ -899,7 +899,7 @@ input[type=range] {
 }
 
 .plan-features li::before {
-  content: 'Ã¢Å“â€œ';
+  content: 'ÃƒÂ¢Ã…â€œÃ¢â‚¬Å“';
   color: var(--teal-light);
   font-weight: 700;
 }
@@ -1926,5 +1926,38 @@ h1, h2, h3, h4, h5, h6,
   section {
     padding-top: 2.5rem !important;
     padding-bottom: 2.5rem !important;
+  }
+}
+/* ===== ESTIMATOR PANEL MOBILE RESPONSIVE POLISH ===== */
+@media (max-width: 768px) {
+  .estimator-panel {
+    padding: 1.25rem 1rem !important;
+    border-radius: 16px !important;
+  }
+
+  .chip-row {
+    gap: 0.4rem !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .chip {
+    font-size: 0.78rem !important;
+    padding: 0.45rem 0.75rem !important;
+  }
+
+  .toggle-row {
+    font-size: 0.82rem !important;
+    padding: 0.65rem 0 !important;
+    gap: 0.75rem !important;
+  }
+
+  .estimate-out {
+    padding: 1.25rem 1rem !important;
+    border-radius: 14px !important;
+    margin-top: 1rem !important;
+  }
+
+  .estimate-big {
+    font-size: 1.8rem !important;
   }
 }
