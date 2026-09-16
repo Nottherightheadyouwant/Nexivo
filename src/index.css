@@ -899,7 +899,7 @@ input[type=range] {
 }
 
 .plan-features li::before {
-  content: 'ÃƒÂ¢Ã…â€œÃ¢â‚¬Å“';
+  content: '\2713';
   color: var(--teal-light);
   font-weight: 700;
 }
