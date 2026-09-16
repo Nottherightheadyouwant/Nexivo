@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Check, ArrowRight, MessageSquare, Zap, Clock, ShieldCheck } from 'lucide-react';
+import { Check, MessageSquare, Zap } from 'lucide-react';
 import Estimator from '../components/Estimator';
 import FaqAccordion from '../components/FaqAccordion';
 
@@ -49,7 +49,7 @@ export default function Pricing({ triggerToast }) {
       },
       {
         name: 'Complete',
-        desc: 'For businesses ready to sell online, not just be found online.',
+        desc: 'For brands that need dynamic product catalogs, e-commerce, or custom features.',
         price: 'Scoped per catalog',
         note: 'custom timeline based on catalog',
         popular: false,
@@ -63,295 +63,287 @@ export default function Pricing({ triggerToast }) {
         ]
       }
     ],
-
     'seo': [
       {
         name: 'Local Boost',
-        desc: 'Essential SEO for local stores and clinics wanting to appear in local search.',
-        price: '₹6,999',
-        note: 'per month',
+        desc: 'Get found by customers searching nearby for your service.',
+        price: '₹6,999 / mo',
+        note: '3-month min contract',
         popular: false,
         features: [
-          'Google Business Profile (GBP) setup',
-          'Top 5 local keyword optimization',
-          'Basic citation & directory listings',
+          'Google Business Profile setup & audit',
+          'Top 5 local keywords target',
+          'Directory citations & listings',
           'Monthly ranking report'
         ]
       },
       {
         name: 'Map Pack Domination',
-        desc: 'Our flagship local SEO package designed to rank your business top 3 in Google Maps.',
-        price: '₹11,999',
-        note: 'per month',
+        desc: 'Aim for top 3 in Google Maps for your primary service keywords.',
+        price: '₹11,999 / mo',
+        note: '3-month min contract',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
           'Everything in Local Boost',
-          'GBP Top 3 Google Maps focus',
-          '15 high-intent local keywords',
+          'Top 3 Google Maps focus',
+          '15 local keywords target',
           'Technical Schema & On-Page SEO',
-          'Review generation engine setup',
-          '2 months free audit pass'
+          'Google review growth strategy',
+          'Free SEO audit pass for 2 months'
         ]
       },
       {
         name: 'National Authority',
-        desc: 'For multi-location brands and nationwide e-commerce stores.',
-        price: '₹19,999',
-        note: 'per month',
+        desc: 'For brands scaling across multiple cities or nationwide in India.',
+        price: '₹19,999 / mo',
+        note: 'custom strategy',
         popular: false,
         features: [
-          'Everything in Map Pack Domination',
-          '35 nationwide keywords',
+          'Everything in Map Pack',
+          '35 keywords targeted nationwide',
           'High-authority backlink outreach',
-          'Weekly rank updates & technical audits',
+          'Weekly keyword rank updates',
           'Competitor link gap analysis'
         ]
       }
     ],
-
     'digital-marketing': [
       {
         name: 'Growth Funnel',
-        desc: 'Lead generation funnel setup for small businesses seeking steady inquiries.',
-        price: '₹8,999',
-        note: 'per month',
+        desc: 'High-converting funnel setup for lead generation.',
+        price: '₹8,999 / mo',
+        note: '1-month setup + retainer',
         popular: false,
         features: [
-          'Lead capture landing page build',
-          'WhatsApp conversion triggers',
-          'Basic CRO audit',
+          'Lead capture landing page',
+          'WhatsApp instant response trigger',
+          'Basic CRO audit & tracking',
           'Monthly lead performance report'
         ]
       },
       {
         name: 'Omnichannel Scale',
-        desc: 'Full digital marketing system for businesses ready to scale sales predictable.',
-        price: '₹16,999',
-        note: 'per month',
+        desc: 'Scale inquiries across email, WhatsApp, and landing pages.',
+        price: '₹16,999 / mo',
+        note: 'recommended for active brands',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
           'Everything in Growth Funnel',
-          'A/B landing page copy testing',
+          'A/B copy & headline testing',
           'Automated email & WhatsApp lead nurturing',
           'Weekly ROI & conversion dashboard',
-          'Customer Lifetime Value optimization'
+          'Customer LTV optimization'
         ]
       },
       {
         name: 'Enterprise Growth',
-        desc: 'Full marketing team dedicated to your brand expansion.',
-        price: '₹28,999',
-        note: 'per month',
+        desc: 'Custom revenue strategy for established enterprises.',
+        price: '₹28,999 / mo',
+        note: 'custom contract',
         popular: false,
         features: [
-          'Everything in Omnichannel Scale',
-          'Custom CRM integration',
-          'Advanced retargeting funnels',
+          'Full digital strategy & funnel design',
+          'Custom CRM & webhook integrations',
+          'Advanced retargeting campaigns',
           'Dedicated account manager',
           'Priority 24/7 campaign support'
         ]
       }
     ],
-
     'social-media': [
       {
         name: 'Starter Grid',
-        desc: 'Clean, active social media presence for small businesses.',
-        price: '₹7,499',
-        note: 'per month',
+        desc: 'Consistent, professional social media presence.',
+        price: '₹7,499 / mo',
+        note: 'monthly retainer',
         popular: false,
         features: [
           '12 custom feed posts / month',
           'Caption & hashtag strategy',
           'Profile bio optimization',
-          'Monthly growth report'
+          'Monthly performance analytics'
         ]
       },
       {
         name: 'Reel Strategy Pro',
-        desc: 'High-engagement Reels and branded visual grid management.',
-        price: '₹14,999',
-        note: 'per month',
+        desc: 'Leverage Instagram Reels & short video to drive viral growth.',
+        price: '₹14,999 / mo',
+        note: 'monthly retainer',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
-          '15 custom feed posts / month',
-          '8 high-engagement Reel scripts',
-          'Brand grid aesthetic templates',
+          '15 feed posts / month',
+          '8 Reel scripts & editing templates',
+          'Brand grid template design',
           'DM & comment community management',
-          'Interactive story polls'
+          'Weekly performance report'
         ]
       },
       {
         name: 'Full Retainer',
-        desc: 'Complete social media takeover and influencer management.',
-        price: '₹24,999',
-        note: 'per month',
+        desc: 'Complete social media takeover & video production.',
+        price: '₹24,999 / mo',
+        note: 'full-service',
         popular: false,
         features: [
-          'Everything in Reel Strategy Pro',
-          '25 posts + 15 Reel scripts / month',
+          '25 feed posts / month',
+          '15 Reel scripts + full video edit',
           'Influencer collaboration management',
-          'Weekly analytics & trend tracking',
+          'Weekly analytics & strategy call',
           'Dedicated video editor'
         ]
       }
     ],
-
     'content-creation': [
       {
         name: 'Ad Creative Pack',
-        desc: 'High-converting ad banners and video scripts.',
+        desc: 'High-performing visual banners & ad copy for ad campaigns.',
         price: '₹4,999',
         note: 'one-time pack',
         popular: false,
         features: [
-          '6 Meta/Google ad banners',
-          '2 video ad scripts',
-          '1 round of revisions',
-          'High-res PNG & Figma exports'
+          '6 Meta / Google ad banners',
+          '2 video ad script concepts',
+          'Ad copywriting variations',
+          '2 rounds of revisions'
         ]
       },
       {
         name: 'Brand & Copy Pack',
-        desc: 'Complete website copy and brand content suite.',
+        desc: 'Full website copywriting and brand guidelines asset pack.',
         price: '₹9,999',
         note: 'one-time pack',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
-          'Everything in Ad Creative Pack',
-          'Full website copywriting',
-          'Brand tone of voice guide',
-          '12 social media ad banners',
-          'Digital PDF brochure'
+          'Full website copywriting (up to 7 pages)',
+          'Brand voice & tone guideline doc',
+          '12 ad banners + 2 video scripts',
+          'Digital brochure / PDF design'
         ]
       },
       {
         name: 'Full Media Suite',
-        desc: 'Complete creative assets bundle for major brand launches.',
+        desc: 'Complete digital asset & video script production.',
         price: '₹18,999',
         note: 'one-time pack',
         popular: false,
         features: [
-          'Everything in Brand & Copy Pack',
-          'Product catalog copy & templates',
-          '25 ad banner variations',
-          '5 short-form video ad scripts',
-          'Priority 3-day turnaround'
+          'Full product & service copy suite',
+          '25 ad banners (all formats)',
+          '5 short video script & storyboard concepts',
+          'Social media launch toolkit'
         ]
       }
     ],
-
     'ads-management': [
       {
         name: 'PPC Lead Launch',
-        desc: 'Targeted single-channel PPC campaign for immediate lead generation.',
-        price: '₹9,999',
-        note: 'per month + ad spend',
+        desc: 'Targeted Google Search or Meta ads for local service leads.',
+        price: '₹9,999 / mo',
+        note: '+ ad spend',
         popular: false,
         features: [
-          '1 ad campaign (Google Search or Meta)',
+          'Google Search or Meta ads setup',
           'Conversion tracking & Pixel setup',
-          'Ad creative & sales copy design',
-          'Monthly performance report'
+          'Ad creative & copy design',
+          'Monthly ROAS & lead report'
         ]
       },
       {
         name: 'High ROAS Scaling',
-        desc: 'Multi-channel Meta & Google search ad management built for high ROAS.',
-        price: '₹18,999',
-        note: 'per month + ad spend',
+        desc: 'Combined Google & Meta ads to maximize appointment bookings.',
+        price: '₹18,999 / mo',
+        note: '+ ad spend',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
           'Google Search + Meta Retargeting',
           'Multi-ad set A/B testing',
-          'Custom conversion API tracking',
-          'Negative keyword exclusions (Zero wasted spend)',
-          'Weekly campaign optimization'
+          'Conversion API & custom event setup',
+          'Negative keyword sculpting',
+          'Bi-weekly strategy call'
         ]
       },
       {
         name: 'Enterprise Ad Spend',
-        desc: 'Full paid advertising management for major ad budgets.',
-        price: '₹34,999',
-        note: 'per month + ad spend',
+        desc: 'For brands spending over ₹1 Lakh/mo on digital ads.',
+        price: '₹34,999 / mo',
+        note: '+ ad spend',
         popular: false,
         features: [
-          'Everything in High ROAS Scaling',
-          'Omnichannel Search, Display & Video Ads',
-          'Dedicated PPC specialist',
+          'Omnichannel Google, Meta & LinkedIn ads',
           'Daily bid & budget management',
-          'Real-time ROI dashboard'
+          'Real-time Looker Studio ROI dashboard',
+          'Dedicated media buyer',
+          '24/7 campaign monitoring'
         ]
       }
     ]
   };
 
-  const currentTiers = pricingData[activeCategory] || pricingData['web-dev'];
-
-  const handleEnquireTier = (tierName, price) => {
-    const categoryObj = pricingCategories.find(c => c.id === activeCategory);
-    const categoryName = categoryObj ? categoryObj.label : 'Project';
-    const text = encodeURIComponent(`Hi Nexivo! I am interested in the ${tierName} package for ${categoryName} (${price}). Please provide details.`);
+  const handleEnquire = (planName, price) => {
+    const text = encodeURIComponent(`Hi Nexivo! I would like to enquire about the ${planName} package (${price}).`);
     window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
-    if (triggerToast) triggerToast(`Opening WhatsApp for ${tierName} package!`);
+    if (triggerToast) triggerToast(`Opening WhatsApp for ${planName} enquiry...`);
   };
 
   return (
     <main>
-      {/* PAGE HEADER */}
       <section className="page-header">
-        <div className="eyebrow">Pricing Packages</div>
+        <div className="eyebrow"><Zap size={16} /> Transparent Pricing • Zero Hidden Costs</div>
         <h1 className="page-title">
-          Pick a starting point, <span className="accent">not a spreadsheet.</span>
+          Simple packages for <span className="accent">predictable digital growth.</span>
         </h1>
         <p className="page-desc">
-          Most clients don't know exactly what they need — select your service category below to view transparent pricing tiers from "I just need to exist online" to "I want full growth."
+          Choose a fixed package or build a custom project. Clear deliverables, no surprise bills, and honest timelines.
         </p>
+      </section>
 
-        {/* DYNAMIC CATEGORY TABS */}
-        <div className="chip-row" style={{ justifyContent: 'center', marginTop: '2.5rem', gap: '0.6rem' }}>
-          {pricingCategories.map(cat => (
+      {/* CATEGORY SWITCHER */}
+      <section style={{ paddingTop: 0 }}>
+        <div style={{ display: 'flex', justifyContent: 'center', gap: '0.6rem', flexWrap: 'wrap', marginBottom: '2.5rem' }}>
+          {pricingCategories.map((cat) => (
             <button
               key={cat.id}
-              className={`chip ${activeCategory === cat.id ? 'active' : ''}`}
               onClick={() => setActiveCategory(cat.id)}
+              className={`chip ${activeCategory === cat.id ? 'active' : ''}`}
+              style={{ fontSize: '0.88rem', padding: '0.6rem 1.2rem' }}
             >
               {cat.label}
             </button>
           ))}
         </div>
-      </section>
 
-      {/* DYNAMIC TIERS GRID */}
-      <section style={{ paddingTop: '1.5rem' }}>
+        {/* PRICING CARDS GRID */}
         <div className="pricing-grid">
-          {currentTiers.map((tier, idx) => (
-            <div key={idx} className={`pricing-card ${tier.popular ? 'popular' : ''}`}>
-              {tier.popular && <div className="popular-badge">{tier.ribbon || 'MOST POPULAR'}</div>}
-              <div>
-                <div className="plan-name">{tier.name}</div>
-                <div className="plan-desc">{tier.desc}</div>
-                <div className="plan-price">{tier.price}</div>
-                <div style={{ fontSize: '0.78rem', color: 'rgba(244,242,235,0.4)', marginBottom: '1.6rem' }}>
-                  {tier.note}
-                </div>
+          {pricingData[activeCategory]?.map((plan, idx) => (
+            <div key={idx} className={`pricing-card ${plan.popular ? 'popular' : ''}`}>
+              {plan.popular && <div className="popular-ribbon">{plan.ribbon}</div>}
+              
+              <h3 className="pricing-title">{plan.name}</h3>
+              <p className="pricing-desc">{plan.desc}</p>
 
-                <ul className="plan-features">
-                  {tier.features.map((f, i) => (
-                    <li key={i}>{f}</li>
-                  ))}
-                </ul>
+              <div className="pricing-amount">
+                {plan.price}
+                <span className="pricing-note">{plan.note}</span>
               </div>
 
+              <ul className="pricing-features">
+                {plan.features.map((feat, fIdx) => (
+                  <li key={fIdx} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    <Check size={16} style={{ color: 'var(--teal-light)', flexShrink: 0, marginTop: '3px' }} />
+                    <span>{feat}</span>
+                  </li>
+                ))}
+              </ul>
+
               <button
-                onClick={() => handleEnquireTier(tier.name, tier.price)}
-                className={tier.popular ? 'btn-primary' : 'btn-outline'}
-                style={{ width: '100%', justifyContent: 'center', marginTop: '1rem' }}
+                onClick={() => handleEnquire(plan.name, plan.price)}
+                className={plan.popular ? 'btn-primary' : 'btn-outline'}
+                style={{ width: '100%', justifyContent: 'center', marginTop: 'auto' }}
               >
                 Enquire on WhatsApp <MessageSquare size={16} />
               </button>
@@ -359,28 +351,25 @@ export default function Pricing({ triggerToast }) {
           ))}
         </div>
 
-        {/* ADDONS BAR */}
-        <div className="glass-card" style={{ marginTop: '3.5rem', padding: '1.8rem', display: 'flex', justifyContent: 'center', gap: '2.5rem', flexWrap: 'wrap', fontSize: '0.88rem', color: 'rgba(244,242,235,0.6)' }}>
-          <div><b style={{ color: 'var(--offwhite)' }}>Website Redesign</b> — from ₹8,000</div>
-          <div><b style={{ color: 'var(--offwhite)' }}>Monthly Maintenance</b> — ₹2,500/mo (after included period)</div>
-          <div><b style={{ color: 'var(--offwhite)' }}>Custom SEO & Ads</b> — finalized per scope</div>
+        <div style={{ textAlign: 'center', marginTop: '3rem', fontSize: '0.9rem', color: 'rgba(244,242,235,0.6)' }}>
+          Need a custom enterprise scope? <strong>Website Redesign</strong> — from ₹8,000 | <strong>Monthly Maintenance</strong> — ₹2,500/mo | <strong>Custom SEO & Ads</strong> — finalized per scope
         </div>
       </section>
 
-      {/* INTERACTIVE ESTIMATOR */}
+      {/* ESTIMATOR INTEGRATION */}
       <section>
         <div className="section-head">
-          <div className="section-kicker">Custom Estimator</div>
-          <h2 className="section-title">Need a custom combination? Calculate your budget.</h2>
+          <div className="section-kicker">Interactive Estimator</div>
+          <h2 className="section-title">Prefer to calculate your custom bundle?</h2>
         </div>
         <Estimator triggerToast={triggerToast} />
       </section>
 
-      {/* FAQ SECTION */}
+      {/* FAQ */}
       <section>
-        <div className="section-head center">
+        <div className="section-head">
           <div className="section-kicker">FAQ</div>
-          <h2 className="section-title">Frequently Asked Questions</h2>
+          <h2 className="section-title">Common questions about our pricing & process.</h2>
         </div>
         <FaqAccordion />
       </section>
