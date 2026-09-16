@@ -899,7 +899,7 @@ input[type=range] {
 }
 
 .plan-features li::before {
-  content: 'ÃƒÆ’Ã‚Â¢Ãƒâ€¦Ã¢â‚¬Å“ÃƒÂ¢Ã¢â€šÂ¬Ã…â€œ';
+  content: 'ÃƒÂ¢Ã…â€œÃ¢â‚¬Å“';
   color: var(--teal-light);
   font-weight: 700;
 }
@@ -1960,31 +1960,4 @@ h1, h2, h3, h4, h5, h6,
   .estimate-big {
     font-size: 1.8rem !important;
   }
-}
-/* ===== GLOBAL BUTTON HOVER BLUE EFFECT ===== */
-.btn-primary:hover,
-.btn-outline:hover,
-.btn-secondary:hover,
-.chip:hover,
-.chip.active:hover,
-button:hover,
-a.btn-primary:hover,
-a.btn-outline:hover,
-.pricing-card button:hover,
-.hero-actions a:hover,
-.nav-cta:hover {
-  background: linear-gradient(135deg, #0284c7 0%, #378ADD 100%) !important;
-  color: #ffffff !important;
-  border-color: #38bdf8 !important;
-  box-shadow: 0 8px 25px rgba(2, 132, 199, 0.45) !important;
-  transform: translateY(-2px);
-}
-
-.btn-primary:hover *,
-.btn-outline:hover *,
-.btn-secondary:hover *,
-button:hover *,
-a.btn-primary:hover *,
-a.btn-outline:hover * {
-  color: #ffffff !important;
 }
