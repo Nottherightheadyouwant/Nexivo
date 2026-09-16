@@ -899,7 +899,7 @@ input[type=range] {
 }
 
 .plan-features li::before {
-  content: 'âœ“';
+  content: 'Ã¢Å“â€œ';
   color: var(--teal-light);
   font-weight: 700;
 }
@@ -1885,5 +1885,46 @@ h1, h2, h3, h4, h5, h6,
     flex-direction: column !important;
     align-items: flex-start !important;
     gap: 1rem !important;
+  }
+}
+/* ===== GLOBAL MOBILE POLISH & OVERFLOW FIXES ===== */
+@media (max-width: 768px) {
+  .section-title {
+    font-size: 1.55rem !important;
+    line-height: 1.25 !important;
+    letter-spacing: -0.02em !important;
+    word-break: normal !important;
+  }
+
+  .page-title {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .roi-panel {
+    padding: 1.25rem 1rem !important;
+    border-radius: 16px !important;
+  }
+
+  .slider-block {
+    margin-bottom: 1.2rem !important;
+  }
+
+  .slider-top {
+    font-size: 0.8rem !important;
+  }
+
+  .roi-result {
+    padding: 1.25rem 1rem !important;
+    border-radius: 14px !important;
+  }
+
+  .roi-result .big {
+    font-size: 1.8rem !important;
+  }
+
+  section {
+    padding-top: 2.5rem !important;
+    padding-bottom: 2.5rem !important;
   }
 }

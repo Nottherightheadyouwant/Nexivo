@@ -67,7 +67,7 @@ export default function Home({ triggerToast }) {
         <RoiCalculator />
       </section>
 
-            {/* PORTFOLIO & TESTIMONIALS */}
+      {/* PORTFOLIO & TESTIMONIALS */}
       <section>
         <div className="section-head">
           <div className="section-kicker">Client Success Stories</div>
@@ -81,7 +81,7 @@ export default function Home({ triggerToast }) {
             </div>
             <div className="portfolio-info">
               <h4>Reel Crafterr</h4>
-              <span>Cinematic Videography Platform · <a href="https://www.reelcrafterr.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal-light)', textDecoration: 'none' }}>www.reelcrafterr.in ↗</a></span>
+              <span>Cinematic Videography Platform • <a href="https://www.reelcrafterr.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal-light)', textDecoration: 'none' }}>www.reelcrafterr.in</a></span>
               <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', marginTop: '0.6rem', fontStyle: 'italic', lineHeight: '1.5' }}>
                 "Nexivo built a lightning-fast, cinematic portfolio for our video studio. Our client shoot inquiries jumped 4x in 30 days!"
               </p>
@@ -95,7 +95,7 @@ export default function Home({ triggerToast }) {
             </div>
             <div className="portfolio-info">
               <h4>Nails By Shalvi</h4>
-              <span>Studio booking site · Chandkheda</span>
+              <span>Studio booking site • Chandkheda</span>
               <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', marginTop: '0.6rem', fontStyle: 'italic', lineHeight: '1.5' }}>
                 "The direct WhatsApp booking button changed our salon business completely."
               </p>
@@ -109,7 +109,7 @@ export default function Home({ triggerToast }) {
             </div>
             <div className="portfolio-info">
               <h4>Shri Radhey Book Depot</h4>
-              <span>E-commerce + stock ledger · Thaltej</span>
+              <span>E-commerce + stock ledger • Thaltej</span>
               <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', marginTop: '0.6rem', fontStyle: 'italic', lineHeight: '1.5' }}>
                 "Sub-second load times and smooth online catalog. Best decision for our retail store."
               </p>
