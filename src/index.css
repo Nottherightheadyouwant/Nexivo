@@ -1586,7 +1586,7 @@ body, p, li, a, button, input, select, textarea,
   /* Prevent text overflow */
   h1, h2, h3, h4, .hero-title, .page-title, .section-title {
     word-break: break-word !important;
-    hyphens: auto !important;
+    hyphens: none !important; word-break: normal !important; overflow-wrap: break-word !important;
   }
 
   .hero-title, .page-title {
@@ -1699,5 +1699,47 @@ body, p, li, a, button, input, select, textarea,
   .chip {
     font-size: 0.78rem !important;
     padding: 0.4rem 0.7rem !important;
+  }
+}
+
+
+/* ===== MOBILE HEADER FLAT FIXED BAR & NO-HYPHENATION FIX ===== */
+h1, h2, h3, h4, h5, h6,
+.hero-title, .page-title, .section-title {
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+}
+
+@media (max-width: 768px) {
+  header {
+    top: 0 !important;
+    left: 0 !important;
+    transform: none !important;
+    width: 100% !important;
+    z-index: 99999 !important;
+  }
+
+  nav {
+    border-radius: 0 0 16px 16px !important;
+    background: rgba(18, 22, 20, 0.96) !important;
+    backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid var(--line-strong) !important;
+    padding: 0.85rem 1.2rem !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8) !important;
+  }
+
+  .mobile-menu {
+    border-radius: 0 0 16px 16px !important;
+    margin-top: 0 !important;
+    background: rgba(15, 19, 17, 0.98) !important;
+    backdrop-filter: blur(24px) !important;
+    border-top: 1px solid var(--line) !important;
+  }
+
+  /* Extra top spacing for sections so titles don't start under sticky header */
+  .hero-section, .page-header {
+    padding-top: 6.5rem !important;
   }
 }
