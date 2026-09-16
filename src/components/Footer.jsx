@@ -8,12 +8,12 @@ export default function Footer() {
       <div className="footer-inner">
         <div>
           <div className="footer-brand">
-    <span className="logo-brand-wrap">
-      <span className="logo-white">Nex</span>
-      <span className="logo-teal">ivo</span>
-    </span>
-  </div>
-          <div className="footer-loc"><MapPin size={16} /> Global Agency — London, UK & Ahmedabad, India</div>
+            <span className="logo-brand-wrap">
+              <span className="logo-white">Nex</span>
+              <span className="logo-teal">ivo</span>
+            </span>
+          </div>
+          <div className="footer-loc"><MapPin size={16} /> Global Agency - London, UK & Ahmedabad, India</div>
           <p style={{ fontSize: '0.85rem', color: 'rgba(244,242,235,0.5)', marginTop: '0.8rem', maxWidth: '280px' }}>
             High-converting digital builds and revenue marketing for growing Indian brands.
           </p>
@@ -28,11 +28,10 @@ export default function Footer() {
             <Link to="/contact">Contact</Link>
           </div>
           <div className="footer-col">
-            <h5>Services</h5>
-            <Link to="/services">Clinic Websites</Link>
-            <Link to="/services">E-Commerce Builds</Link>
-            <Link to="/services">Local SEO & GBP</Link>
-            <Link to="/services">Meta & Google Ads</Link>
+            <h5>Legal</h5>
+            <Link to="/terms">Terms & Conditions</Link>
+            <Link to="/privacy">Privacy Policy</Link>
+            <Link to="/cookies">Cookie Policy</Link>
           </div>
           <div className="footer-col">
             <h5>Connect</h5>
@@ -46,7 +45,11 @@ export default function Footer() {
       </div>
       <div className="footer-bottom">
         <div>© {new Date().getFullYear()} Nexivo Digital. All rights reserved.</div>
-        <div>Engineered for global performance — London & Ahmedabad</div>
+        <div style={{ display: 'flex', gap: '1rem' }}>
+          <Link to="/terms" style={{ color: 'rgba(244,242,235,0.5)', textDecoration: 'none' }}>Terms</Link>
+          <Link to="/privacy" style={{ color: 'rgba(244,242,235,0.5)', textDecoration: 'none' }}>Privacy</Link>
+          <Link to="/cookies" style={{ color: 'rgba(244,242,235,0.5)', textDecoration: 'none' }}>Cookies</Link>
+        </div>
       </div>
     </footer>
   );

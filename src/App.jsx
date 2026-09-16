@@ -11,6 +11,9 @@ import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
+import Terms from './pages/Terms';
+import Privacy from './pages/Privacy';
+import Cookies from './pages/Cookies';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -45,6 +48,9 @@ export default function App() {
         <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
         <Route path="/pricing" element={<Pricing triggerToast={triggerToast} />} />
         <Route path="/contact" element={<Contact triggerToast={triggerToast} />} />
+        <Route path="/terms" element={<Terms />} />
+        <Route path="/privacy" element={<Privacy />} />
+        <Route path="/cookies" element={<Cookies />} />
       </Routes>
       <FloatingWhatsApp />
       <Footer />
