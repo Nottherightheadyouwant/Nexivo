@@ -235,10 +235,10 @@ export default function WebsiteHealthCheck({ triggerToast }) {
   };
 
   return (
-    <div className="glass-card audit-container" style={{ padding: '2.5rem 2rem', borderRadius: '24px', border: '1px solid var(--line-strong)' }}>
+    <div className="audit-wrapper">
       {/* INPUT FORM STAGE */}
       {!isAnalyzing && !auditResult && (
-        <div style={{ maxWidth: '640px', margin: '0 auto' }}>
+        <div className="glass-card audit-container">
           <div style={{ textAlign: 'center', marginBottom: '1.8rem' }}>
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: '8px', padding: '0.4rem 0.9rem', borderRadius: '20px', background: 'rgba(93, 202, 165, 0.1)', border: '1px solid rgba(93, 202, 165, 0.25)', color: 'var(--teal-light)', fontSize: '0.85rem', fontWeight: 600, marginBottom: '0.8rem' }}>
               <Zap size={15} /> Honest Real-Time Audit Engine
@@ -299,7 +299,7 @@ export default function WebsiteHealthCheck({ triggerToast }) {
 
       {/* SCANNING ANIMATION STAGE */}
       {isAnalyzing && (
-        <div style={{ maxWidth: '520px', margin: '1.5rem auto', textAlign: 'center' }}>
+        <div className="glass-card audit-container" style={{ textAlign: 'center' }}>
           <div style={{ display: 'inline-flex', padding: '1rem', borderRadius: '50%', background: 'rgba(93, 202, 165, 0.12)', border: '1px solid rgba(93, 202, 165, 0.3)', marginBottom: '1.5rem' }}>
             <RefreshCw size={32} style={{ color: 'var(--teal-light)' }} />
           </div>
@@ -325,50 +325,31 @@ export default function WebsiteHealthCheck({ triggerToast }) {
 
       {/* REPORT RESULTS STAGE */}
       {!isAnalyzing && auditResult && (
-        <div style={{ maxWidth: '780px', margin: '0 auto' }}>
+        <div className="audit-results-wrap">
           {/* HEADER AUDIT CARD */}
-          <div className="audit-header-card" style={{
-            background: 'rgba(0,0,0,0.35)',
-            border: '1px solid var(--line-strong)',
-            borderRadius: '18px',
-            padding: '1.8rem',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '1.5rem',
-            marginBottom: '2rem'
-          }}>
-            <div className="audit-header-top" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
-              <div className="audit-score-wrap" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+          <div className="audit-header-card">
+            <div className="audit-header-top">
+              <div className="audit-score-wrap">
                 <div className="audit-score-circle" style={{
-                  width: '76px',
-                  height: '76px',
-                  borderRadius: '50%',
                   background: auditResult.score >= 80 ? 'rgba(93, 202, 165, 0.15)' : auditResult.score >= 60 ? 'rgba(251, 191, 36, 0.15)' : 'rgba(239, 68, 68, 0.15)',
-                  border: `2px solid ${auditResult.score >= 80 ? '#5DCAA5' : auditResult.score >= 60 ? '#fbbf24' : '#ef4444'}`,
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexDirection: 'column',
-                  flexShrink: 0
+                  border: `2px solid ${auditResult.score >= 80 ? '#5DCAA5' : auditResult.score >= 60 ? '#fbbf24' : '#ef4444'}`
                 }}>
-                  <span className="audit-score-num" style={{ fontSize: '1.45rem', fontWeight: 800, color: auditResult.score >= 80 ? '#5DCAA5' : auditResult.score >= 60 ? '#fbbf24' : '#ef4444', lineHeight: 1 }}>
+                  <span className="audit-score-num" style={{ color: auditResult.score >= 80 ? '#5DCAA5' : auditResult.score >= 60 ? '#fbbf24' : '#ef4444' }}>
                     {auditResult.score}
                   </span>
-                  <span style={{ fontSize: '0.65rem', color: 'rgba(244,242,235,0.6)', textTransform: 'uppercase', fontWeight: 700 }}>
+                  <span className="audit-score-max">
                     / 100
                   </span>
                 </div>
 
-                <div style={{ flexGrow: 1 }}>
-                  <div className="audit-label-badge" style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 700, color: auditResult.labelColor || '#5DCAA5', marginBottom: '0.2rem' }}>
+                <div className="audit-domain-box">
+                  <div className="audit-label-badge" style={{ color: auditResult.labelColor || '#5DCAA5' }}>
                     {auditResult.label}
                   </div>
-                  <h3 className="audit-domain-title" style={{ fontSize: '1.35rem', color: '#ffffff', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <h3 className="audit-domain-title">
                     {auditResult.displayUrl}
                     {auditResult.displayUrl !== 'No Website Yet' && (
-                      <a href={`https://${auditResult.displayUrl}`} target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(244,242,235,0.4)' }}>
+                      <a href={`https://${auditResult.displayUrl}`} target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(244,242,235,0.4)', marginLeft: '6px' }}>
                         <ExternalLink size={16} />
                       </a>
                     )}
@@ -380,61 +361,40 @@ export default function WebsiteHealthCheck({ triggerToast }) {
             <button
               onClick={handleReset}
               className="btn-outline audit-reset-btn"
-              style={{ fontSize: '0.82rem', padding: '0.5rem 1rem' }}
             >
               <RefreshCw size={14} /> Audit Another Domain
             </button>
           </div>
 
           {/* CHECKLIST OF FINDINGS */}
-          <div style={{ marginBottom: '2.5rem' }}>
-            <h4 style={{ fontSize: '1.1rem', color: 'var(--offwhite)', marginBottom: '1.2rem', display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <div className="audit-checklist-section">
+            <h4 className="audit-section-heading">
               <ShieldCheck size={20} color="#5DCAA5" /> 
               {auditResult.isNew ? 'Essentials Checklist for Your New Build:' : 'Detailed Technical & Conversion Analysis:'}
             </h4>
 
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+            <div className="audit-checklist">
               {auditResult.checks.map((item, idx) => (
-                <div
-                  key={idx}
-                  className="audit-check-card"
-                  style={{
-                    background: 'rgba(255,255,255,0.02)',
-                    border: '1px solid var(--line)',
-                    borderRadius: '14px',
-                    padding: '1.2rem 1.4rem',
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: '1rem'
-                  }}
-                >
-                  <div style={{ marginTop: '2px', flexShrink: 0 }}>
+                <div key={idx} className="audit-check-card">
+                  <div className="audit-check-icon">
                     {item.status === 'pass' && <CheckCircle2 size={20} color="#5DCAA5" />}
                     {item.status === 'fail' && <XCircle size={20} color="#f87171" />}
                     {item.status === 'warn' && <AlertTriangle size={20} color="#fbbf24" />}
                     {item.status === 'info' && <Zap size={20} color="#38bdf8" />}
                   </div>
 
-                  <div style={{ flexGrow: 1, width: '100%' }}>
-                    <div className="audit-check-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.3rem' }}>
-                      <h5 className="audit-check-title" style={{ fontSize: '1rem', color: '#ffffff', margin: 0, fontWeight: 700 }}>
+                  <div className="audit-check-body">
+                    <div className="audit-check-header">
+                      <h5 className="audit-check-title">
                         {item.title}
                       </h5>
                       {item.badge && (
-                        <span style={{
-                          fontSize: '0.72rem',
-                          padding: '0.2rem 0.6rem',
-                          borderRadius: '6px',
-                          background: item.status === 'pass' ? 'rgba(93,202,165,0.15)' : item.status === 'fail' ? 'rgba(239,68,68,0.15)' : 'rgba(251,191,36,0.15)',
-                          color: item.status === 'pass' ? '#5DCAA5' : item.status === 'fail' ? '#f87171' : '#fbbf24',
-                          border: `1px solid ${item.status === 'pass' ? 'rgba(93,202,165,0.3)' : item.status === 'fail' ? 'rgba(239,68,68,0.3)' : 'rgba(251,191,36,0.3)'}`,
-                          fontWeight: 700
-                        }}>
+                        <span className={`audit-badge badge-${item.status}`}>
                           {item.badge}
                         </span>
                       )}
                     </div>
-                    <p className="audit-check-desc" style={{ fontSize: '0.86rem', color: 'rgba(244,242,235,0.7)', margin: 0, lineHeight: '1.55' }}>
+                    <p className="audit-check-desc">
                       {item.desc}
                     </p>
                   </div>
@@ -444,24 +404,15 @@ export default function WebsiteHealthCheck({ triggerToast }) {
           </div>
 
           {/* WANT US TO FIX THIS? CTA BOX */}
-          <div className="audit-cta-box" style={{
-            background: 'linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(29, 158, 117, 0.15) 100%)',
-            border: '1px solid rgba(56, 189, 248, 0.3)',
-            borderRadius: '20px',
-            padding: '2rem',
-            textAlign: 'center'
-          }}>
-            <h3 style={{ fontSize: '1.4rem', color: '#ffffff', marginBottom: '0.5rem' }}>
-              Want us to fix these bottlenecks for you?
-            </h3>
-            <p style={{ fontSize: '0.92rem', color: 'rgba(244,242,235,0.8)', maxWidth: '560px', margin: '0 auto 1.5rem auto', lineHeight: '1.6' }}>
+          <div className="audit-cta-box">
+            <h3>Want us to fix these bottlenecks for you?</h3>
+            <p>
               Nexivo builds sub-second fast, mobile-optimized websites with built-in WhatsApp lead conversion triggers. Let's discuss upgrading your site.
             </p>
 
             <button
               onClick={handleWhatsAppFix}
-              className="btn-primary"
-              style={{ padding: '0.85rem 2rem', fontSize: '1rem', justifyContent: 'center', margin: '0 auto' }}
+              className="btn-primary audit-cta-btn"
             >
               <MessageSquare size={18} /> Enquire on WhatsApp to Fix This Site
             </button>

@@ -2126,3 +2126,341 @@ section {
     font-size: 0.9rem !important;
   }
 }
+
+
+/* ============================================================
+   AUDIT TOOL CLEAN SINGLE-FRAME DESKTOP & MOBILE STYLING
+   ============================================================ */
+html, body, #root, main {
+  overflow-x: hidden !important;
+  max-width: 100vw !important;
+}
+
+section {
+  scroll-margin-top: 5.5rem !important;
+}
+
+.hero-section, .page-header {
+  padding-top: 5.5rem !important;
+}
+
+.audit-wrapper {
+  max-width: 860px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.audit-results-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 100%;
+}
+
+.audit-header-card {
+  background: var(--glass);
+  border: 1px solid var(--line-strong);
+  border-radius: 20px;
+  padding: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+}
+
+.audit-header-top {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.audit-score-wrap {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+.audit-score-circle {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.audit-score-num {
+  font-size: 1.45rem;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.audit-score-max {
+  font-size: 0.65rem;
+  color: rgba(244, 242, 235, 0.6);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.audit-domain-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.audit-label-badge {
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  margin-bottom: 0.2rem;
+}
+
+.audit-domain-title {
+  font-size: 1.35rem;
+  color: #ffffff;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.audit-reset-btn {
+  font-size: 0.82rem;
+  padding: 0.55rem 1.1rem;
+}
+
+.audit-section-heading {
+  font-size: 1.1rem;
+  color: var(--offwhite);
+  margin-bottom: 1.2rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.audit-checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.audit-check-card {
+  background: var(--glass);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 1.25rem 1.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.audit-check-icon {
+  margin-top: 2px;
+  flex-shrink: 0;
+}
+
+.audit-check-body {
+  flex-grow: 1;
+  width: 100%;
+}
+
+.audit-check-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.audit-check-title {
+  font-size: 1rem;
+  color: #ffffff;
+  margin: 0;
+  font-weight: 700;
+}
+
+.audit-badge {
+  font-size: 0.72rem;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+  font-weight: 700;
+}
+
+.badge-pass {
+  background: rgba(93, 202, 165, 0.15);
+  color: #5DCAA5;
+  border: 1px solid rgba(93, 202, 165, 0.3);
+}
+
+.badge-fail {
+  background: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.badge-warn {
+  background: rgba(251, 191, 36, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.badge-info {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+}
+
+.audit-check-desc {
+  font-size: 0.86rem;
+  color: rgba(244, 242, 235, 0.7);
+  margin: 0;
+  line-height: 1.55;
+}
+
+.audit-cta-box {
+  background: linear-gradient(135deg, rgba(2, 132, 199, 0.16) 0%, rgba(29, 158, 117, 0.16) 100%);
+  border: 1px solid rgba(56, 189, 248, 0.35);
+  border-radius: 20px;
+  padding: 2rem 1.5rem;
+  text-align: center;
+  margin-top: 1rem;
+}
+
+.audit-cta-box h3 {
+  font-size: 1.4rem;
+  color: #ffffff;
+  margin-bottom: 0.5rem;
+}
+
+.audit-cta-box p {
+  font-size: 0.92rem;
+  color: rgba(244, 242, 235, 0.85);
+  max-width: 560px;
+  margin: 0 auto 1.5rem auto;
+  line-height: 1.6;
+}
+
+.audit-cta-btn {
+  padding: 0.85rem 1.8rem !important;
+  font-size: 0.95rem !important;
+  justify-content: center !important;
+  margin: 0 auto !important;
+  display: inline-flex !important;
+  white-space: nowrap !important;
+}
+
+/* MOBILE RESPONSIVE POLISH (< 768px) */
+@media (max-width: 768px) {
+  .floating-wa-wrap {
+    bottom: 0.85rem !important;
+    right: 0.85rem !important;
+    z-index: 999999 !important;
+  }
+
+  .floating-wa-btn {
+    width: 48px !important;
+    height: 48px !important;
+    box-shadow: 0 4px 15px rgba(29, 158, 117, 0.4) !important;
+  }
+
+  .wa-tooltip {
+    display: none !important;
+  }
+
+  .audit-wrapper {
+    padding: 0 !important;
+  }
+
+  .audit-header-card {
+    padding: 1.15rem 0.9rem !important;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 1rem !important;
+    border-radius: 14px !important;
+  }
+
+  .audit-header-top,
+  .audit-score-wrap {
+    width: 100% !important;
+  }
+
+  .audit-score-circle {
+    width: 58px !important;
+    height: 58px !important;
+  }
+
+  .audit-score-num {
+    font-size: 1.2rem !important;
+  }
+
+  .audit-label-badge {
+    font-size: 0.72rem !important;
+    line-height: 1.35 !important;
+    word-break: break-word !important;
+    white-space: normal !important;
+    display: block !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  .audit-domain-title {
+    font-size: 1.15rem !important;
+    word-break: break-all !important;
+  }
+
+  .audit-reset-btn {
+    width: 100% !important;
+    justify-content: center !important;
+    font-size: 0.82rem !important;
+    padding: 0.6rem !important;
+  }
+
+  .audit-check-card {
+    padding: 0.95rem 0.85rem !important;
+    border-radius: 12px !important;
+    gap: 0.75rem !important;
+  }
+
+  .audit-check-header {
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    gap: 0.35rem !important;
+  }
+
+  .audit-check-title {
+    font-size: 0.92rem !important;
+    line-height: 1.35 !important;
+  }
+
+  .audit-check-desc {
+    font-size: 0.82rem !important;
+    line-height: 1.5 !important;
+  }
+
+  .audit-cta-box {
+    padding: 1.25rem 0.85rem !important;
+    border-radius: 16px !important;
+    margin-top: 0.5rem !important;
+  }
+
+  .audit-cta-box h3 {
+    font-size: 1.15rem !important;
+    line-height: 1.3 !important;
+  }
+
+  .audit-cta-box p {
+    font-size: 0.84rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.2rem !important;
+  }
+
+  .audit-cta-btn {
+    width: 100% !important;
+    font-size: 0.86rem !important;
+    padding: 0.75rem 0.85rem !important;
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
