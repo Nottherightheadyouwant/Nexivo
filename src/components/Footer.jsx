@@ -1,6 +1,6 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
-import { MapPin, MessageSquare, Mail, Phone } from 'lucide-react';
+import { MapPin } from 'lucide-react';
 
 export default function Footer() {
   return (
@@ -13,9 +13,9 @@ export default function Footer() {
               <span className="logo-teal">ivo</span>
             </span>
           </div>
-          <div className="footer-loc"><MapPin size={16} /> Global Agency - London, UK & Ahmedabad, India</div>
+          <div className="footer-loc"><MapPin size={16} /> Global Agency — India & UK</div>
           <p style={{ fontSize: '0.85rem', color: 'rgba(244,242,235,0.5)', marginTop: '0.8rem', maxWidth: '280px' }}>
-            High-converting digital builds and revenue marketing for growing Indian brands.
+            High-converting digital builds and revenue marketing for growing brands in India & UK.
           </p>
         </div>
         <div className="footer-links">
