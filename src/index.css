@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    NEXIVO - REACT APP GLOBAL DESIGN SYSTEM & UTILITIES
    ============================================================ */
 
@@ -649,7 +649,8 @@ section {
 }
 
 .estimate-out {
-  background: rgba(0, 0, 0, 0.35);
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.09) 0%, rgba(29, 158, 117, 0.09) 100%);
+  border: 1px solid rgba(93, 202, 165, 0.3);
   border: 1px solid var(--line);
   border-radius: 20px;
   padding: 2rem;
