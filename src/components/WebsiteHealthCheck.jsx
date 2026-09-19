@@ -235,7 +235,7 @@ export default function WebsiteHealthCheck({ triggerToast }) {
   };
 
   return (
-    <div className="glass-card" style={{ padding: '2.5rem 2rem', borderRadius: '24px', border: '1px solid var(--line-strong)' }}>
+    <div className="glass-card audit-container" style={{ padding: '2.5rem 2rem', borderRadius: '24px', border: '1px solid var(--line-strong)' }}>
       {/* INPUT FORM STAGE */}
       {!isAnalyzing && !auditResult && (
         <div style={{ maxWidth: '640px', margin: '0 auto' }}>
@@ -327,7 +327,7 @@ export default function WebsiteHealthCheck({ triggerToast }) {
       {!isAnalyzing && auditResult && (
         <div style={{ maxWidth: '780px', margin: '0 auto' }}>
           {/* HEADER AUDIT CARD */}
-          <div style={{
+          <div className="audit-header-card" style={{
             background: 'rgba(0,0,0,0.35)',
             border: '1px solid var(--line-strong)',
             borderRadius: '18px',
@@ -339,45 +339,47 @@ export default function WebsiteHealthCheck({ triggerToast }) {
             gap: '1.5rem',
             marginBottom: '2rem'
           }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
-              <div style={{
-                width: '76px',
-                height: '76px',
-                borderRadius: '50%',
-                background: auditResult.score >= 80 ? 'rgba(93, 202, 165, 0.15)' : auditResult.score >= 60 ? 'rgba(251, 191, 36, 0.15)' : 'rgba(239, 68, 68, 0.15)',
-                border: `2px solid ${auditResult.score >= 80 ? '#5DCAA5' : auditResult.score >= 60 ? '#fbbf24' : '#ef4444'}`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                flexDirection: 'column',
-                flexShrink: 0
-              }}>
-                <span style={{ fontSize: '1.45rem', fontWeight: 800, color: auditResult.score >= 80 ? '#5DCAA5' : auditResult.score >= 60 ? '#fbbf24' : '#ef4444', lineHeight: 1 }}>
-                  {auditResult.score}
-                </span>
-                <span style={{ fontSize: '0.65rem', color: 'rgba(244,242,235,0.6)', textTransform: 'uppercase', fontWeight: 700 }}>
-                  / 100
-                </span>
-              </div>
-
-              <div>
-                <div style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 700, color: auditResult.labelColor || '#5DCAA5', marginBottom: '0.2rem' }}>
-                  {auditResult.label}
+            <div className="audit-header-top" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+              <div className="audit-score-wrap" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+                <div className="audit-score-circle" style={{
+                  width: '76px',
+                  height: '76px',
+                  borderRadius: '50%',
+                  background: auditResult.score >= 80 ? 'rgba(93, 202, 165, 0.15)' : auditResult.score >= 60 ? 'rgba(251, 191, 36, 0.15)' : 'rgba(239, 68, 68, 0.15)',
+                  border: `2px solid ${auditResult.score >= 80 ? '#5DCAA5' : auditResult.score >= 60 ? '#fbbf24' : '#ef4444'}`,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexDirection: 'column',
+                  flexShrink: 0
+                }}>
+                  <span className="audit-score-num" style={{ fontSize: '1.45rem', fontWeight: 800, color: auditResult.score >= 80 ? '#5DCAA5' : auditResult.score >= 60 ? '#fbbf24' : '#ef4444', lineHeight: 1 }}>
+                    {auditResult.score}
+                  </span>
+                  <span style={{ fontSize: '0.65rem', color: 'rgba(244,242,235,0.6)', textTransform: 'uppercase', fontWeight: 700 }}>
+                    / 100
+                  </span>
                 </div>
-                <h3 style={{ fontSize: '1.35rem', color: '#ffffff', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
-                  {auditResult.displayUrl}
-                  {auditResult.displayUrl !== 'No Website Yet' && (
-                    <a href={`https://${auditResult.displayUrl}`} target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(244,242,235,0.4)' }}>
-                      <ExternalLink size={16} />
-                    </a>
-                  )}
-                </h3>
+
+                <div style={{ flexGrow: 1 }}>
+                  <div className="audit-label-badge" style={{ fontSize: '0.8rem', textTransform: 'uppercase', letterSpacing: '1px', fontWeight: 700, color: auditResult.labelColor || '#5DCAA5', marginBottom: '0.2rem' }}>
+                    {auditResult.label}
+                  </div>
+                  <h3 className="audit-domain-title" style={{ fontSize: '1.35rem', color: '#ffffff', margin: 0, display: 'flex', alignItems: 'center', gap: '8px' }}>
+                    {auditResult.displayUrl}
+                    {auditResult.displayUrl !== 'No Website Yet' && (
+                      <a href={`https://${auditResult.displayUrl}`} target="_blank" rel="noopener noreferrer" style={{ color: 'rgba(244,242,235,0.4)' }}>
+                        <ExternalLink size={16} />
+                      </a>
+                    )}
+                  </h3>
+                </div>
               </div>
             </div>
 
             <button
               onClick={handleReset}
-              className="btn-outline"
+              className="btn-outline audit-reset-btn"
               style={{ fontSize: '0.82rem', padding: '0.5rem 1rem' }}
             >
               <RefreshCw size={14} /> Audit Another Domain
@@ -395,6 +397,7 @@ export default function WebsiteHealthCheck({ triggerToast }) {
               {auditResult.checks.map((item, idx) => (
                 <div
                   key={idx}
+                  className="audit-check-card"
                   style={{
                     background: 'rgba(255,255,255,0.02)',
                     border: '1px solid var(--line)',
@@ -412,9 +415,9 @@ export default function WebsiteHealthCheck({ triggerToast }) {
                     {item.status === 'info' && <Zap size={20} color="#38bdf8" />}
                   </div>
 
-                  <div style={{ flexGrow: 1 }}>
-                    <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.3rem' }}>
-                      <h5 style={{ fontSize: '1rem', color: '#ffffff', margin: 0, fontWeight: 700 }}>
+                  <div style={{ flexGrow: 1, width: '100%' }}>
+                    <div className="audit-check-header" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: '0.5rem', marginBottom: '0.3rem' }}>
+                      <h5 className="audit-check-title" style={{ fontSize: '1rem', color: '#ffffff', margin: 0, fontWeight: 700 }}>
                         {item.title}
                       </h5>
                       {item.badge && (
@@ -431,7 +434,7 @@ export default function WebsiteHealthCheck({ triggerToast }) {
                         </span>
                       )}
                     </div>
-                    <p style={{ fontSize: '0.86rem', color: 'rgba(244,242,235,0.7)', margin: 0, lineHeight: '1.55' }}>
+                    <p className="audit-check-desc" style={{ fontSize: '0.86rem', color: 'rgba(244,242,235,0.7)', margin: 0, lineHeight: '1.55' }}>
                       {item.desc}
                     </p>
                   </div>
@@ -441,7 +444,7 @@ export default function WebsiteHealthCheck({ triggerToast }) {
           </div>
 
           {/* WANT US TO FIX THIS? CTA BOX */}
-          <div style={{
+          <div className="audit-cta-box" style={{
             background: 'linear-gradient(135deg, rgba(2, 132, 199, 0.15) 0%, rgba(29, 158, 117, 0.15) 100%)',
             border: '1px solid rgba(56, 189, 248, 0.3)',
             borderRadius: '20px',
