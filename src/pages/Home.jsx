@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Zap, ShieldCheck } from 'lucide-react';
 import ServiceMatrix from '../components/ServiceMatrix';
@@ -16,7 +16,7 @@ export default function Home({ triggerToast }) {
           <span>do the selling <span className="accent">before you say a word.</span></span>
         </h1>
         <p className="hero-desc">
-          We design and build fast, conversion-focused websites and digital marketing for clinics, pharmacies, and local brands across Ahmedabad — from first sketch to a client asking "how did you get so many bookings?"
+          We design and build fast, conversion-focused websites and high-ROI digital marketing campaigns for ambitious businesses, growing brands, and modern enterprises — from initial strategy to measurable revenue.
         </p>
         <div className="hero-actions">
           <Link to="/pricing" className="btn-primary">
@@ -71,7 +71,7 @@ export default function Home({ triggerToast }) {
       <section>
         <div className="section-head">
           <div className="section-kicker">Client Success Stories</div>
-          <h2 className="section-title">Proof of performance for real Indian brands.</h2>
+          <h2 className="section-title">Proof of performance for real growing brands.</h2>
         </div>
         <div className="portfolio-grid-3">
           <div className="portfolio-card">
@@ -95,9 +95,9 @@ export default function Home({ triggerToast }) {
             </div>
             <div className="portfolio-info">
               <h4>Nails By Shalvi</h4>
-              <span>Studio booking site • Chandkheda</span>
+              <span>Studio Booking Platform • Gujarat</span>
               <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', marginTop: '0.6rem', fontStyle: 'italic', lineHeight: '1.5' }}>
-                "The direct WhatsApp booking button changed our salon business completely."
+                "The direct WhatsApp booking button changed our studio business completely."
               </p>
             </div>
           </div>
@@ -109,9 +109,9 @@ export default function Home({ triggerToast }) {
             </div>
             <div className="portfolio-info">
               <h4>Shri Radhey Book Depot</h4>
-              <span>E-commerce + stock ledger • Thaltej</span>
+              <span>E-commerce Store & Catalog</span>
               <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', marginTop: '0.6rem', fontStyle: 'italic', lineHeight: '1.5' }}>
-                "Sub-second load times and smooth online catalog. Best decision for our retail store."
+                "Sub-second load times and smooth online catalog. Best decision for our store."
               </p>
             </div>
           </div>
