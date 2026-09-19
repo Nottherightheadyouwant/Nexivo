@@ -4,6 +4,8 @@ import { ArrowRight, CheckCircle2, Zap, ShieldCheck } from 'lucide-react';
 import ServiceMatrix from '../components/ServiceMatrix';
 import Estimator from '../components/Estimator';
 import WebsiteHealthCheck from '../components/WebsiteHealthCheck';
+import reelcrafterrCover from '../assets/reelcrafterr-cover.jpg';
+import shriRadheyCover from '../assets/shri-radhey-cover.jpg';
 
 export default function Home({ triggerToast }) {
   return (
@@ -30,7 +32,7 @@ export default function Home({ triggerToast }) {
             <div className="stat-label">Client satisfaction guarantee</div>
           </div>
           <div>
-            <div className="stat-num">7 Days</div>
+            <div className="stat-num">30 Days</div>
             <div className="stat-label">Average delivery time</div>
           </div>
           <div>
@@ -73,45 +75,31 @@ export default function Home({ triggerToast }) {
           <div className="section-kicker">Client Success Stories</div>
           <h2 className="section-title">Proof of performance for real growing brands.</h2>
         </div>
-        <div className="portfolio-grid-3">
+        <div className="portfolio-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '1.8rem' }}>
           <div className="portfolio-card">
-            <div className="portfolio-thumb" style={{ background: 'linear-gradient(135deg, rgba(229,184,66,0.25), rgba(29,158,117,0.2))' }}>
-              Reel Crafterr
-              <span className="metric-badge">+400% Bookings</span>
+            <div className="portfolio-thumb" style={{ position: 'relative', height: '230px', overflow: 'hidden' }}>
+              <img src={reelcrafterrCover} alt="Reel Crafterr Website Showcase" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+              <span className="metric-badge" style={{ position: 'absolute', top: '12px', right: '12px', zIndex: 2 }}>+400% Bookings</span>
             </div>
-            <div className="portfolio-info">
-              <h4>Reel Crafterr</h4>
-              <span>Cinematic Videography Platform • <a href="https://www.reelcrafterr.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal-light)', textDecoration: 'none' }}>www.reelcrafterr.in</a></span>
-              <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', marginTop: '0.6rem', fontStyle: 'italic', lineHeight: '1.5' }}>
+            <div className="portfolio-info" style={{ padding: '1.5rem' }}>
+              <h4 style={{ fontSize: '1.25rem', color: '#ffffff', marginBottom: '0.3rem' }}>Reel Crafterr</h4>
+              <span style={{ fontSize: '0.85rem', color: 'rgba(244,242,235,0.6)' }}>Cinematic Videography Platform • <a href="https://www.reelcrafterr.in/" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal-light)', textDecoration: 'none' }}>www.reelcrafterr.in</a></span>
+              <p style={{ fontSize: '0.88rem', color: 'rgba(244,242,235,0.75)', marginTop: '0.8rem', fontStyle: 'italic', lineHeight: '1.6' }}>
                 "Nexivo built a lightning-fast, cinematic portfolio for our video studio. Our client shoot inquiries jumped 4x in 30 days!"
               </p>
             </div>
           </div>
 
           <div className="portfolio-card">
-            <div className="portfolio-thumb">
-              Nails By Shalvi
-              <span className="metric-badge">+300% inquiries</span>
+            <div className="portfolio-thumb" style={{ position: 'relative', height: '230px', overflow: 'hidden' }}>
+              <img src={shriRadheyCover} alt="Shri Radhey Book Depot E-Commerce Showcase" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top' }} />
+              <span className="metric-badge" style={{ position: 'absolute', top: '12px', right: '12px', zIndex: 2 }}>99 Lighthouse</span>
             </div>
-            <div className="portfolio-info">
-              <h4>Nails By Shalvi</h4>
-              <span>Studio Booking Platform • Gujarat</span>
-              <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', marginTop: '0.6rem', fontStyle: 'italic', lineHeight: '1.5' }}>
-                "The direct WhatsApp booking button changed our studio business completely."
-              </p>
-            </div>
-          </div>
-
-          <div className="portfolio-card">
-            <div className="portfolio-thumb">
-              Shri Radhey Book Depot
-              <span className="metric-badge">99 Lighthouse</span>
-            </div>
-            <div className="portfolio-info">
-              <h4>Shri Radhey Book Depot</h4>
-              <span>E-commerce Store & Catalog</span>
-              <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', marginTop: '0.6rem', fontStyle: 'italic', lineHeight: '1.5' }}>
-                "Sub-second load times and smooth online catalog. Best decision for our store."
+            <div className="portfolio-info" style={{ padding: '1.5rem' }}>
+              <h4 style={{ fontSize: '1.25rem', color: '#ffffff', marginBottom: '0.3rem' }}>Shri Radhey Book Depot</h4>
+              <span style={{ fontSize: '0.85rem', color: 'rgba(244,242,235,0.6)' }}>E-Commerce Store & Stock Ledger</span>
+              <p style={{ fontSize: '0.88rem', color: 'rgba(244,242,235,0.75)', marginTop: '0.8rem', fontStyle: 'italic', lineHeight: '1.6' }}>
+                "Sub-second load times and smooth online catalog. Best decision for our retail store."
               </p>
             </div>
           </div>
