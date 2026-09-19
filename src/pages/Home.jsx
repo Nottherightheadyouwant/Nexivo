@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Zap, ShieldCheck } from 'lucide-react';
 import ServiceMatrix from '../components/ServiceMatrix';
 import Estimator from '../components/Estimator';
-import RoiCalculator from '../components/RoiCalculator';
+import WebsiteHealthCheck from '../components/WebsiteHealthCheck';
 
 export default function Home({ triggerToast }) {
   return (
@@ -58,13 +58,13 @@ export default function Home({ triggerToast }) {
         <Estimator triggerToast={triggerToast} />
       </section>
 
-      {/* ROI CALCULATOR */}
+      {/* WEBSITE HEALTH CHECK */}
       <section>
         <div className="section-head">
-          <div className="section-kicker">Growth Calculator</div>
-          <h2 className="section-title">What a faster, better-converting site is actually worth.</h2>
+          <div className="section-kicker">Website Audit Tool</div>
+          <h2 className="section-title">Instant Website Health Check</h2>
         </div>
-        <RoiCalculator />
+        <WebsiteHealthCheck triggerToast={triggerToast} />
       </section>
 
       {/* PORTFOLIO & TESTIMONIALS */}
