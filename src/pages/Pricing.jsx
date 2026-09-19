@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { MessageSquare, Zap } from 'lucide-react';
 import Estimator from '../components/Estimator';
 import FaqAccordion from '../components/FaqAccordion';
@@ -20,7 +20,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Starter',
         desc: 'For a single business or shop that just needs a clean, professional presence online.',
-        price: 'â‚¹7,000',
+        price: '₹7,000',
         note: '~10 day delivery',
         popular: false,
         features: [
@@ -34,13 +34,13 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Standard',
         desc: 'Built for clinics, pharmacies, and growing businesses who want to look established.',
-        price: 'â‚¹12,000',
+        price: '₹12,000',
         note: '~14 day delivery',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
           'Everything in Starter',
-          '1â€“2 dynamic pages',
+          '1–2 dynamic pages',
           'Services & pricing showcase',
           'SEO-friendly structure',
           '2 rounds of revisions',
@@ -67,7 +67,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Local Boost',
         desc: 'Get found by customers searching nearby for your service.',
-        price: 'â‚¹6,999',
+        price: '₹6,999',
         note: 'per month (3-month min)',
         popular: false,
         features: [
@@ -80,7 +80,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Map Pack Domination',
         desc: 'Aim for top 3 in Google Maps for your primary service keywords.',
-        price: 'â‚¹11,999',
+        price: '₹11,999',
         note: 'per month (3-month min)',
         popular: true,
         ribbon: 'MOST POPULAR',
@@ -96,7 +96,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'National Authority',
         desc: 'For brands scaling across multiple cities or nationwide in India.',
-        price: 'â‚¹19,999',
+        price: '₹19,999',
         note: 'per month (custom strategy)',
         popular: false,
         features: [
@@ -112,7 +112,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Growth Funnel',
         desc: 'High-converting funnel setup for lead generation.',
-        price: 'â‚¹8,999',
+        price: '₹8,999',
         note: 'per month + 1-month setup',
         popular: false,
         features: [
@@ -125,7 +125,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Omnichannel Scale',
         desc: 'Scale inquiries across email, WhatsApp, and landing pages.',
-        price: 'â‚¹16,999',
+        price: '₹16,999',
         note: 'per month (recommended)',
         popular: true,
         ribbon: 'MOST POPULAR',
@@ -140,7 +140,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Enterprise Growth',
         desc: 'Custom revenue strategy for established enterprises.',
-        price: 'â‚¹28,999',
+        price: '₹28,999',
         note: 'per month (custom contract)',
         popular: false,
         features: [
@@ -156,7 +156,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Starter Grid',
         desc: 'Consistent, professional social media presence.',
-        price: 'â‚¹7,499',
+        price: '₹7,499',
         note: 'per month retainer',
         popular: false,
         features: [
@@ -169,7 +169,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Reel Strategy Pro',
         desc: 'Leverage Instagram Reels & short video to drive viral growth.',
-        price: 'â‚¹14,999',
+        price: '₹14,999',
         note: 'per month retainer',
         popular: true,
         ribbon: 'MOST POPULAR',
@@ -184,7 +184,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Full Retainer',
         desc: 'Complete social media takeover & video production.',
-        price: 'â‚¹24,999',
+        price: '₹24,999',
         note: 'per month (full-service)',
         popular: false,
         features: [
@@ -200,7 +200,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Ad Creative Pack',
         desc: 'High-performing visual banners & ad copy for ad campaigns.',
-        price: 'â‚¹4,999',
+        price: '₹4,999',
         note: 'one-time pack',
         popular: false,
         features: [
@@ -213,7 +213,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Brand & Copy Pack',
         desc: 'Full website copywriting and brand guidelines asset pack.',
-        price: 'â‚¹9,999',
+        price: '₹9,999',
         note: 'one-time pack',
         popular: true,
         ribbon: 'MOST POPULAR',
@@ -227,7 +227,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Full Media Suite',
         desc: 'Complete digital asset & video script production.',
-        price: 'â‚¹18,999',
+        price: '₹18,999',
         note: 'one-time pack',
         popular: false,
         features: [
@@ -242,7 +242,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'PPC Lead Launch',
         desc: 'Targeted Google Search or Meta ads for local service leads.',
-        price: 'â‚¹9,999',
+        price: '₹9,999',
         note: 'per month + ad spend',
         popular: false,
         features: [
@@ -255,7 +255,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'High ROAS Scaling',
         desc: 'Combined Google & Meta ads to maximize appointment bookings.',
-        price: 'â‚¹18,999',
+        price: '₹18,999',
         note: 'per month + ad spend',
         popular: true,
         ribbon: 'MOST POPULAR',
@@ -269,8 +269,8 @@ export default function Pricing({ triggerToast }) {
       },
       {
         name: 'Enterprise Ad Spend',
-        desc: 'For brands spending over â‚¹1 Lakh/mo on digital ads.',
-        price: 'â‚¹34,999',
+        desc: 'For brands spending over ₹1 Lakh/mo on digital ads.',
+        price: '₹34,999',
         note: 'per month + ad spend',
         popular: false,
         features: [
@@ -298,12 +298,12 @@ export default function Pricing({ triggerToast }) {
     <main>
       {/* PAGE HEADER */}
       <section className="page-header">
-        <div className="eyebrow"><Zap size={16} /> Transparent Pricing â€¢ Zero Hidden Costs</div>
+        <div className="eyebrow"><Zap size={16} /> Transparent Pricing • Zero Hidden Costs</div>
         <h1 className="page-title">
           Pick a starting point, <span className="accent">not a spreadsheet.</span>
         </h1>
         <p className="page-desc">
-          Most clients don't know exactly what they need â€” select your service category below to view transparent pricing tiers from &quot;I just need to exist online&quot; to &quot;I want full growth.&quot;
+          Most clients don't know exactly what they need — select your service category below to view transparent pricing tiers from &quot;I just need to exist online&quot; to &quot;I want full growth.&quot;
         </p>
 
         {/* DYNAMIC CATEGORY TABS */}
@@ -354,9 +354,9 @@ export default function Pricing({ triggerToast }) {
 
         {/* ADDONS BAR */}
         <div className="glass-card" style={{ marginTop: '3.5rem', padding: '1.8rem', display: 'flex', justifyContent: 'center', gap: '2.5rem', flexWrap: 'wrap', fontSize: '0.88rem', color: 'rgba(244,242,235,0.6)' }}>
-          <div><b style={{ color: 'var(--offwhite)' }}>Website Redesign</b> â€” from â‚¹8,000</div>
-          <div><b style={{ color: 'var(--offwhite)' }}>Monthly Maintenance</b> â€” â‚¹2,500/mo (after included period)</div>
-          <div><b style={{ color: 'var(--offwhite)' }}>Custom SEO & Ads</b> â€” finalized per scope</div>
+          <div><b style={{ color: 'var(--offwhite)' }}>Website Redesign</b> — from ₹8,000</div>
+          <div><b style={{ color: 'var(--offwhite)' }}>Monthly Maintenance</b> — ₹2,500/mo (after included period)</div>
+          <div><b style={{ color: 'var(--offwhite)' }}>Custom SEO & Ads</b> — finalized per scope</div>
         </div>
       </section>
 
