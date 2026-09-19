@@ -2464,3 +2464,95 @@ section {
     text-align: center !important;
   }
 }
+
+/* ============================================================
+   PORTFOLIO SHOWCASE PERFECT FULL-BLEED MOBILE & DESKTOP STYLING
+   ============================================================ */
+.portfolio-card {
+  border: 1px solid var(--line) !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+  background: var(--glass) !important;
+  transition: transform 0.3s ease, border-color 0.3s ease !important;
+  padding: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-5px) !important;
+  border-color: var(--teal-light) !important;
+}
+
+.portfolio-thumb {
+  height: 210px !important;
+  width: 100% !important;
+  position: relative !important;
+  overflow: hidden !important;
+  background: #0c0f0d !important;
+  display: block !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+.portfolio-thumb img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: top center !important;
+  display: block !important;
+  border: 0 !important;
+}
+
+.portfolio-info {
+  padding: 1.3rem 1.4rem !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0.35rem !important;
+}
+
+.portfolio-info h4 {
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+  font-size: 1.15rem !important;
+  color: #ffffff !important;
+  margin: 0 !important;
+}
+
+.portfolio-info span {
+  font-size: 0.82rem !important;
+  color: rgba(244, 242, 235, 0.6) !important;
+}
+
+.portfolio-info span a {
+  color: var(--teal-light) !important;
+  text-decoration: none !important;
+}
+
+.portfolio-info span a:hover {
+  text-decoration: underline !important;
+}
+
+.portfolio-info p {
+  font-size: 0.85rem !important;
+  color: rgba(244, 242, 235, 0.75) !important;
+  margin-top: 0.4rem !important;
+  font-style: italic !important;
+  line-height: 1.55 !important;
+}
+
+@media (max-width: 768px) {
+  .portfolio-card {
+    padding: 0 !important;
+    border-radius: 16px !important;
+    overflow: hidden !important;
+  }
+
+  .portfolio-thumb {
+    height: 195px !important;
+  }
+
+  .portfolio-info {
+    padding: 1.15rem 1.1rem !important;
+  }
+}
