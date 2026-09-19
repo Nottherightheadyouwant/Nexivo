@@ -21,7 +21,7 @@ export default function Pricing({ triggerToast }) {
         name: 'Starter',
         desc: 'For a single business or shop that just needs a clean, professional presence online.',
         price: '₹7,000',
-        note: '~10 day delivery',
+        note: '~30 day delivery',
         popular: false,
         features: [
           '4 static pages only',
@@ -35,7 +35,7 @@ export default function Pricing({ triggerToast }) {
         name: 'Standard',
         desc: 'Built for clinics, pharmacies, and growing businesses who want to look established.',
         price: '₹12,000',
-        note: '~14 day delivery',
+        note: '~30 day delivery',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [

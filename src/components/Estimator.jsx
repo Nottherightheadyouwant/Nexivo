@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { ArrowRight } from 'lucide-react';
 
 export default function Estimator({ triggerToast }) {
   const [baseCost, setBaseCost] = useState(7000);
-  const [baseDays, setBaseDays] = useState(10);
+  const [baseDays, setBaseDays] = useState(30);
   const [toggles, setToggles] = useState({
     cms: false,
     speed: false,
@@ -12,12 +12,12 @@ export default function Estimator({ triggerToast }) {
   });
 
   const projects = [
-    { label: 'Starter Website', cost: 7000, days: 10 },
-    { label: 'Standard Website', cost: 12000, days: 14 },
-    { label: 'Website Redesign', cost: 8000, days: 7 },
-    { label: 'Local SEO Boost', cost: 6999, days: 14 },
-    { label: 'Google & Meta Ads', cost: 9999, days: 5 },
-    { label: 'Social Media Pack', cost: 7499, days: 7 }
+    { label: 'Starter Website', cost: 7000, days: 30 },
+    { label: 'Standard Website', cost: 12000, days: 30 },
+    { label: 'Website Redesign', cost: 8000, days: 30 },
+    { label: 'Local SEO Boost', cost: 6999, days: 30 },
+    { label: 'Google & Meta Ads', cost: 9999, days: 30 },
+    { label: 'Social Media Pack', cost: 7499, days: 30 }
   ];
 
   const addons = [
