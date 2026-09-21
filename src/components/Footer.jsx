@@ -38,7 +38,7 @@ export default function Footer() {
             <a href="https://wa.me/919724470737?text=Hi%20Nexivo!%20I%20would%20like%20to%20enquire%20about%20a%20website%20project." target="_blank" rel="noopener noreferrer">
               WhatsApp
             </a>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">Instagram</a>
+            <a href="https://www.instagram.com/studio.nexivo/" target="_blank" rel="noopener noreferrer">Instagram</a>
             <Link to="/contact">Book Consultation</Link>
           </div>
         </div>
