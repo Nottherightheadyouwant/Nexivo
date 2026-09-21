@@ -237,7 +237,7 @@ section {
 }
 
 .hero-section {
-  padding-top: 11rem;
+  padding-top: 13.5rem !important;
 }
 
 .page-header {
@@ -1185,8 +1185,13 @@ footer {
     gap: 1.5rem;
   }
   .hero-title {
-    font-size: 2.4rem;
-  }
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.015em !important;
+  padding-bottom: 0.2rem !important;
+}
   .section-title {
     font-size: 1.8rem;
   }
@@ -1208,11 +1213,12 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .hero-title {
-  font-family: 'Syne', sans-serif !important;
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
   font-weight: 800 !important;
   font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
-  line-height: 1.06 !important;
-  letter-spacing: -0.03em !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.015em !important;
+  padding-bottom: 0.2rem !important;
 }
 
 .page-title {
@@ -2571,8 +2577,9 @@ h1, h2, h3, h4, h5, h6,
   font-family: 'Plus Jakarta Sans', sans-serif !important;
   font-weight: 800 !important;
   font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
-  line-height: 1.06 !important;
-  letter-spacing: -0.03em !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.015em !important;
+  padding-bottom: 0.2rem !important;
 }
 
 .page-title {
@@ -2607,4 +2614,29 @@ body, p, li, a, button, input, select, textarea,
   font-size: 1.25rem !important;
   letter-spacing: -0.05em !important;
   line-height: 1 !important;
+}
+
+/* ===== POLISHED SPACING & DESCENDER FIXES ===== */
+.hero-section {
+  padding-top: 13.5rem !important;
+}
+
+.eyebrow {
+  margin-top: 1.2rem !important;
+  margin-bottom: 2rem !important;
+}
+
+.hero-title {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+  font-weight: 800 !important;
+  font-size: clamp(2.2rem, 5vw, 3.8rem) !important;
+  line-height: 1.25 !important;
+  letter-spacing: -0.015em !important;
+  padding-bottom: 0.25rem !important;
+}
+
+.hero-title span {
+  display: block;
+  line-height: 1.25 !important;
+  padding-bottom: 0.15rem !important;
 }
