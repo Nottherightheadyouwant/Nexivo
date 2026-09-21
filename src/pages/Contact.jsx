@@ -59,7 +59,7 @@ export default function Contact({ triggerToast }) {
             </div>
 
             <div className="glass-card" style={{ marginTop: '2rem' }}>
-              <h4 style={{ fontFamily: 'Syne', marginBottom: '0.5rem', color: '#5DCAA5' }}>Operating Hours</h4>
+              <h4 style={{ fontFamily: 'Plus Jakarta Sans', marginBottom: '0.5rem', color: '#5DCAA5' }}>Operating Hours</h4>
               <p style={{ fontSize: '0.88rem', color: 'rgba(244,242,235,0.65)' }}>
                 Monday – Saturday: 9:30 AM – 7:30 PM IST<br />
                 Sunday: Emergency WhatsApp Support Available
@@ -68,7 +68,7 @@ export default function Contact({ triggerToast }) {
           </div>
 
           <div className="contact-card">
-            <h3 style={{ fontFamily: 'Syne', marginBottom: '1.5rem', fontSize: '1.4rem' }}>Send a Message</h3>
+            <h3 style={{ fontFamily: 'Plus Jakarta Sans', marginBottom: '1.5rem', fontSize: '1.4rem' }}>Send a Message</h3>
             <form onSubmit={handleSubmit}>
               <div className="form-group">
                 <label>Your Full Name *</label>

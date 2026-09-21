@@ -49,7 +49,7 @@ export default function About() {
 
             <div>
               <div className="section-kicker">Founder</div>
-              <h3 style={{ fontFamily: 'Syne', fontSize: '1.8rem', fontWeight: '800', marginBottom: '0.2rem', color: '#F4F2EB' }}>
+              <h3 style={{ fontFamily: 'Plus Jakarta Sans', fontSize: '1.8rem', fontWeight: '800', marginBottom: '0.2rem', color: '#F4F2EB' }}>
                 Jay Parmar
               </h3>
               <div style={{ fontSize: '0.9rem', fontWeight: '700', color: 'var(--teal-light)', marginBottom: '1rem' }}>
@@ -88,7 +88,7 @@ export default function About() {
 
             <div>
               <div className="section-kicker" style={{ color: '#378ADD' }}>Co-Founder</div>
-              <h3 style={{ fontFamily: 'Syne', fontSize: '1.8rem', fontWeight: '800', marginBottom: '0.2rem', color: '#F4F2EB' }}>
+              <h3 style={{ fontFamily: 'Plus Jakarta Sans', fontSize: '1.8rem', fontWeight: '800', marginBottom: '0.2rem', color: '#F4F2EB' }}>
                 Saurav Vaghela
               </h3>
               <div style={{ fontSize: '0.9rem', fontWeight: '700', color: '#378ADD', marginBottom: '1rem' }}>
@@ -117,21 +117,21 @@ export default function About() {
         <div className="grid-3">
           <div className="glass-card">
             <Target size={32} color="#5DCAA5" style={{ marginBottom: '1rem' }} />
-            <h3 style={{ fontFamily: 'Syne', marginBottom: '0.6rem' }}>Conversion First</h3>
+            <h3 style={{ fontFamily: 'Plus Jakarta Sans', marginBottom: '0.6rem' }}>Conversion First</h3>
             <p style={{ color: 'rgba(244,242,235,0.6)', fontSize: '0.9rem' }}>
               Every pixel, button, and headline is engineered to guide your visitor to take action — whether booking an appointment or placing an order.
             </p>
           </div>
           <div className="glass-card">
             <Zap size={32} color="#378ADD" style={{ marginBottom: '1rem' }} />
-            <h3 style={{ fontFamily: 'Syne', marginBottom: '0.6rem' }}>Sub-Second Speed</h3>
+            <h3 style={{ fontFamily: 'Plus Jakarta Sans', marginBottom: '0.6rem' }}>Sub-Second Speed</h3>
             <p style={{ color: 'rgba(244,242,235,0.6)', fontSize: '0.9rem' }}>
               We build using modern JavaScript stack (Vite + React) that loads under 1 second on mobile networks worldwide.
             </p>
           </div>
           <div className="glass-card">
             <ShieldCheck size={32} color="#5DCAA5" style={{ marginBottom: '1rem' }} />
-            <h3 style={{ fontFamily: 'Syne', marginBottom: '0.6rem' }}>Zero Hidden Fees</h3>
+            <h3 style={{ fontFamily: 'Plus Jakarta Sans', marginBottom: '0.6rem' }}>Zero Hidden Fees</h3>
             <p style={{ color: 'rgba(244,242,235,0.6)', fontSize: '0.9rem' }}>
               Transparent pricing, clear milestone deliverables, and full ownership of your domain, code, and accounts from day one.
             </p>
@@ -147,13 +147,13 @@ export default function About() {
         </div>
         <div className="grid-2">
           <div className="glass-card">
-            <h4 style={{ fontFamily: 'Syne', color: '#5DCAA5', marginBottom: '0.5rem' }}>Global Standards & Dual-Hub Presence</h4>
+            <h4 style={{ fontFamily: 'Plus Jakarta Sans', color: '#5DCAA5', marginBottom: '0.5rem' }}>Global Standards & Dual-Hub Presence</h4>
             <p style={{ fontSize: '0.92rem', color: 'rgba(244,242,235,0.65)' }}>
               With dual hubs in London, UK and Ahmedabad, India, we combine world-class design standards with round-the-clock development agility. You work directly with founders Jay Parmar and Saurav Vaghela.
             </p>
           </div>
           <div className="glass-card">
-            <h4 style={{ fontFamily: 'Syne', color: '#378ADD', marginBottom: '0.5rem' }}>Direct Instant WhatsApp & Lead Triggers</h4>
+            <h4 style={{ fontFamily: 'Plus Jakarta Sans', color: '#378ADD', marginBottom: '0.5rem' }}>Direct Instant WhatsApp & Lead Triggers</h4>
             <p style={{ fontSize: '0.92rem', color: 'rgba(244,242,235,0.65)' }}>
               Global buyers value speed and instant communication. We build custom WhatsApp & direct lead triggers into every project to double lead conversion rates.
             </p>
