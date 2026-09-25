@@ -65,7 +65,7 @@ export default function Admin() {
       setLoginError('');
       showToast('success', 'Logged in successfully to Nexivo Admin Dashboard!');
     } else {
-      setLoginError('Incorrect admin password. Default is "nexivo2026".');
+      setLoginError('Incorrect admin password. Please try again.');
     }
   };
 
@@ -254,10 +254,6 @@ export default function Admin() {
               Authenticate & Access Portal <Key size={16} />
             </button>
           </form>
-
-          <div style={{ marginTop: '1.8rem', textAlign: 'center', fontSize: '0.8rem', color: 'rgba(244,242,235,0.5)' }}>
-            Default Password: <code style={{ color: 'var(--teal-light)', background: 'rgba(244,242,235,0.08)', padding: '0.15rem 0.4rem', borderRadius: '4px' }}>nexivo2026</code>
-          </div>
         </div>
       </main>
     );
