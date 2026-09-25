@@ -2863,6 +2863,27 @@ textarea,
   margin-bottom: 2.5rem;
 }
 
+.admin-search-filter-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+  width: 100%;
+}
+
+.admin-search-input-wrap {
+  position: relative;
+  width: 320px;
+}
+
+.admin-filter-buttons {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .admin-editor-layout {
   display: grid;
   grid-template-columns: minmax(300px, 2.2fr) minmax(280px, 1fr);
@@ -2879,6 +2900,7 @@ textarea,
   width: 100%;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  margin-top: 0.5rem;
 }
 
 @media (max-width: 992px) {
@@ -2942,9 +2964,11 @@ textarea,
   }
 
   .admin-search-filter-bar {
+    display: flex !important;
     flex-direction: column !important;
     align-items: stretch !important;
-    gap: 1rem !important;
+    gap: 1.2rem !important;
+    margin-bottom: 2rem !important;
   }
 
   .admin-search-input-wrap {
@@ -2954,7 +2978,7 @@ textarea,
   .admin-filter-buttons {
     width: 100% !important;
     display: flex !important;
-    gap: 0.4rem !important;
+    gap: 0.5rem !important;
   }
 
   .admin-filter-buttons button {
