@@ -234,7 +234,7 @@ export default function BrochureModal({ isOpen, onClose, triggerToast }) {
             </p>
 
             <div style={{ padding: '1rem', borderRadius: '12px', background: 'rgba(29,158,117,0.1)', border: '1px solid rgba(29,158,117,0.3)', marginBottom: '1.8rem', fontSize: '0.85rem', color: 'var(--offwhite)' }}>
-              💬 Want to discuss custom project scope immediately? Speak with founder <strong>Saurav Vaghela</strong> on WhatsApp.
+              💬 Want to discuss custom project scope immediately? Speak with founder <strong>Jay Parmar</strong> on WhatsApp.
             </div>
 
             <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
