@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Zap, ShieldCheck } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Zap, ShieldCheck, Download } from 'lucide-react';
 import ServiceMatrix from '../components/ServiceMatrix';
 import Estimator from '../components/Estimator';
 import WebsiteHealthCheck from '../components/WebsiteHealthCheck';
 
-export default function Home({ triggerToast }) {
+export default function Home({ triggerToast, openBrochure }) {
   return (
     <main>
       {/* HERO */}
@@ -67,7 +67,30 @@ export default function Home({ triggerToast }) {
         <WebsiteHealthCheck triggerToast={triggerToast} />
       </section>
 
-            {/* PORTFOLIO & TESTIMONIALS */}
+            {/* BROCHURE DOWNLOAD LEAD MAGNET BANNER */}
+      {openBrochure && (
+        <section>
+          <div className="glass-card" style={{ padding: '2.5rem', background: 'linear-gradient(135deg, rgba(29,158,117,0.14), rgba(55,138,221,0.08))', border: '1.5px solid var(--teal-light)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>
+            <div style={{ flex: 1, minWidth: '280px' }}>
+              <span className="eyebrow" style={{ marginBottom: '0.8rem', padding: '0.35rem 0.9rem', fontSize: '0.78rem' }}>
+                📄 Official Services Guide 2026
+              </span>
+              <h3 style={{ fontSize: '1.6rem', fontWeight: '800', color: 'var(--offwhite)', margin: '0.3rem 0 0.6rem' }}>
+                Want to view our complete service packages & pricing offline?
+              </h3>
+              <p style={{ fontSize: '0.95rem', color: 'rgba(244,242,235,0.7)', margin: 0, maxWidth: '600px', lineHeight: '1.6' }}>
+                Download our official 5-page PDF brochure detailing all Web Development, Local SEO Maps Domination, and Lead Funnel packages.
+              </p>
+            </div>
+
+            <button onClick={openBrochure} className="btn-primary" style={{ padding: '0.9rem 1.8rem', fontSize: '0.95rem', gap: '8px' }}>
+              Download PDF Brochure <Download size={18} />
+            </button>
+          </div>
+        </section>
+      )}
+
+      {/* PORTFOLIO & TESTIMONIALS */}
       <section>
         <div className="section-head">
           <div className="section-kicker">Client Success Stories</div>
