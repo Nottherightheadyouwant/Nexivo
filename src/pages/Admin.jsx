@@ -405,15 +405,15 @@ export default function Admin() {
       )}
 
       {/* ADMIN HEADER NAV */}
-      <section style={{ paddingTop: '8.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--line)' }}>
+      <section className="admin-top-section">
         <div className="admin-header-container">
           <div>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.4rem' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.4rem', marginTop: '0.4rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', padding: '0.2rem 0.65rem', borderRadius: '999px', background: 'rgba(93,202,165,0.15)', color: 'var(--teal-light)' }}>
                 Nexivo Content CMS
               </span>
             </div>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--offwhite)', margin: 0 }}>Blog Admin Dashboard</h1>
+            <h1 style={{ fontSize: 'clamp(1.4rem, 4vw, 1.8rem)', fontWeight: '800', color: 'var(--offwhite)', margin: 0 }}>Blog Admin Dashboard</h1>
           </div>
 
           <div className="admin-header-actions">

@@ -2830,9 +2830,12 @@ textarea,
   padding-bottom: 0.15rem !important;
 }
 
-/* ============================================================
-   ADMIN DASHBOARD MOBILE OPTIMIZATION
-   ============================================================ */
+.admin-top-section {
+  padding-top: 9.5rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--line);
+}
+
 .admin-header-container {
   display: flex;
   flex-wrap: wrap;
@@ -2887,6 +2890,11 @@ textarea,
 }
 
 @media (max-width: 768px) {
+  .admin-top-section {
+    padding-top: 8.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+
   .admin-header-container {
     flex-direction: column !important;
     align-items: stretch !important;
@@ -2961,5 +2969,11 @@ textarea,
     flex: 1 1 calc(50% - 0.5rem) !important;
     padding: 0.6rem 0.75rem !important;
     font-size: 0.8rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .admin-top-section {
+    padding-top: 8.2rem !important;
   }
 }
