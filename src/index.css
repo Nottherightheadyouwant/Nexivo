@@ -2829,3 +2829,137 @@ textarea,
   line-height: 1.25 !important;
   padding-bottom: 0.15rem !important;
 }
+
+/* ============================================================
+   ADMIN DASHBOARD MOBILE OPTIMIZATION
+   ============================================================ */
+.admin-header-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+}
+
+.admin-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.admin-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.admin-seo-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.admin-editor-layout {
+  display: grid;
+  grid-template-columns: minmax(300px, 2.2fr) minmax(280px, 1fr);
+  gap: 2rem;
+}
+
+.admin-block-btn-group {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.admin-table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (max-width: 992px) {
+  .admin-editor-layout {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .admin-header-container {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1.2rem !important;
+  }
+
+  .admin-header-actions {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.6rem !important;
+  }
+
+  .admin-header-actions a,
+  .admin-header-actions button {
+    width: 100% !important;
+    padding: 0.75rem 0.6rem !important;
+    font-size: 0.8rem !important;
+    justify-content: center !important;
+    white-space: nowrap !important;
+    border-radius: 12px !important;
+    text-align: center !important;
+    box-sizing: border-box !important;
+  }
+
+  .admin-stats-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 0.8rem !important;
+    margin-bottom: 1.8rem !important;
+  }
+
+  .admin-stats-grid .glass-card {
+    padding: 1.1rem !important;
+  }
+
+  .admin-stats-grid .glass-card div:last-child {
+    font-size: 1.5rem !important;
+  }
+
+  .admin-seo-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.2rem !important;
+  }
+
+  .admin-seo-grid .glass-card {
+    padding: 1.3rem !important;
+  }
+
+  .admin-search-filter-bar {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 1rem !important;
+  }
+
+  .admin-search-input-wrap {
+    width: 100% !important;
+  }
+
+  .admin-filter-buttons {
+    width: 100% !important;
+    display: flex !important;
+    gap: 0.4rem !important;
+  }
+
+  .admin-filter-buttons button {
+    flex: 1 !important;
+    text-align: center !important;
+    justify-content: center !important;
+  }
+
+  .admin-block-btn-group button {
+    flex: 1 1 calc(50% - 0.5rem) !important;
+    padding: 0.6rem 0.75rem !important;
+    font-size: 0.8rem !important;
+  }
+}

@@ -406,17 +406,17 @@ export default function Admin() {
 
       {/* ADMIN HEADER NAV */}
       <section style={{ paddingTop: '8.5rem', paddingBottom: '2rem', borderBottom: '1px solid var(--line)' }}>
-        <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem' }}>
+        <div className="admin-header-container">
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.4rem' }}>
               <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', padding: '0.2rem 0.65rem', borderRadius: '999px', background: 'rgba(93,202,165,0.15)', color: 'var(--teal-light)' }}>
                 Nexivo Content CMS
               </span>
             </div>
-            <h1 style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--offwhite)' }}>Blog Admin Dashboard</h1>
+            <h1 style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--offwhite)', margin: 0 }}>Blog Admin Dashboard</h1>
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+          <div className="admin-header-actions">
             <Link to="/blog" style={{ textDecoration: 'none' }} className="btn-outline">
               <Globe size={16} /> View Live Blog
             </Link>
@@ -429,10 +429,10 @@ export default function Admin() {
                 <ArrowLeft size={16} /> Back to Dashboard
               </button>
             )}
-            <button onClick={() => setShowPasswordChange(!showPasswordChange)} style={{ padding: '0.65rem 0.9rem', borderRadius: '999px', background: 'var(--glass)', border: '1px solid var(--line)', color: 'var(--offwhite)', cursor: 'pointer' }}>
+            <button onClick={() => setShowPasswordChange(!showPasswordChange)} style={{ padding: '0.65rem 0.9rem', borderRadius: '999px', background: 'var(--glass)', border: '1px solid var(--line)', color: 'var(--offwhite)', cursor: 'pointer' }} title="Security Settings">
               <Key size={16} />
             </button>
-            <button onClick={handleLogout} style={{ padding: '0.65rem 0.9rem', borderRadius: '999px', background: 'rgba(220,53,69,0.15)', border: '1px solid rgba(220,53,69,0.3)', color: '#ff6b6b', cursor: 'pointer' }}>
+            <button onClick={handleLogout} style={{ padding: '0.65rem 0.9rem', borderRadius: '999px', background: 'rgba(220,53,69,0.15)', border: '1px solid rgba(220,53,69,0.3)', color: '#ff6b6b', cursor: 'pointer' }} title="Logout">
               <LogOut size={16} />
             </button>
           </div>
@@ -476,7 +476,7 @@ export default function Admin() {
       {viewMode === 'list' && (
         <section style={{ paddingTop: '2.5rem' }}>
           {/* STATS OVERVIEW CARDS */}
-          <div className="grid-4" style={{ marginBottom: '2.5rem' }}>
+          <div className="admin-stats-grid">
             <div className="glass-card" style={{ padding: '1.4rem' }}>
               <div style={{ fontSize: '0.78rem', color: 'rgba(244,242,235,0.5)', textTransform: 'uppercase', fontWeight: '700' }}>Total Articles</div>
               <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--offwhite)', marginTop: '0.4rem' }}>{posts.length}</div>
@@ -496,7 +496,7 @@ export default function Admin() {
           </div>
 
           {/* SITE-WIDE SEO & AUTOMATIC SITEMAP CONTROL BOX */}
-          <div className="grid-2" style={{ gap: '1.5rem', marginBottom: '2.5rem' }}>
+          <div className="admin-seo-grid">
             
             {/* BOX 1: WHOLE SITE GLOBAL SEO TITLE & META DESCRIPTION */}
             <div className="glass-card" style={{ padding: '1.8rem', border: '1px solid var(--teal-light)', background: 'linear-gradient(135deg, rgba(29,158,117,0.08), rgba(26,26,24,0.6))' }}>
@@ -593,8 +593,8 @@ export default function Admin() {
           </div>
 
           {/* SEARCH & FILTERS BAR */}
-          <div style={{ display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1rem', marginBottom: '1.8rem' }}>
-            <div style={{ position: 'relative', width: '320px' }}>
+          <div className="admin-search-filter-bar">
+            <div className="admin-search-input-wrap" style={{ position: 'relative', width: '320px' }}>
               <Search size={16} style={{ position: 'absolute', left: '0.9rem', top: '50%', transform: 'translateY(-50%)', color: 'rgba(244,242,235,0.4)' }} />
               <input
                 type="text"
@@ -605,7 +605,7 @@ export default function Admin() {
               />
             </div>
 
-            <div style={{ display: 'flex', gap: '0.5rem' }}>
+            <div className="admin-filter-buttons">
               {['all', 'published', 'draft'].map((st) => (
                 <button
                   key={st}
@@ -619,7 +619,7 @@ export default function Admin() {
           </div>
 
           {/* POSTS TABLE LIST */}
-          <div className="glass-card" style={{ padding: '0', overflow: 'hidden', border: '1px solid var(--line)' }}>
+          <div className="glass-card admin-table-scroll" style={{ padding: '0', overflowX: 'auto', border: '1px solid var(--line)' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: '0.88rem' }}>
               <thead>
                 <tr style={{ background: 'rgba(244,242,235,0.04)', borderBottom: '1px solid var(--line)' }}>
@@ -677,7 +677,7 @@ export default function Admin() {
       {viewMode === 'editor' && (
         <section style={{ paddingTop: '2.5rem' }}>
           <form onSubmit={handleSavePost}>
-            <div style={{ display: 'grid', gridTemplateColumns: 'minmax(300px, 2.2fr) minmax(280px, 1fr)', gap: '2rem' }}>
+            <div className="admin-editor-layout">
               
               {/* LEFT COLUMN: MAIN EDITOR BLOCKS */}
               <div>
@@ -839,7 +839,7 @@ export default function Admin() {
                   </div>
 
                   {/* ADD BLOCK BUTTONS */}
-                  <div style={{ marginTop: '1.8rem', display: 'flex', flexWrap: 'wrap', gap: '0.6rem' }}>
+                  <div className="admin-block-btn-group" style={{ marginTop: '1.8rem' }}>
                     <button type="button" onClick={() => addBlock('heading')} className="btn-outline" style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem' }}><Heading size={14} /> + Heading</button>
                     <button type="button" onClick={() => addBlock('text')} className="btn-outline" style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem' }}><Type size={14} /> + Text Paragraph</button>
                     <button type="button" onClick={() => addBlock('quote')} className="btn-outline" style={{ padding: '0.5rem 0.9rem', fontSize: '0.8rem' }}><Quote size={14} /> + Quote</button>
