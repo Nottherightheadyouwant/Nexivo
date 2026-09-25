@@ -606,15 +606,43 @@ export default function Admin() {
             </div>
 
             <div className="admin-filter-buttons">
-              {['all', 'published', 'draft'].map((st) => (
-                <button
-                  key={st}
-                  onClick={() => setFilterStatus(st)}
-                  style={{ padding: '0.45rem 0.9rem', borderRadius: '999px', fontSize: '0.8rem', fontWeight: '600', cursor: 'pointer', border: '1px solid', borderColor: filterStatus === st ? 'var(--teal-light)' : 'var(--line)', background: filterStatus === st ? 'rgba(29,158,117,0.15)' : 'var(--glass)', color: filterStatus === st ? 'var(--teal-light)' : 'rgba(244,242,235,0.6)', textTransform: 'capitalize' }}
-                >
-                  {st}
-                </button>
-              ))}
+              {['all', 'published', 'draft'].map((st) => {
+                const isActive = filterStatus === st;
+                let activeBorder = 'var(--teal-light)';
+                let activeBg = 'rgba(29,158,117,0.2)';
+                let activeColor = 'var(--teal-light)';
+
+                if (st === 'published') {
+                  activeBorder = '#25D366';
+                  activeBg = 'rgba(37,211,102,0.2)';
+                  activeColor = '#25D366';
+                } else if (st === 'draft') {
+                  activeBorder = '#ffd166';
+                  activeBg = 'rgba(255,209,102,0.2)';
+                  activeColor = '#ffd166';
+                }
+
+                return (
+                  <button
+                    key={st}
+                    onClick={() => setFilterStatus(st)}
+                    style={{
+                      padding: '0.45rem 1rem',
+                      borderRadius: '999px',
+                      fontSize: '0.8rem',
+                      fontWeight: '700',
+                      cursor: 'pointer',
+                      border: `1px solid ${isActive ? activeBorder : 'var(--line)'}`,
+                      background: isActive ? activeBg : 'rgba(244,242,235,0.03)',
+                      color: isActive ? activeColor : 'rgba(244,242,235,0.6)',
+                      textTransform: 'capitalize',
+                      transition: 'all 0.2s ease'
+                    }}
+                  >
+                    {st}
+                  </button>
+                );
+              })}
             </div>
           </div>
 
