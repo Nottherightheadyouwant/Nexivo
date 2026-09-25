@@ -9,6 +9,7 @@ import {
   getStoredPosts, savePost, deletePost, checkAdminAuth, setAdminAuth, 
   getAdminPassword, setAdminPassword, formatDate, slugify 
 } from '../utils/blogStorage';
+import { getSiteSeo, saveSiteSeo, generateSitemapXml, applyGlobalSeo } from '../utils/seoStorage';
 
 export default function Admin() {
   // Authentication state
@@ -18,6 +19,17 @@ export default function Admin() {
   const [showPasswordChange, setShowPasswordChange] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [passSuccess, setPassSuccess] = useState('');
+
+  // Site-wide SEO Settings State
+  const [siteSeo, setSiteSeo] = useState({
+    siteTitle: '',
+    siteDescription: '',
+    keywords: '',
+    googleVerification: ''
+  });
+  const [seoSavedMsg, setSeoSavedMsg] = useState('');
+  const [showSitemapPreview, setShowSitemapPreview] = useState(false);
+  const [sitemapCopied, setSitemapCopied] = useState(false);
 
   // Posts state
   const [posts, setPosts] = useState([]);
@@ -35,7 +47,7 @@ export default function Admin() {
   const [excerpt, setExcerpt] = useState('');
   const [category, setCategory] = useState('Website Development');
   const [author, setAuthor] = useState('Saurav Vaghela');
-  const [authorRole, setAuthorRole] = useState('Founder & Tech Lead');
+  const [authorRole, setAuthorRole] = useState('Co-Founder & Technical Lead');
   const [featuredImage, setFeaturedImage] = useState('');
   const [status, setStatus] = useState('published');
   const [featured, setFeatured] = useState(false);
@@ -49,7 +61,39 @@ export default function Admin() {
   useEffect(() => {
     setIsAuthenticated(checkAdminAuth());
     setPosts(getStoredPosts());
+    const initialSeo = getSiteSeo();
+    setSiteSeo(initialSeo);
+    applyGlobalSeo(initialSeo);
   }, []);
+
+  const handleSaveSiteSeo = (e) => {
+    e.preventDefault();
+    saveSiteSeo(siteSeo);
+    showToast('success', 'Site-wide SEO Title, Meta Description & Keywords saved successfully!');
+    setSeoSavedMsg('Global SEO Settings updated!');
+    setTimeout(() => setSeoSavedMsg(''), 3000);
+  };
+
+  const handleCopySitemap = () => {
+    const xml = generateSitemapXml(posts);
+    navigator.clipboard.writeText(xml);
+    setSitemapCopied(true);
+    showToast('success', 'Full sitemap.xml content copied to clipboard!');
+    setTimeout(() => setSitemapCopied(false), 2500);
+  };
+
+  const handleDownloadSitemap = () => {
+    const xml = generateSitemapXml(posts);
+    const blob = new Blob([xml], { type: 'application/xml' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'sitemap.xml';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    showToast('success', 'sitemap.xml downloaded successfully!');
+  };
 
   const showToast = (type, text) => {
     setNotification({ type, text });
@@ -339,9 +383,106 @@ export default function Admin() {
               <div style={{ fontSize: '2rem', fontWeight: '800', color: '#ffd166', marginTop: '0.4rem' }}>{posts.filter(p => p.status === 'draft').length}</div>
             </div>
             <div className="glass-card" style={{ padding: '1.4rem' }}>
-              <div style={{ fontSize: '0.78rem', color: 'var(--sky)', textTransform: 'uppercase', fontWeight: '700' }}>Featured</div>
-              <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--sky)', marginTop: '0.4rem' }}>{posts.filter(p => p.featured).length}</div>
+              <div style={{ fontSize: '0.78rem', color: 'var(--sky)', textTransform: 'uppercase', fontWeight: '700' }}>Sitemap Index</div>
+              <div style={{ fontSize: '2rem', fontWeight: '800', color: 'var(--sky)', marginTop: '0.4rem' }}>{16 + posts.filter(p => p.status === 'published').length} URLs</div>
             </div>
+          </div>
+
+          {/* SITE-WIDE SEO & AUTOMATIC SITEMAP CONTROL BOX */}
+          <div className="grid-2" style={{ gap: '1.5rem', marginBottom: '2.5rem' }}>
+            
+            {/* BOX 1: WHOLE SITE GLOBAL SEO TITLE & META DESCRIPTION */}
+            <div className="glass-card" style={{ padding: '1.8rem', border: '1px solid var(--teal-light)', background: 'linear-gradient(135deg, rgba(29,158,117,0.08), rgba(26,26,24,0.6))' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Sparkles size={18} color="#5DCAA5" />
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--offwhite)' }}>Site-Wide Global SEO Settings</h3>
+                </div>
+                {seoSavedMsg && <span style={{ fontSize: '0.78rem', color: 'var(--teal-light)', fontWeight: '700' }}>✓ Saved</span>}
+              </div>
+
+              <form onSubmit={handleSaveSiteSeo}>
+                <div style={{ marginBottom: '1.1rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.8rem', color: 'rgba(244,242,235,0.8)', fontWeight: '600', marginBottom: '0.4rem' }}>
+                    Global Website Title (Browser & Search Snippet)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="Nexivo — Modern Websites & Global Digital Growth Agency"
+                    value={siteSeo.siteTitle}
+                    onChange={(e) => setSiteSeo({ ...siteSeo, siteTitle: e.target.value })}
+                    style={{ width: '100%', padding: '0.7rem 0.9rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line-strong)', color: 'var(--offwhite)', fontSize: '0.88rem' }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '1.1rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.8rem', color: 'rgba(244,242,235,0.8)', fontWeight: '600', marginBottom: '0.4rem' }}>
+                    Global Meta Description (Search Engines)
+                  </label>
+                  <textarea
+                    rows="3"
+                    placeholder="Nexivo is a premier global web agency designing fast..."
+                    value={siteSeo.siteDescription}
+                    onChange={(e) => setSiteSeo({ ...siteSeo, siteDescription: e.target.value })}
+                    style={{ width: '100%', padding: '0.7rem 0.9rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line-strong)', color: 'var(--offwhite)', fontSize: '0.86rem', outline: 'none', resize: 'vertical' }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '1.4rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.8rem', color: 'rgba(244,242,235,0.8)', fontWeight: '600', marginBottom: '0.4rem' }}>
+                    Global Target Keywords (Comma separated)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="web development agency, React Vite websites, local SEO Google Maps ranking"
+                    value={siteSeo.keywords}
+                    onChange={(e) => setSiteSeo({ ...siteSeo, keywords: e.target.value })}
+                    style={{ width: '100%', padding: '0.65rem 0.9rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line)', color: 'var(--offwhite)', fontSize: '0.84rem' }}
+                  />
+                </div>
+
+                <button type="submit" className="btn-primary" style={{ padding: '0.65rem 1.3rem', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}>
+                  <Save size={15} /> Save Whole Site SEO Settings
+                </button>
+              </form>
+            </div>
+
+            {/* BOX 2: DYNAMIC AUTOMATIC SITEMAP SYNC BOX */}
+            <div className="glass-card" style={{ padding: '1.8rem', border: '1px solid var(--line-strong)' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Globe size={18} color="#378ADD" />
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--offwhite)' }}>Automatic XML Sitemap Sync</h3>
+                </div>
+                <span style={{ fontSize: '0.72rem', fontWeight: '700', padding: '0.2rem 0.6rem', borderRadius: '999px', background: 'rgba(37,211,102,0.15)', color: '#25D366', border: '1px solid rgba(37,211,102,0.3)' }}>
+                  🟢 Auto-Sync Active
+                </span>
+              </div>
+
+              <p style={{ fontSize: '0.86rem', color: 'rgba(244,242,235,0.7)', lineHeight: '1.6', marginBottom: '1.2rem' }}>
+                Every time you publish or update a blog post, its URL is <strong>automatically formatted and included in your sitemap</strong> for immediate Google Search Console indexing.
+              </p>
+
+              <div style={{ padding: '0.9rem 1rem', borderRadius: '10px', background: 'rgba(244,242,235,0.04)', border: '1px solid var(--line)', marginBottom: '1.4rem' }}>
+                <div style={{ fontSize: '0.82rem', color: 'var(--offwhite)', fontWeight: '700', marginBottom: '0.3rem' }}>
+                  Total Indexed URLs: <span style={{ color: 'var(--teal-light)' }}>{16 + posts.filter(p => p.status === 'published').length}</span>
+                </div>
+                <div style={{ fontSize: '0.76rem', color: 'rgba(244,242,235,0.5)' }}>
+                  • 16 Core Static Pages & Service Routes<br/>
+                  • {posts.filter(p => p.status === 'published').length} Published Blog Post URLs
+                </div>
+              </div>
+
+              <div style={{ display: 'flex', gap: '0.8rem', flexWrap: 'wrap' }}>
+                <button type="button" onClick={handleCopySitemap} className="btn-outline" style={{ flexGrow: 1, padding: '0.65rem 1rem', fontSize: '0.82rem' }}>
+                  Copy sitemap.xml
+                </button>
+                <button type="button" onClick={handleDownloadSitemap} className="btn-primary" style={{ flexGrow: 1, padding: '0.65rem 1rem', fontSize: '0.82rem' }}>
+                  Download sitemap.xml
+                </button>
+              </div>
+            </div>
+
           </div>
 
           {/* SEARCH & FILTERS BAR */}
