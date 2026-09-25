@@ -4,9 +4,6 @@ import { ArrowRight, CheckCircle2, Zap, ShieldCheck } from 'lucide-react';
 import ServiceMatrix from '../components/ServiceMatrix';
 import Estimator from '../components/Estimator';
 import WebsiteHealthCheck from '../components/WebsiteHealthCheck';
-import reelcrafterrCover from '../assets/reelcrafterr-cover.jpg';
-import shriRadheyCover from '../assets/shri-radhey-cover.jpg';
-import nailsByShalviCover from '../assets/nails-by-shalvi-cover.jpg';
 
 export default function Home({ triggerToast }) {
   return (
@@ -80,18 +77,10 @@ export default function Home({ triggerToast }) {
           <div className="portfolio-card">
             <div className="portfolio-thumb">
               <img
-                src={reelcrafterrCover}
+                src="/portfolio/reelcrafterr-cover.jpg"
                 alt="Reel Crafterr Website Showcase"
                 loading="eager"
                 decoding="async"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.parentNode.style.background = 'linear-gradient(135deg, rgba(29, 158, 117, 0.3), rgba(55, 138, 221, 0.2))';
-                  e.target.parentNode.style.display = 'flex';
-                  e.target.parentNode.style.alignItems = 'center';
-                  e.target.parentNode.style.justifyContent = 'center';
-                  e.target.parentNode.innerHTML = '<span style="font-weight:700;color:var(--teal-light);font-size:1.1rem">Reel Crafterr</span>';
-                }}
               />
             </div>
             <div className="portfolio-info">
@@ -106,18 +95,10 @@ export default function Home({ triggerToast }) {
           <div className="portfolio-card">
             <div className="portfolio-thumb">
               <img
-                src={shriRadheyCover}
+                src="/portfolio/shri-radhey-cover.jpg"
                 alt="Shri Radhey Book Depot E-Commerce Showcase"
                 loading="eager"
                 decoding="async"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.parentNode.style.background = 'linear-gradient(135deg, rgba(29, 158, 117, 0.3), rgba(55, 138, 221, 0.2))';
-                  e.target.parentNode.style.display = 'flex';
-                  e.target.parentNode.style.alignItems = 'center';
-                  e.target.parentNode.style.justifyContent = 'center';
-                  e.target.parentNode.innerHTML = '<span style="font-weight:700;color:var(--teal-light);font-size:1.1rem">Shri Radhey Book Depot</span>';
-                }}
               />
             </div>
             <div className="portfolio-info">
@@ -132,18 +113,10 @@ export default function Home({ triggerToast }) {
           <div className="portfolio-card">
             <div className="portfolio-thumb">
               <img
-                src={nailsByShalviCover}
+                src="/portfolio/nails-by-shalvi-cover.jpg"
                 alt="Nails By Shalvi Studio Showcase"
                 loading="eager"
                 decoding="async"
-                onError={(e) => {
-                  e.target.style.display = 'none';
-                  e.target.parentNode.style.background = 'linear-gradient(135deg, rgba(29, 158, 117, 0.3), rgba(55, 138, 221, 0.2))';
-                  e.target.parentNode.style.display = 'flex';
-                  e.target.parentNode.style.alignItems = 'center';
-                  e.target.parentNode.style.justifyContent = 'center';
-                  e.target.parentNode.innerHTML = '<span style="font-weight:700;color:var(--teal-light);font-size:1.1rem">Nails By Shalvi</span>';
-                }}
               />
             </div>
             <div className="portfolio-info">
