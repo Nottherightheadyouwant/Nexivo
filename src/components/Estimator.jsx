@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
-import { ArrowRight, CheckCircle2 } from 'lucide-react';
+﻿import React, { useState } from 'react';
+import { ArrowRight } from 'lucide-react';
 
 export default function Estimator({ triggerToast }) {
-  const [selectedProject, setSelectedProject] = useState('Starter Website');
-  const [selectedDays, setSelectedDays] = useState(14);
+  const [baseCost, setBaseCost] = useState(7000);
+  const [baseDays, setBaseDays] = useState(30);
   const [toggles, setToggles] = useState({
     cms: false,
     speed: false,
@@ -12,32 +12,33 @@ export default function Estimator({ triggerToast }) {
   });
 
   const projects = [
-    { label: 'Starter Website', days: 14 },
-    { label: 'Standard Website', days: 21 },
-    { label: 'Website Redesign', days: 14 },
-    { label: 'Local SEO Boost', days: 30 },
-    { label: 'Google & Meta Ads', days: 14 },
-    { label: 'Social Media Pack', days: 30 }
+    { label: 'Starter Website', cost: 7000, days: 30 },
+    { label: 'Standard Website', cost: 12000, days: 30 },
+    { label: 'Website Redesign', cost: 8000, days: 30 },
+    { label: 'Local SEO Boost', cost: 6999, days: 30 },
+    { label: 'Google & Meta Ads', cost: 9999, days: 30 },
+    { label: 'Social Media Pack', cost: 7499, days: 30 }
   ];
 
   const addons = [
-    { key: 'cms', label: 'CMS integration (edit content yourself)' },
-    { key: 'speed', label: 'Speed optimization pass (95+ score)' },
-    { key: 'maintenance', label: '1-Month extended maintenance pass' },
-    { key: 'catalog', label: 'E-commerce product catalog setup' }
+    { key: 'cms', label: 'CMS integration (edit content yourself)', cost: 2000 },
+    { key: 'speed', label: 'Speed optimization pass (95+ score)', cost: 1500 },
+    { key: 'maintenance', label: '1-Month extended maintenance pass', cost: 2500 },
+    { key: 'catalog', label: 'E-commerce product catalog setup', cost: 3000 }
   ];
 
   const toggleAddon = (key) => {
     setToggles(prev => ({ ...prev, [key]: !prev[key] }));
   };
 
-  const activeAddonCount = Object.values(toggles).filter(Boolean).length;
+  const addCost = addons.reduce((sum, item) => sum + (toggles[item.key] ? item.cost : 0), 0);
+  const totalCost = baseCost + addCost;
+  const pct = Math.min(100, (totalCost / 30000) * 100);
 
   const handleBook = () => {
-    const activeAddonLabels = addons.filter(a => toggles[a.key]).map(a => a.label).join(', ');
-    const text = encodeURIComponent(`Hi Nexivo! I configured my project scope on the website: Package: ${selectedProject} (${selectedDays} days turnaround) with addons: ${activeAddonLabels || 'None'}. Please send a custom proposal.`);
+    const text = encodeURIComponent(`Hi Nexivo! I calculated my project estimate on the website: ₹${totalCost.toLocaleString('en-IN')} (${baseDays} days turnaround). I would like to lock this package in.`);
     window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
-    if (triggerToast) triggerToast('WhatsApp chat opened with your custom scope details!');
+    if (triggerToast) triggerToast('WhatsApp chat opened with your calculated estimate!');
   };
 
   return (
@@ -48,18 +49,18 @@ export default function Estimator({ triggerToast }) {
           {projects.map((p, idx) => (
             <button
               key={idx}
-              className={`chip ${selectedProject === p.label ? 'active' : ''}`}
-              onClick={() => { setSelectedProject(p.label); setSelectedDays(p.days); }}
+              className={`chip ${baseCost === p.cost ? 'active' : ''}`}
+              onClick={() => { setBaseCost(p.cost); setBaseDays(p.days); }}
             >
               {p.label}
             </button>
           ))}
         </div>
 
-        <div className="field-label" style={{ marginTop: '1.5rem' }}>Optional Scope Add-ons</div>
+        <div className="field-label" style={{ marginTop: '1.5rem' }}>Optional Add-ons</div>
         {addons.map((a) => (
           <div key={a.key} className="toggle-row">
-            <span>{a.label}</span>
+            <span>{a.label} (+₹{a.cost.toLocaleString('en-IN')})</span>
             <div
               className={`switch ${toggles[a.key] ? 'on' : ''}`}
               onClick={() => toggleAddon(a.key)}
@@ -72,21 +73,20 @@ export default function Estimator({ triggerToast }) {
 
       <div className="estimate-out">
         <div>
-          <div className="field-label">Selected Scope Summary</div>
-          <div className="estimate-big" style={{ fontSize: '1.4rem' }}>
-            {selectedProject}
-          </div>
-          <div className="estimate-line" style={{ marginTop: '0.8rem' }}>
-            <span>Turnaround Timeline</span>
-            <span style={{ color: '#5DCAA5', fontWeight: '700' }}>~{selectedDays} Days Delivery</span>
+          <div className="field-label">Estimated Budget</div>
+          <div className="estimate-big">
+            ₹{totalCost.toLocaleString('en-IN')}
           </div>
           <div className="estimate-line">
-            <span>Selected Add-ons</span>
-            <span style={{ color: 'var(--offwhite)', fontWeight: '600' }}>{activeAddonCount} Selected</span>
+            <span>Delivery Timeline</span>
+            <span style={{ color: '#5DCAA5', fontWeight: '700' }}>~{baseDays} days</span>
+          </div>
+          <div className="gauge-track">
+            <div className="gauge-fill" style={{ width: `${pct}%` }}></div>
           </div>
         </div>
-        <button onClick={handleBook} className="btn-primary" style={{ width: '100%', justifyContent: 'center', marginTop: '1.2rem' }}>
-          Get Proposal on WhatsApp <ArrowRight size={18} />
+        <button onClick={handleBook} className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
+          Book Project on WhatsApp <ArrowRight size={18} />
         </button>
       </div>
     </div>

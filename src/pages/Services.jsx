@@ -13,7 +13,7 @@ export default function Services() {
       tag: 'Development',
       title: 'Website Development',
       shortDesc: 'Custom fast React & Vite websites, clinic portals, e-commerce stores, and high-converting redesigns built for sub-second speed.',
-      budget: 'Custom Scope',
+      budget: 'Starts at ₹7,000',
       timeline: '~10 Days Delivery',
       highlights: ['React + Vite Sub-Second Load', '95+ Google Lighthouse Score', 'WhatsApp Direct Inquiry Flow']
     },
@@ -23,7 +23,7 @@ export default function Services() {
       tag: 'Growth Strategy',
       title: 'Digital Marketing',
       shortDesc: 'End-to-end sales funnel strategies, lead capture automation, and conversion rate optimization to turn traffic into revenue.',
-      budget: 'Tailored Campaign',
+      budget: 'Starts at ₹8,999 / mo',
       timeline: 'Ongoing Growth Campaign',
       highlights: ['Customer Acquisition Funnel', 'Conversion Rate Optimization', 'Automated Lead Triggers']
     },
@@ -33,7 +33,7 @@ export default function Services() {
       tag: 'Visibility',
       title: 'SEO (Search Engine Optimization)',
       shortDesc: 'Dominate Google search results and rank top 3 in local and international target markets.',
-      budget: 'Custom Strategy',
+      budget: 'Starts at ₹6,999 / mo',
       timeline: '~14 Days Setup',
       highlights: ['Google Business Profile Ranking', 'Local "Near Me" Domination', 'Maps Pack Top Position']
     },
@@ -43,7 +43,7 @@ export default function Services() {
       tag: 'Branding',
       title: 'Social Media Marketing',
       shortDesc: 'Consistent Instagram & Facebook brand management, reel strategies, and community engagement built for modern brands.',
-      budget: 'Tailored Retainer',
+      budget: 'Starts at ₹7,499 / mo',
       timeline: '~7 Days Setup',
       highlights: ['Monthly Content Calendar', 'Reel Scripts & Visual Grid', 'DM & Comment Engagement']
     },
@@ -53,7 +53,7 @@ export default function Services() {
       tag: 'Creative Assets',
       title: 'Content Creation',
       shortDesc: 'High-converting copywriting, ad creative graphics, promotional video scripts, and visual brand assets.',
-      budget: 'Project Scoped',
+      budget: 'Starts at ₹4,999',
       timeline: '3 - 5 Days Turnaround',
       highlights: ['Persuasive Web Copywriting', 'Meta & Google Ad Banners', 'Short-Form Video Scripts']
     },
@@ -63,7 +63,7 @@ export default function Services() {
       tag: 'Paid Ads',
       title: 'Google Ads & Meta Ads',
       shortDesc: 'Laser-targeted Facebook, Instagram, and Google PPC ad campaigns built for high ROAS and instant lead generation.',
-      budget: 'Custom ROAS Plan',
+      budget: 'Starts at ₹9,999 / mo',
       timeline: '~5 Days Setup',
       highlights: ['Google Search PPC Setup', 'Meta Instagram & Facebook Lead Ads', 'High ROAS Campaign Tracking']
     }
