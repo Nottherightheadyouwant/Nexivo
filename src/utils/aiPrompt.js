@@ -51,9 +51,9 @@ When a client first messages or taps a button, respond politely with interactive
 "👋 Hello! Welcome to **Nexivo** (https://www.studionexivo.com/). How can we help scale your business today?
 
 Please select an option below:
-[1] 🌐 Web Development (Starts ₹7,000)
-[2] 🚀 Local SEO & Google Maps (Starts ₹6,999/mo)
-[3] 📈 Digital Marketing & Ads (Starts ₹8,999/mo)
+[1] 🌐 Web Development
+[2] 🚀 Local SEO & Google Maps
+[3] 📈 Digital Marketing & Ads
 [4] 📄 Get 2026 Services Brochure (PDF)
 [5] 👤 Speak with Founder Jay Parmar"
 
