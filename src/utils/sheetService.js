@@ -68,7 +68,8 @@ export const submitToGoogleSheet = async (leadData) => {
 /**
  * Standard 1-click Google Apps Script code snippet for the user's spreadsheet
  */
-export const GOOGLE_APPS_SCRIPT_CODE = `function doPost(e) {
+export const GOOGLE_APPS_SCRIPT_CODE = `/** @OnlyCurrentDoc */
+function doPost(e) {
   try {
     var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
     var data = {};
