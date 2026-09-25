@@ -3,9 +3,11 @@
  * Synchronizes website lead entries directly into Google Sheets via Google Apps Script Web App Endpoint.
  */
 
+const DEFAULT_SHEET_URL = 'https://script.google.com/macros/s/AKfycbzZe-yxYcEQs7yfglDP50Xt39cOEsidILQQXJhwzr_vy4SgNJvBbR76_QAUQPFG7EOOlA/exec';
+
 export const getSheetUrl = () => {
-  if (typeof window === 'undefined') return '';
-  return import.meta.env.VITE_GOOGLE_SHEET_URL || localStorage.getItem('nexivo_google_sheet_url') || '';
+  if (typeof window === 'undefined') return DEFAULT_SHEET_URL;
+  return import.meta.env.VITE_GOOGLE_SHEET_URL || localStorage.getItem('nexivo_google_sheet_url') || DEFAULT_SHEET_URL;
 };
 
 export const saveSheetUrl = (url) => {
