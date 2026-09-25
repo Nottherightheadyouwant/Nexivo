@@ -102,20 +102,9 @@ export default function Navbar({ openBrochure }) {
           <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>Contact Us</NavLink></li>
         </ul>
 
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.6rem' }}>
-          {openBrochure && (
-            <button
-              onClick={openBrochure}
-              className="btn-outline desktop-only-cta"
-              style={{ padding: '0.55rem 1rem', fontSize: '0.8rem', borderColor: 'rgba(93,202,165,0.4)', color: 'var(--teal-light)' }}
-            >
-              Brochure (PDF)
-            </button>
-          )}
-          <Link to="/contact" className="nav-cta desktop-only-cta">
-            Get Started <ArrowUpRight size={16} />
-          </Link>
-        </div>
+        <Link to="/contact" className="nav-cta desktop-only-cta">
+          Get Started <ArrowUpRight size={16} />
+        </Link>
 
         <button className="mobile-toggle" onClick={() => setMenuOpen(!menuOpen)}>
           {menuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -125,14 +114,6 @@ export default function Navbar({ openBrochure }) {
       {menuOpen && (
         <div className="mobile-menu open">
           <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          {openBrochure && (
-            <button
-              onClick={() => { setMenuOpen(false); openBrochure(); }}
-              style={{ background: 'none', border: 'none', color: 'var(--teal-light)', textAlign: 'left', fontSize: '1.1rem', fontWeight: '700', padding: '0.8rem 0', cursor: 'pointer' }}
-            >
-              📥 Download Services Brochure (PDF)
-            </button>
-          )}
           <Link to="/services" onClick={() => setMenuOpen(false)}>Our Services (All)</Link>
           <Link to="/services/website-development" onClick={() => setMenuOpen(false)}>— Website Development</Link>
           <Link to="/services/digital-marketing" onClick={() => setMenuOpen(false)}>— Digital Marketing</Link>

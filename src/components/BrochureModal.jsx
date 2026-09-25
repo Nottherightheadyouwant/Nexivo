@@ -33,15 +33,6 @@ export default function BrochureModal({ isOpen, onClose, triggerToast }) {
         triggerToast('Brochure PDF downloaded & sent to your email!');
       }
 
-      // 3. Optional WhatsApp lead notification trigger to agency founder
-      const waText = encodeURIComponent(
-        `Hi Nexivo! I just requested your Services Brochure PDF on studionexivo.com.\n\n` +
-        `• Name: ${name}\n` +
-        `• Email: ${email}\n` +
-        `• Phone: ${phone || 'N/A'}\n` +
-        `• Interested Service: ${serviceInterest}`
-      );
-
       console.log('Lead Captured:', { name, email, phone, serviceInterest });
     }, 1200);
   };
@@ -55,22 +46,70 @@ export default function BrochureModal({ isOpen, onClose, triggerToast }) {
   };
 
   return (
-    <div style={{ position: 'fixed', inset: 0, zIndex: 9999, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '1rem', background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(10px)' }}>
-      <div className="glass-card" style={{ maxWidth: '520px', width: '100%', padding: '2.2rem', border: '1px solid var(--teal-light)', background: 'linear-gradient(145deg, rgba(26,26,24,0.95), rgba(12,15,13,0.98))', position: 'relative', boxShadow: '0 20px 50px rgba(0,0,0,0.8)' }}>
-        
-        {/* CLOSE BUTTON */}
-        <button onClick={onClose} style={{ position: 'absolute', top: '1.2rem', right: '1.2rem', background: 'rgba(244,242,235,0.08)', border: '1px solid var(--line)', color: 'rgba(244,242,235,0.7)', borderRadius: '999px', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center', cursor: 'pointer' }}>
-          <X size={18} />
-        </button>
+    <div
+      onClick={onClose}
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: '1rem',
+        background: 'rgba(0,0,0,0.85)',
+        backdropFilter: 'blur(10px)',
+        overflowY: 'auto'
+      }}
+    >
+      <div
+        className="glass-card"
+        onClick={(e) => e.stopPropagation()}
+        style={{
+          maxWidth: '520px',
+          width: '100%',
+          maxHeight: '90vh',
+          overflowY: 'auto',
+          padding: '2.2rem 2rem',
+          border: '1.5px solid var(--teal-light)',
+          background: 'linear-gradient(145deg, rgba(26,26,24,0.98), rgba(12,15,13,0.98))',
+          position: 'relative',
+          borderRadius: '24px',
+          boxShadow: '0 20px 50px rgba(0,0,0,0.95)'
+        }}
+      >
+        {/* PROMINENT VISIBLE CLOSE (CUT) BUTTON */}
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '1.2rem', borderBottom: '1px solid var(--line)', paddingBottom: '0.8rem' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '6px' }}>
+            <span className="eyebrow" style={{ margin: 0, padding: '0.3rem 0.8rem', fontSize: '0.75rem' }}>
+              <Sparkles size={12} /> Official Agency Brochure
+            </span>
+          </div>
+
+          <button
+            type="button"
+            onClick={onClose}
+            style={{
+              background: 'rgba(255,255,255,0.12)',
+              border: '1.5px solid var(--teal-light)',
+              color: '#ffffff',
+              borderRadius: '999px',
+              padding: '0.4rem 1rem',
+              fontSize: '0.85rem',
+              fontWeight: '700',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px',
+              cursor: 'pointer',
+              boxShadow: '0 4px 15px rgba(93,202,165,0.3)',
+              transition: 'all 0.2s ease'
+            }}
+          >
+            <span>Close</span> <X size={16} color="#5DCAA5" />
+          </button>
+        </div>
 
         {!isSuccess ? (
           <>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '0.6rem' }}>
-              <span className="eyebrow" style={{ margin: 0, padding: '0.3rem 0.8rem', fontSize: '0.75rem' }}>
-                <Sparkles size={12} /> Official Agency Brochure
-              </span>
-            </div>
-
             <h2 style={{ fontSize: '1.5rem', fontWeight: '800', color: 'var(--offwhite)', marginBottom: '0.5rem', lineHeight: '1.2' }}>
               Download Nexivo Services & Pricing Guide 2026 (PDF)
             </h2>
