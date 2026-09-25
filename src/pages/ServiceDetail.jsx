@@ -314,12 +314,12 @@ export default function ServiceDetail() {
         </div>
         <div className="grid-3" style={{ gap: '1.2rem' }}>
           {Object.values(servicesMap).filter(s => s.slug !== service.slug).slice(0, 3).map((other) => (
-            <Link key={other.slug} to={`/services/${other.slug}`} className="service-card" style={{ textDecoration: 'none' }}>
+            <Link key={other.slug} to={`/services/${other.slug}`} className="service-card" style={{ textDecoration: 'none', color: 'inherit' }}>
               <div>
                 <div style={{ width: '42px', height: '42px', borderRadius: '12px', background: 'rgba(29, 158, 117, 0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', marginBottom: '1rem' }}>
                   {other.icon}
                 </div>
-                <h4>{other.title}</h4>
+                <h4 style={{ color: 'var(--offwhite)' }}>{other.title}</h4>
                 <p style={{ fontSize: '0.85rem', color: 'rgba(244,242,235,0.6)' }}>{other.shortDesc}</p>
               </div>
               <div className="service-wa" style={{ color: 'var(--teal-light)', fontSize: '0.82rem', fontWeight: '700', marginTop: '1rem' }}>

@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    NEXIVO - REACT APP GLOBAL DESIGN SYSTEM & UTILITIES
    ============================================================ */
 
@@ -45,6 +45,11 @@ body {
 ::selection {
   background: var(--teal);
   color: var(--charcoal);
+}
+
+a, a:visited {
+  color: inherit;
+  text-decoration: none;
 }
 
 /* ===== SCROLL PROGRESS BAR ===== */
@@ -534,6 +539,12 @@ section {
   font-weight: 700;
   font-size: 1.15rem;
   margin-bottom: 0.6rem;
+  color: var(--offwhite);
+  transition: color 0.2s;
+}
+
+.service-card:hover h4 {
+  color: var(--teal-light);
 }
 
 .service-card p {
