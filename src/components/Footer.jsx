@@ -1,4 +1,4 @@
-﻿import React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 
@@ -25,6 +25,7 @@ export default function Footer() {
             <Link to="/services">Services</Link>
             <Link to="/pricing">Pricing</Link>
             <Link to="/about">About Us</Link>
+            <Link to="/blog">Blog</Link>
             <Link to="/contact">Contact</Link>
           </div>
           <div className="footer-col">

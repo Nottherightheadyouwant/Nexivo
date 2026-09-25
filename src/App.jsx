@@ -14,6 +14,9 @@ import Contact from './pages/Contact';
 import Terms from './pages/Terms';
 import Privacy from './pages/Privacy';
 import Cookies from './pages/Cookies';
+import Blog from './pages/Blog';
+import BlogDetail from './pages/BlogDetail';
+import Admin from './pages/Admin';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -47,6 +50,9 @@ export default function App() {
         <Route path="/services" element={<Services />} />
         <Route path="/services/:serviceSlug" element={<ServiceDetail />} />
         <Route path="/pricing" element={<Pricing triggerToast={triggerToast} />} />
+        <Route path="/blog" element={<Blog />} />
+        <Route path="/blog/:slug" element={<BlogDetail />} />
+        <Route path="/admin" element={<Admin />} />
         <Route path="/contact" element={<Contact triggerToast={triggerToast} />} />
         <Route path="/terms" element={<Terms />} />
         <Route path="/privacy" element={<Privacy />} />

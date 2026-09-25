@@ -89,6 +89,7 @@ export default function Navbar() {
 
           <li><NavLink to="/pricing" className={({ isActive }) => isActive ? 'active' : ''}>Pricing</NavLink></li>
           <li><NavLink to="/about" className={({ isActive }) => isActive ? 'active' : ''}>About Us</NavLink></li>
+          <li><NavLink to="/blog" className={({ isActive }) => isActive ? 'active' : ''}>Blog</NavLink></li>
           <li><NavLink to="/contact" className={({ isActive }) => isActive ? 'active' : ''}>Contact Us</NavLink></li>
         </ul>
 
@@ -112,6 +113,7 @@ export default function Navbar() {
           <Link to="/services/ads-management" onClick={() => setMenuOpen(false)}>— Google & Meta Ads</Link>
           <Link to="/pricing" onClick={() => setMenuOpen(false)}>Pricing</Link>
           <Link to="/about" onClick={() => setMenuOpen(false)}>About Us</Link>
+          <Link to="/blog" onClick={() => setMenuOpen(false)}>Blog</Link>
           <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact Us</Link>
         </div>
       )}
