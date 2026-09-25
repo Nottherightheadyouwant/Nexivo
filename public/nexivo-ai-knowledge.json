@@ -19,18 +19,18 @@
       "plans": [
         {
           "name": "Starter Plan",
-          "price": "₹7,000 one-time",
-          "details": "4 static pages, mobile-responsive design, WhatsApp click-to-chat, Google Maps and contact integration, 1 round of revisions. Live in about 10 days."
+          "pricing": "Custom Quote (Contact for proposal)",
+          "details": "4 static pages, mobile-responsive design, WhatsApp click-to-chat, Google Maps and contact integration, 1 round of revisions. Live in about 10-14 days."
         },
         {
           "name": "Standard Plan",
-          "price": "₹12,000 one-time",
+          "pricing": "Custom Quote (Contact for proposal)",
           "tag": "Most Chosen",
-          "details": "Everything in Starter + 1-2 dynamic pages, services & pricing showcase, SEO-friendly architecture, 2 rounds of revisions, 1 month post-launch support. Live in about 14 days."
+          "details": "Everything in Starter + 1-2 dynamic pages, services & pricing showcase, SEO-friendly architecture, 2 rounds of revisions, 1 month post-launch support. Live in about 14-21 days."
         },
         {
           "name": "Complete / E-commerce Plan",
-          "price": "Custom pricing (scoped on call)",
+          "pricing": "Custom Scope (Scoped on call)",
           "details": "Full dynamic site with e-commerce cart, payment gateway, product catalog setup, priority tech support, 3 months free maintenance."
         }
       ]
@@ -41,18 +41,18 @@
       "plans": [
         {
           "name": "Local Boost",
-          "price": "₹6,999 / month",
+          "pricing": "Tailored Plan",
           "details": "Google Business Profile setup, top 5 local keywords optimized, directory citations, monthly ranking report."
         },
         {
           "name": "Map Pack Domination",
-          "price": "₹11,999 / month",
+          "pricing": "Tailored Plan",
           "tag": "Most Chosen",
-          "details": "Focused on top 3 Google Maps results: 15 high-intent local keywords, technical schema & on-page SEO, review engine setup, 2 months free audit passes."
+          "details": "Focused on top 3 Google Maps results: 15 high-intent local keywords, technical schema & on-page SEO, review engine setup, free audit passes."
         },
         {
           "name": "National Authority",
-          "price": "₹19,999 / month",
+          "pricing": "Tailored Plan",
           "details": "35 nationwide keywords, high-authority backlink outreach, weekly rank updates, competitor link gap analysis."
         }
       ]
@@ -63,18 +63,18 @@
       "plans": [
         {
           "name": "Growth Funnel",
-          "price": "₹8,999 / month",
-          "details": "Lead capture landing page, WhatsApp conversion triggers, basic CRO audit, monthly lead performance report."
+          "pricing": "Custom Scope",
+          "details": "Lead capture landing page, WhatsApp conversion triggers, CRO audit, monthly lead performance report."
         },
         {
           "name": "Omnichannel Scale",
-          "price": "₹16,999 / month",
+          "pricing": "Custom Scope",
           "tag": "Most Chosen",
           "details": "A/B copy testing, automated email & WhatsApp lead nurturing, weekly ROI & conversion dashboard, lifetime-value optimization."
         },
         {
           "name": "Enterprise Growth",
-          "price": "₹28,999 / month",
+          "pricing": "Custom Scope",
           "details": "Custom CRM integration, advanced retargeting funnels, dedicated account manager, priority 24/7 campaign support."
         }
       ]
@@ -85,18 +85,18 @@
       "plans": [
         {
           "name": "Starter Grid",
-          "price": "₹7,499 / month",
+          "pricing": "Tailored Retainer",
           "details": "12 custom feed posts/mo, caption & hashtag strategy, profile bio optimization, monthly growth report."
         },
         {
           "name": "Reel Strategy Pro",
-          "price": "₹14,999 / month",
+          "pricing": "Tailored Retainer",
           "tag": "Most Chosen",
           "details": "15 feed posts + 8 Reel scripts/mo, brand grid templates, DM & comment community management."
         },
         {
           "name": "Full Retainer",
-          "price": "₹24,999 / month",
+          "pricing": "Tailored Retainer",
           "details": "25 feed posts + 15 Reel scripts/mo, influencer collaboration management, weekly analytics, dedicated video editor."
         }
       ]
@@ -106,17 +106,17 @@
       "plans": [
         {
           "name": "Brand & Copy Pack",
-          "price": "₹9,999 one-time",
+          "pricing": "Project Scoped",
           "details": "Full website copywriting, brand tone guide, 6 Meta or Google ad banners, 2 video scripts, PDF brochure."
         },
         {
           "name": "PPC Lead Launch",
-          "price": "₹9,999 / month",
+          "pricing": "Custom ROAS Plan",
           "details": "Targeted Google Search or Meta campaign setup, conversion pixel tracking, ad creative design, monthly report."
         },
         {
           "name": "High ROAS Scaling",
-          "price": "₹18,999 / month",
+          "pricing": "Custom ROAS Plan",
           "tag": "Most Chosen",
           "details": "Google Search with Meta retargeting, multi-ad-set A/B testing, custom Conversion API tracking, negative keyword sculpting."
         }
@@ -137,8 +137,8 @@
       "answer": "We operate dual hubs in London, UK and Ahmedabad, India."
     },
     {
-      "question": "How do I download your 2026 pricing brochure?",
-      "answer": "You can download it directly at https://www.studionexivo.com/Nexivo-Services-Brochure-2026.pdf or ask our team to send it to your email."
+      "question": "How do I download your 2026 brochure?",
+      "answer": "You can download it directly at https://www.studionexivo.com/Nexivo-Services-Brochure-2026.pdf or request it via form."
     }
   ]
 }

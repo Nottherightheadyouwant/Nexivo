@@ -31,11 +31,11 @@ export const servicesMap = {
       { step: 'Phase 03', title: 'React Coding & Speed Optimization', desc: 'Developing clean, lightweight React code with zero bloat.' },
       { step: 'Phase 04', title: 'Testing, Launch & Handoff', desc: 'Domain pointing, SSL activation, speed audit, and owner training.' }
     ],
-    budget: 'Starts at ₹7,000',
+    budget: 'Custom Scope',
     timeline: '~10 Days Delivery',
     faqs: [
       { q: 'Will my website work well on slow mobile internet?', a: 'Yes! Our React & Vite architecture compiles into ultra-lightweight static assets that load in under 1 second even on 3G/4G networks.' },
-      { q: 'Can I edit photos and prices myself?', a: 'Absolutely. We include a simple CMS dashboard so you can update text, upload images, or edit pricing without writing code.' }
+      { q: 'Can I edit photos and details myself?', a: 'Absolutely. We include a simple CMS dashboard so you can update text, upload images, or edit details without writing code.' }
     ]
   },
 
@@ -63,7 +63,7 @@ export const servicesMap = {
       { step: 'Phase 03', title: 'Campaign Execution', desc: 'Driving targeted local traffic to optimized conversion flows.' },
       { step: 'Phase 04', title: 'Optimization & Scaling', desc: 'A/B testing copy, offers, and creative assets for maximum ROI.' }
     ],
-    budget: 'Starts at ₹8,999 / mo',
+    budget: 'Tailored Campaign',
     timeline: 'Ongoing Growth Campaign',
     faqs: [
       { q: 'How do you track sales leads?', a: 'Every click on your website triggers custom conversion tracking and sends instant lead notifications to your team WhatsApp.' }
@@ -94,7 +94,7 @@ export const servicesMap = {
       { step: 'Phase 03', title: 'Google Maps Optimization', desc: 'Optimizing GBP category setup, photos, geo-tagging, and reviews.' },
       { step: 'Phase 04', title: 'Citation & Link Building', desc: 'Building local directory links and maintaining top positions.' }
     ],
-    budget: 'Starts at ₹6,999 / mo',
+    budget: 'Custom Strategy',
     timeline: '30-Day Initial Ranking Lift',
     faqs: [
       { q: 'How long until I see SEO results?', a: 'Local Google Maps pack optimization usually shows rank improvements within 2 to 4 weeks, with full search authority building over 60-90 days.' }
@@ -125,7 +125,7 @@ export const servicesMap = {
       { step: 'Phase 03', title: 'Scheduled Publishing', desc: 'Publishing at peak engagement hours automatically.' },
       { step: 'Phase 04', title: 'Engagement & Reporting', desc: 'Interacting with potential clients and tracking follower growth.' }
     ],
-    budget: 'Starts at ₹7,499 / mo',
+    budget: 'Tailored Retainer',
     timeline: 'Monthly Rolling Package',
     faqs: [
       { q: 'Do you create video reels?', a: 'Yes! We write reel scripts, design animated reel templates, and provide direction for high-engagement video reels.' }
@@ -156,7 +156,7 @@ export const servicesMap = {
       { step: 'Phase 03', title: 'Review & Polishing', desc: 'Refining copy and visual assets based on your feedback.' },
       { step: 'Phase 04', title: 'Final Asset Delivery', desc: 'Delivering export-ready digital files for web and marketing campaigns.' }
     ],
-    budget: 'Starts at ₹4,999',
+    budget: 'Project Scoped',
     timeline: '3 - 5 Days Turnaround',
     faqs: [
       { q: 'What formats do you deliver content in?', a: 'We deliver copy in editable Google Docs/Word format and graphic assets in high-res PNG, JPG, and Figma/Canva source formats.' }
@@ -187,10 +187,10 @@ export const servicesMap = {
       { step: 'Phase 03', title: 'Campaign Launch', desc: 'Testing multiple audience sets to identify lowest cost-per-lead.' },
       { step: 'Phase 04', title: 'Optimization & Scaling', desc: 'Scaling winning campaigns while turning off underperforming ads.' }
     ],
-    budget: 'Starts at ₹9,999 / mo',
+    budget: 'Custom ROAS Plan',
     timeline: 'Instant Leads in 24 Hours',
     faqs: [
-      { q: 'How much ad budget do I need?', a: 'We recommend starting with a daily ad budget of ₹300 - ₹500 for local campaigns to test and generate leads quickly.' }
+      { q: 'How much ad budget do I need?', a: 'We recommend starting with a flexible daily ad budget tailored for local campaigns to test and generate leads quickly.' }
     ]
   }
 };

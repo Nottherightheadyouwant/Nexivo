@@ -198,11 +198,11 @@ export default function BrochureModal({ isOpen, onClose, triggerToast }) {
                   onChange={(e) => setServiceInterest(e.target.value)}
                   style={{ width: '100%', padding: '0.7rem 0.9rem', borderRadius: '10px', background: 'rgba(26,26,24,0.95)', border: '1px solid var(--line-strong)', color: 'var(--offwhite)', fontSize: '0.88rem', outline: 'none' }}
                 >
-                  <option value="Website Development" style={{ background: '#1a1a18' }}>Website Development (Starts ₹7,000)</option>
-                  <option value="Local SEO & Maps Domination" style={{ background: '#1a1a18' }}>Search Engine Optimization (Starts ₹6,999/mo)</option>
-                  <option value="Digital Marketing & Lead Funnels" style={{ background: '#1a1a18' }}>Digital Marketing & Lead Funnels (Starts ₹8,999/mo)</option>
-                  <option value="Social Media Management" style={{ background: '#1a1a18' }}>Social Media Management (Starts ₹7,499/mo)</option>
-                  <option value="Paid Google & Meta Ads" style={{ background: '#1a1a18' }}>Paid Ads & Content Packs (Starts ₹9,999)</option>
+                  <option value="Website Development" style={{ background: '#1a1a18' }}>Website Development</option>
+                  <option value="Local SEO & Maps Domination" style={{ background: '#1a1a18' }}>Search Engine Optimization (Local SEO)</option>
+                  <option value="Digital Marketing & Lead Funnels" style={{ background: '#1a1a18' }}>Digital Marketing & Lead Funnels</option>
+                  <option value="Social Media Management" style={{ background: '#1a1a18' }}>Social Media Management</option>
+                  <option value="Paid Google & Meta Ads" style={{ background: '#1a1a18' }}>Paid Ads & Content Packs</option>
                 </select>
               </div>
 

@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { MessageSquare, Zap } from 'lucide-react';
 import Estimator from '../components/Estimator';
 import FaqAccordion from '../components/FaqAccordion';
@@ -20,11 +20,11 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Starter',
         desc: 'For a single business or shop that just needs a clean, professional presence online.',
-        price: '₹7,000',
-        note: '~30 day delivery',
+        price: 'Custom Quote',
+        note: '~10-14 day delivery',
         popular: false,
         features: [
-          '4 static pages only',
+          '4 static pages included',
           'Mobile-responsive design',
           'WhatsApp click-to-chat button',
           'Google Maps + contact info',
@@ -34,8 +34,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Standard',
         desc: 'Built for clinics, pharmacies, and growing businesses who want to look established.',
-        price: '₹12,000',
-        note: '~30 day delivery',
+        price: 'Custom Quote',
+        note: '~14-21 day delivery',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
@@ -50,7 +50,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Complete',
         desc: 'For businesses ready to sell online, not just be found online.',
-        price: 'Scoped per catalog',
+        price: 'Custom Scope',
         note: 'custom timeline based on catalog',
         popular: false,
         features: [
@@ -67,8 +67,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Local Boost',
         desc: 'Get found by customers searching nearby for your service.',
-        price: '₹6,999',
-        note: 'per month (3-month min)',
+        price: 'Tailored Plan',
+        note: 'monthly strategy',
         popular: false,
         features: [
           'Google Business Profile setup & audit',
@@ -80,8 +80,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Map Pack Domination',
         desc: 'Aim for top 3 in Google Maps for your primary service keywords.',
-        price: '₹11,999',
-        note: 'per month (3-month min)',
+        price: 'Tailored Plan',
+        note: 'monthly strategy',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
@@ -90,14 +90,14 @@ export default function Pricing({ triggerToast }) {
           '15 local keywords target',
           'Technical Schema & On-Page SEO',
           'Google review growth strategy',
-          'Free SEO audit pass for 2 months'
+          'Free SEO audit passes included'
         ]
       },
       {
         name: 'National Authority',
-        desc: 'For brands scaling across multiple cities or nationwide in India.',
-        price: '₹19,999',
-        note: 'per month (custom strategy)',
+        desc: 'For brands scaling across multiple cities or nationwide.',
+        price: 'Tailored Plan',
+        note: 'custom strategy',
         popular: false,
         features: [
           'Everything in Map Pack',
@@ -112,8 +112,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Growth Funnel',
         desc: 'High-converting funnel setup for lead generation.',
-        price: '₹8,999',
-        note: 'per month + 1-month setup',
+        price: 'Custom Scope',
+        note: 'monthly campaign',
         popular: false,
         features: [
           'Lead capture landing page',
@@ -125,8 +125,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Omnichannel Scale',
         desc: 'Scale inquiries across email, WhatsApp, and landing pages.',
-        price: '₹16,999',
-        note: 'per month (recommended)',
+        price: 'Custom Scope',
+        note: 'monthly campaign',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
@@ -140,8 +140,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Enterprise Growth',
         desc: 'Custom revenue strategy for established enterprises.',
-        price: '₹28,999',
-        note: 'per month (custom contract)',
+        price: 'Custom Scope',
+        note: 'custom contract',
         popular: false,
         features: [
           'Full digital strategy & funnel design',
@@ -156,8 +156,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Starter Grid',
         desc: 'Consistent, professional social media presence.',
-        price: '₹7,499',
-        note: 'per month retainer',
+        price: 'Tailored Retainer',
+        note: 'monthly retainer',
         popular: false,
         features: [
           '12 custom feed posts / month',
@@ -169,8 +169,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Reel Strategy Pro',
         desc: 'Leverage Instagram Reels & short video to drive viral growth.',
-        price: '₹14,999',
-        note: 'per month retainer',
+        price: 'Tailored Retainer',
+        note: 'monthly retainer',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
@@ -184,8 +184,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Full Retainer',
         desc: 'Complete social media takeover & video production.',
-        price: '₹24,999',
-        note: 'per month (full-service)',
+        price: 'Tailored Retainer',
+        note: 'full-service monthly',
         popular: false,
         features: [
           '25 feed posts / month',
@@ -200,7 +200,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Ad Creative Pack',
         desc: 'High-performing visual banners & ad copy for ad campaigns.',
-        price: '₹4,999',
+        price: 'Project Scoped',
         note: 'one-time pack',
         popular: false,
         features: [
@@ -213,7 +213,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Brand & Copy Pack',
         desc: 'Full website copywriting and brand guidelines asset pack.',
-        price: '₹9,999',
+        price: 'Project Scoped',
         note: 'one-time pack',
         popular: true,
         ribbon: 'MOST POPULAR',
@@ -227,7 +227,7 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'Full Media Suite',
         desc: 'Complete digital asset & video script production.',
-        price: '₹18,999',
+        price: 'Project Scoped',
         note: 'one-time pack',
         popular: false,
         features: [
@@ -242,8 +242,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'PPC Lead Launch',
         desc: 'Targeted Google Search or Meta ads for local service leads.',
-        price: '₹9,999',
-        note: 'per month + ad spend',
+        price: 'Custom ROAS Plan',
+        note: 'monthly campaign',
         popular: false,
         features: [
           'Google Search or Meta ads setup',
@@ -255,8 +255,8 @@ export default function Pricing({ triggerToast }) {
       {
         name: 'High ROAS Scaling',
         desc: 'Combined Google & Meta ads to maximize appointment bookings.',
-        price: '₹18,999',
-        note: 'per month + ad spend',
+        price: 'Custom ROAS Plan',
+        note: 'monthly campaign',
         popular: true,
         ribbon: 'MOST POPULAR',
         features: [
@@ -269,84 +269,99 @@ export default function Pricing({ triggerToast }) {
       },
       {
         name: 'Enterprise Ad Spend',
-        desc: 'For brands spending over ₹1 Lakh/mo on digital ads.',
-        price: '₹34,999',
-        note: 'per month + ad spend',
+        desc: 'For brands scaling digital ad campaigns across multiple channels.',
+        price: 'Enterprise Scope',
+        note: 'custom strategy',
         popular: false,
         features: [
           'Omnichannel Google, Meta & LinkedIn ads',
           'Daily bid & budget management',
           'Real-time Looker Studio ROI dashboard',
           'Dedicated media buyer',
-          '24/7 campaign monitoring'
+          'Weekly strategy calls'
         ]
       }
     ]
   };
 
-  const currentTiers = pricingData[activeCategory] || pricingData['web-dev'];
-
-  const handleEnquireTier = (tierName, price) => {
-    const categoryObj = pricingCategories.find(c => c.id === activeCategory);
-    const categoryName = categoryObj ? categoryObj.label : 'Project';
-    const text = encodeURIComponent(`Hi Nexivo! I am interested in the ${tierName} package for ${categoryName} (${price}). Please provide details.`);
+  const handleEnquireTier = (tierName) => {
+    const text = encodeURIComponent(`Hi Nexivo! I'm interested in the ${tierName} package for my business. Please share project scope details.`);
     window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
-    if (triggerToast) triggerToast(`Opening WhatsApp for ${tierName} package!`);
+    if (triggerToast) triggerToast(`Connecting with Nexivo team for ${tierName} scope...`);
   };
 
   return (
     <main>
       {/* PAGE HEADER */}
       <section className="page-header">
-        <div className="eyebrow"><Zap size={16} /> Transparent Pricing • Zero Hidden Costs</div>
+        <div className="eyebrow"><Zap size={14} /> Clear Deliverables & Scope</div>
         <h1 className="page-title">
-          Pick a starting point, <span className="accent">not a spreadsheet.</span>
+          Custom Scope <span className="accent">For Every Business Goal.</span>
         </h1>
         <p className="page-desc">
-          Most clients don't know exactly what they need — select your service category below to view transparent pricing tiers from &quot;I just need to exist online&quot; to &quot;I want full growth.&quot;
+          No hidden fees or unexpected costs. Select your service line below to explore complete package deliverables and get a custom proposal tailored to your business.
         </p>
+      </section>
 
-        {/* DYNAMIC CATEGORY TABS */}
-        <div className="chip-row" style={{ justifyContent: 'center', marginTop: '2.5rem', gap: '0.6rem' }}>
-          {pricingCategories.map(cat => (
+      {/* CATEGORY SELECTOR TABS */}
+      <section style={{ paddingTop: 0 }}>
+        <div className="pricing-tabs">
+          {pricingCategories.map((cat) => (
             <button
               key={cat.id}
-              className={`chip ${activeCategory === cat.id ? 'active' : ''}`}
               onClick={() => setActiveCategory(cat.id)}
+              className={`pricing-tab ${activeCategory === cat.id ? 'active' : ''}`}
             >
               {cat.label}
             </button>
           ))}
         </div>
-      </section>
 
-      {/* DYNAMIC TIERS GRID */}
-      <section style={{ paddingTop: '1.5rem' }}>
+        {/* PRICING GRID CARDS */}
         <div className="pricing-grid">
-          {currentTiers.map((tier, idx) => (
-            <div key={idx} className={`pricing-card ${tier.popular ? 'popular' : ''}`}>
-              {tier.popular && <div className="popular-badge">{tier.ribbon || 'MOST POPULAR'}</div>}
+          {pricingData[activeCategory]?.map((tier, idx) => (
+            <div
+              key={idx}
+              className={`glass-card pricing-card ${tier.popular ? 'popular' : ''}`}
+              style={{ position: 'relative', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}
+            >
+              {tier.popular && (
+                <div className="popular-ribbon">{tier.ribbon}</div>
+              )}
+
               <div>
-                <div className="plan-name">{tier.name}</div>
-                <div className="plan-desc">{tier.desc}</div>
-                <div className="plan-price">{tier.price}</div>
-                <div style={{ fontSize: '0.78rem', color: 'rgba(244,242,235,0.4)', marginBottom: '1.6rem' }}>
-                  {tier.note}
+                <h3 style={{ fontSize: '1.4rem', fontWeight: '800', color: 'var(--offwhite)', marginBottom: '0.4rem' }}>
+                  {tier.name}
+                </h3>
+                <p style={{ fontSize: '0.85rem', color: 'rgba(244,242,235,0.65)', marginBottom: '1.4rem', minHeight: '40px' }}>
+                  {tier.desc}
+                </p>
+
+                <div style={{ marginBottom: '1.5rem', paddingBottom: '1.2rem', borderBottom: '1px solid var(--line)' }}>
+                  <div style={{ fontSize: '1.8rem', fontWeight: '800', color: 'var(--offwhite)', lineHeight: 1 }}>
+                    {tier.price}
+                  </div>
+                  <div style={{ fontSize: '0.78rem', color: 'var(--teal-light)', marginTop: '0.4rem', fontWeight: '600' }}>
+                    {tier.note}
+                  </div>
                 </div>
 
-                <ul className="plan-features">
-                  {tier.features.map((f, i) => (
-                    <li key={i}>{f}</li>
+                <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 1.5rem 0', display: 'flex', flexDirection: 'column', gap: '0.65rem' }}>
+                  {tier.features.map((feat, fIdx) => (
+                    <li key={fIdx} style={{ fontSize: '0.86rem', color: 'rgba(244,242,235,0.85)', display: 'flex', alignItems: 'flex-start', gap: '8px' }}>
+                      <span style={{ color: 'var(--teal-light)', marginTop: '2px' }}>✓</span>
+                      <span>{feat}</span>
+                    </li>
                   ))}
                 </ul>
               </div>
 
               <button
-                onClick={() => handleEnquireTier(tier.name, tier.price)}
+                onClick={() => handleEnquireTier(tier.name)}
                 className="btn-outline"
                 style={{ width: '100%', justifyContent: 'center', marginTop: '1rem' }}
               >
-                Enquire on WhatsApp <MessageSquare size={16} />
+                Get Proposal on WhatsApp <MessageSquare size={16} />
               </button>
             </div>
           ))}
@@ -354,9 +369,9 @@ export default function Pricing({ triggerToast }) {
 
         {/* ADDONS BAR */}
         <div className="glass-card" style={{ marginTop: '3.5rem', padding: '1.8rem', display: 'flex', justifyContent: 'center', gap: '2.5rem', flexWrap: 'wrap', fontSize: '0.88rem', color: 'rgba(244,242,235,0.6)' }}>
-          <div><b style={{ color: 'var(--offwhite)' }}>Website Redesign</b> — from ₹8,000</div>
-          <div><b style={{ color: 'var(--offwhite)' }}>Monthly Maintenance</b> — ₹2,500/mo (after included period)</div>
-          <div><b style={{ color: 'var(--offwhite)' }}>Custom SEO & Ads</b> — finalized per scope</div>
+          <div><b style={{ color: 'var(--offwhite)' }}>Website Redesign</b> — Custom Proposal</div>
+          <div><b style={{ color: 'var(--offwhite)' }}>Monthly Maintenance</b> — Fixed SLA</div>
+          <div><b style={{ color: 'var(--offwhite)' }}>Custom SEO & Ads</b> — Finalized per scope</div>
         </div>
       </section>
 
@@ -364,7 +379,7 @@ export default function Pricing({ triggerToast }) {
       <section>
         <div className="section-head">
           <div className="section-kicker">Custom Estimator</div>
-          <h2 className="section-title">Need a custom combination? Calculate your budget.</h2>
+          <h2 className="section-title">Need a custom combination? Calculate your scope & timeline.</h2>
         </div>
         <Estimator triggerToast={triggerToast} />
       </section>
