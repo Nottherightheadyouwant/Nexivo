@@ -4,7 +4,7 @@ import {
   Lock, Key, LogOut, Plus, Edit3, Trash2, Eye, Check, X, 
   Search, ArrowLeft, Image as ImageIcon, Heading, Type, Quote, 
   List as ListIcon, Code, Sparkles, LayoutDashboard, Globe, Save,
-  ShieldAlert, Clock, ShieldCheck, Mail
+  ShieldAlert, Clock, ShieldCheck, Mail, MessageSquare
 } from 'lucide-react';
 import { 
   getStoredPosts, savePost, deletePost, checkAdminAuth, setAdminAuth, 
@@ -13,6 +13,7 @@ import {
 import { getSiteSeo, saveSiteSeo, generateSitemapXml, applyGlobalSeo } from '../utils/seoStorage';
 import { getEmailConfig, saveEmailConfig } from '../utils/emailService';
 import { getSheetUrl, saveSheetUrl, GOOGLE_APPS_SCRIPT_CODE } from '../utils/sheetService';
+import { WHATSAPP_BOT_SYSTEM_PROMPT } from '../utils/aiPrompt';
 
 const MAX_FAILED_ATTEMPTS = 5;
 const LOCKOUT_DURATION_MS = 60 * 1000; // 60s security lockout
@@ -104,11 +105,13 @@ export default function Admin() {
     setTimeout(() => setSheetSavedMsg(''), 2000);
   };
 
-  const handleCopyScriptCode = () => {
-    navigator.clipboard.writeText(GOOGLE_APPS_SCRIPT_CODE);
-    setScriptCopied(true);
-    showToast('success', 'Apps Script code copied to clipboard!');
-    setTimeout(() => setScriptCopied(false), 2000);
+  const [promptCopied, setPromptCopied] = useState(false);
+
+  const handleCopyAiPrompt = () => {
+    navigator.clipboard.writeText(WHATSAPP_BOT_SYSTEM_PROMPT);
+    setPromptCopied(true);
+    showToast('success', 'WhatsApp AI System Prompt copied to clipboard!');
+    setTimeout(() => setPromptCopied(false), 2000);
   };
 
   // Lockout countdown timer & session storage persistence
@@ -727,6 +730,43 @@ export default function Admin() {
                   💡 <strong>Setup (30 Seconds):</strong> In your Google Sheet → Extensions → Apps Script → Paste the code → Deploy as Web App → Execute as "Me", Access: "Anyone".
                 </div>
               </form>
+            </div>
+
+            {/* BOX 5: WHATSAPP AI BOT SYSTEM PROMPT & KNOWLEDGE GENERATOR */}
+            <div className="glass-card" style={{ padding: '1.8rem', border: '1px solid var(--teal-light)', background: 'linear-gradient(135deg, rgba(29,158,117,0.06), rgba(26,26,24,0.7))' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <MessageSquare size={18} color="#5DCAA5" />
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--offwhite)' }}>WhatsApp AI Bot Knowledge Engine</h3>
+                </div>
+                <span style={{ fontSize: '0.72rem', fontWeight: '700', padding: '0.2rem 0.6rem', borderRadius: '999px', background: 'rgba(37,211,102,0.15)', color: '#25D366', border: '1px solid rgba(37,211,102,0.3)' }}>
+                  🤖 Auto-Generated
+                </span>
+              </div>
+
+              <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', lineHeight: '1.5', marginBottom: '1rem' }}>
+                Train any WhatsApp AI platform (Meta WhatsApp API, ManyChat, WATI, ChatSimple, Botpress) with Nexivo’s complete website knowledge base (www.studionexivo.com) and interactive service buttons.
+              </p>
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '0.8rem', marginBottom: '1rem' }}>
+                <button type="button" onClick={handleCopyAiPrompt} className="btn-primary" style={{ padding: '0.65rem 1rem', fontSize: '0.84rem', justifyContent: 'center' }}>
+                  {promptCopied ? '✓ Copied AI System Prompt!' : 'Copy WhatsApp AI System Prompt'}
+                </button>
+
+                <a 
+                  href="/nexivo-ai-knowledge.json" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="btn-outline" 
+                  style={{ padding: '0.65rem 1rem', fontSize: '0.84rem', justifyContent: 'center', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
+                >
+                  View JSON Knowledge Base (www.studionexivo.com/nexivo-ai-knowledge.json)
+                </a>
+              </div>
+
+              <div style={{ fontSize: '0.74rem', color: 'rgba(244,242,235,0.45)', lineHeight: 1.4 }}>
+                💡 <strong>Interactive Buttons Included:</strong> Includes quick-reply menu triggers for Web Development, Local SEO, Digital Marketing, Brochure PDF, and Founder contact.
+              </div>
             </div>
 
           </div>
