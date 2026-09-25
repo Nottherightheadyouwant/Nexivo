@@ -142,7 +142,7 @@ export default function BrochureModal({ isOpen, onClose, triggerToast }) {
               </div>
               <div>
                 <div style={{ fontSize: '0.88rem', fontWeight: '700', color: 'var(--offwhite)' }}>Nexivo-Services-Brochure-2026.pdf</div>
-                <div style={{ fontSize: '0.76rem', color: 'rgba(244,242,235,0.5)' }}>5 Pages • High-Res Pricing & Deliverables Scope (93 kB)</div>
+                <div style={{ fontSize: '0.76rem', color: 'rgba(244,242,235,0.5)' }}>5 Pages • High-Res Pricing & Deliverables Scope (95 kB)</div>
               </div>
             </div>
 
