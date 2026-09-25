@@ -317,12 +317,15 @@ export const DEFAULT_POSTS = [
 
 export function getStoredPosts() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_POSTS));
-      return DEFAULT_POSTS;
+    if (typeof window !== 'undefined' && window.localStorage) {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(DEFAULT_POSTS));
+        return DEFAULT_POSTS;
+      }
+      return JSON.parse(raw);
     }
-    return JSON.parse(raw);
+    return DEFAULT_POSTS;
   } catch (e) {
     console.error('Error reading blog posts from storage:', e);
     return DEFAULT_POSTS;
@@ -331,7 +334,9 @@ export function getStoredPosts() {
 
 export function saveStoredPosts(posts) {
   try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+    if (typeof window !== 'undefined' && window.localStorage) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(posts));
+    }
   } catch (e) {
     console.error('Error saving blog posts to storage:', e);
   }
@@ -409,21 +414,31 @@ export function formatDate(dateStr) {
 
 // Authentication Helpers
 export function checkAdminAuth() {
-  return sessionStorage.getItem(AUTH_KEY) === 'true';
+  if (typeof window !== 'undefined' && window.sessionStorage) {
+    return sessionStorage.getItem(AUTH_KEY) === 'true';
+  }
+  return false;
 }
 
 export function setAdminAuth(isAuth) {
-  if (isAuth) {
-    sessionStorage.setItem(AUTH_KEY, 'true');
-  } else {
-    sessionStorage.removeItem(AUTH_KEY);
+  if (typeof window !== 'undefined' && window.sessionStorage) {
+    if (isAuth) {
+      sessionStorage.setItem(AUTH_KEY, 'true');
+    } else {
+      sessionStorage.removeItem(AUTH_KEY);
+    }
   }
 }
 
 export function getAdminPassword() {
-  return localStorage.getItem(PASSWORD_KEY) || 'nexivo2026';
+  if (typeof window !== 'undefined' && window.localStorage) {
+    return localStorage.getItem(PASSWORD_KEY) || 'nexivo2026';
+  }
+  return 'nexivo2026';
 }
 
 export function setAdminPassword(newPassword) {
-  localStorage.setItem(PASSWORD_KEY, newPassword);
+  if (typeof window !== 'undefined' && window.localStorage) {
+    localStorage.setItem(PASSWORD_KEY, newPassword);
+  }
 }
