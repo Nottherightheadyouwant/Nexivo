@@ -6,10 +6,19 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
+  const handleLogoClick = (e) => {
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <header>
       <nav>
-        <Link to="/" className="nav-logo">
+        <Link to="/" onClick={handleLogoClick} className="nav-logo">
           <span className="logo-brand-wrap">
             <span className="logo-white">Nex</span>
             <span className="logo-teal">ivo</span>

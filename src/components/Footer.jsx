@@ -3,16 +3,25 @@ import { Link } from 'react-router-dom';
 import { MapPin } from 'lucide-react';
 
 export default function Footer() {
+  const handleLogoClick = (e) => {
+    if (window.location.pathname === '/') {
+      e.preventDefault();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer>
       <div className="footer-inner">
         <div>
-          <div className="footer-brand">
+          <Link to="/" onClick={handleLogoClick} className="footer-brand" style={{ cursor: 'pointer', textDecoration: 'none', display: 'inline-block' }}>
             <span className="logo-brand-wrap">
               <span className="logo-white">Nex</span>
               <span className="logo-teal">ivo</span>
             </span>
-          </div>
+          </Link>
           <div className="footer-loc"><MapPin size={16} /> Global Agency — India & UK</div>
           <p style={{ fontSize: '0.85rem', color: 'rgba(244,242,235,0.5)', marginTop: '0.8rem', maxWidth: '280px' }}>
             High-converting digital builds and revenue marketing for growing brands in India & UK.
