@@ -2768,9 +2768,38 @@ textarea,
   line-height: 1 !important;
 }
 
-/* ===== POLISHED SPACING & DESCENDER FIXES ===== */
+/* ===== POLISHED SPACING & RESPONSIVE MOBILE PADDING FIXES ===== */
 .hero-section {
-  padding-top: 13.5rem !important;
+  padding-top: 11.5rem !important;
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 3.8rem 1.2rem 2.5rem;
+  }
+
+  .hero-section {
+    padding-top: 6.8rem !important;
+  }
+
+  .page-header {
+    padding-top: 6.8rem !important;
+  }
+
+  .eyebrow {
+    margin-top: 0.5rem !important;
+    margin-bottom: 1.2rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-section {
+    padding-top: 6.2rem !important;
+  }
+
+  .page-header {
+    padding-top: 6.2rem !important;
+  }
 }
 
 .eyebrow {
