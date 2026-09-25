@@ -805,16 +805,19 @@ input[type=range] {
 
 .portfolio-thumb {
   height: 210px;
-  background: linear-gradient(135deg, rgba(29, 158, 117, 0.25), rgba(55, 138, 221, 0.18));
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 1.3rem;
-  color: rgba(244, 242, 235, 0.8);
+  width: 100%;
   position: relative;
+  overflow: hidden;
+  background: #0c0f0d;
+  display: block;
+}
+
+.portfolio-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
 }
 
 .metric-badge {
