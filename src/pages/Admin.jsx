@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { 
   Lock, Key, LogOut, Plus, Edit3, Trash2, Eye, Check, X, 
   Search, ArrowLeft, Image as ImageIcon, Heading, Type, Quote, 
-  List as ListIcon, Code, Sparkles, LayoutDashboard, Globe, Save
+  List as ListIcon, Code, Sparkles, LayoutDashboard, Globe, Save,
+  ShieldAlert, Clock, ShieldCheck
 } from 'lucide-react';
 import { 
   getStoredPosts, savePost, deletePost, checkAdminAuth, setAdminAuth, 
@@ -11,14 +12,22 @@ import {
 } from '../utils/blogStorage';
 import { getSiteSeo, saveSiteSeo, generateSitemapXml, applyGlobalSeo } from '../utils/seoStorage';
 
+const MAX_FAILED_ATTEMPTS = 5;
+const LOCKOUT_DURATION_MS = 60 * 1000; // 60s security lockout
+
 export default function Admin() {
-  // Authentication state
+  // Authentication & Rate Limiter state
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [passwordInput, setPasswordInput] = useState('');
   const [loginError, setLoginError] = useState('');
   const [showPasswordChange, setShowPasswordChange] = useState(false);
   const [newPassword, setNewPassword] = useState('');
   const [passSuccess, setPassSuccess] = useState('');
+
+  // Limiter state
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [lockoutRemainingSec, setLockoutRemainingSec] = useState(0);
+  const [isSaving, setIsSaving] = useState(false);
 
   // Site-wide SEO Settings State
   const [siteSeo, setSiteSeo] = useState({
@@ -66,12 +75,49 @@ export default function Admin() {
     applyGlobalSeo(initialSeo);
   }, []);
 
+  // Lockout countdown timer & session storage persistence
+  useEffect(() => {
+    const checkLockout = () => {
+      try {
+        if (typeof window === 'undefined') return;
+        const storedAttempts = parseInt(sessionStorage.getItem('nexivo_admin_failed_attempts') || '0', 10);
+        const lockoutUntil = parseInt(sessionStorage.getItem('nexivo_admin_lockout_until') || '0', 10);
+        const now = Date.now();
+
+        if (lockoutUntil > now) {
+          setFailedAttempts(MAX_FAILED_ATTEMPTS);
+          const remaining = Math.ceil((lockoutUntil - now) / 1000);
+          setLockoutRemainingSec(remaining);
+        } else {
+          if (lockoutUntil !== 0 && lockoutUntil <= now) {
+            sessionStorage.removeItem('nexivo_admin_lockout_until');
+            sessionStorage.setItem('nexivo_admin_failed_attempts', '0');
+            setFailedAttempts(0);
+            setLockoutRemainingSec(0);
+          } else {
+            setFailedAttempts(storedAttempts);
+            setLockoutRemainingSec(0);
+          }
+        }
+      } catch (e) {}
+    };
+
+    checkLockout();
+    const interval = setInterval(checkLockout, 1000);
+    return () => clearInterval(interval);
+  }, []);
+
   const handleSaveSiteSeo = (e) => {
     e.preventDefault();
+    if (isSaving) return;
+    setIsSaving(true);
     saveSiteSeo(siteSeo);
     showToast('success', 'Site-wide SEO Title, Meta Description & Keywords saved successfully!');
     setSeoSavedMsg('Global SEO Settings updated!');
-    setTimeout(() => setSeoSavedMsg(''), 3000);
+    setTimeout(() => {
+      setSeoSavedMsg('');
+      setIsSaving(false);
+    }, 1500);
   };
 
   const handleCopySitemap = () => {
@@ -102,14 +148,38 @@ export default function Admin() {
 
   const handleLogin = (e) => {
     e.preventDefault();
+    if (lockoutRemainingSec > 0) return;
+
     const correctPassword = getAdminPassword();
     if (passwordInput === correctPassword) {
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('nexivo_admin_failed_attempts', '0');
+        sessionStorage.removeItem('nexivo_admin_lockout_until');
+      }
+      setFailedAttempts(0);
+      setLockoutRemainingSec(0);
       setAdminAuth(true);
       setIsAuthenticated(true);
       setLoginError('');
       showToast('success', 'Logged in successfully to Nexivo Admin Dashboard!');
     } else {
-      setLoginError('Incorrect admin password. Please try again.');
+      const newCount = failedAttempts + 1;
+      setFailedAttempts(newCount);
+      if (typeof window !== 'undefined') {
+        sessionStorage.setItem('nexivo_admin_failed_attempts', newCount.toString());
+      }
+
+      if (newCount >= MAX_FAILED_ATTEMPTS) {
+        const lockoutTime = Date.now() + LOCKOUT_DURATION_MS;
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('nexivo_admin_lockout_until', lockoutTime.toString());
+        }
+        setLockoutRemainingSec(60);
+        setLoginError(`Security Lockout Triggered! Too many failed attempts. Access blocked for 60 seconds.`);
+      } else {
+        const remaining = MAX_FAILED_ATTEMPTS - newCount;
+        setLoginError(`Incorrect password. Attempt ${newCount}/${MAX_FAILED_ATTEMPTS} (${remaining} remaining before lockout).`);
+      }
     }
   };
 
@@ -277,9 +347,25 @@ export default function Admin() {
             <p style={{ fontSize: '0.86rem', color: 'rgba(244,242,235,0.6)' }}>Enter password to manage blog articles and content.</p>
           </div>
 
-          {loginError && (
+          {lockoutRemainingSec > 0 ? (
+            <div style={{ padding: '1rem', borderRadius: '12px', background: 'rgba(220,53,69,0.18)', border: '1px solid rgba(220,53,69,0.4)', color: '#ff6b6b', fontSize: '0.86rem', marginBottom: '1.4rem', textAlign: 'center' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px', fontWeight: '800', marginBottom: '0.4rem' }}>
+                <ShieldAlert size={20} /> Security Rate Limit Active
+              </div>
+              <p style={{ margin: 0, fontSize: '0.82rem', opacity: 0.9 }}>
+                Too many failed password attempts. Access temporarily locked.
+              </p>
+              <div style={{ marginTop: '0.6rem', fontWeight: '700', fontSize: '0.95rem', color: '#ffffff', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px' }}>
+                <Clock size={16} /> Try again in {lockoutRemainingSec}s
+              </div>
+            </div>
+          ) : loginError ? (
             <div style={{ padding: '0.8rem 1rem', borderRadius: '10px', background: 'rgba(220,53,69,0.15)', border: '1px solid rgba(220,53,69,0.3)', color: '#ff6b6b', fontSize: '0.82rem', marginBottom: '1.2rem', textAlign: 'center' }}>
               {loginError}
+            </div>
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '6px', fontSize: '0.76rem', color: 'var(--teal-light)', background: 'rgba(29,158,117,0.1)', border: '1px solid rgba(29,158,117,0.2)', padding: '0.4rem 0.8rem', borderRadius: '8px', marginBottom: '1.4rem' }}>
+              <ShieldCheck size={14} /> Rate Limiter Enabled (5 attempts max / 60s lockout)
             </div>
           )}
 
@@ -290,12 +376,18 @@ export default function Admin() {
                 type="password"
                 placeholder="Enter password..."
                 value={passwordInput}
+                disabled={lockoutRemainingSec > 0}
                 onChange={(e) => setPasswordInput(e.target.value)}
-                style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '12px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line-strong)', color: 'var(--offwhite)', fontSize: '0.95rem', outline: 'none' }}
+                style={{ width: '100%', padding: '0.85rem 1rem', borderRadius: '12px', background: lockoutRemainingSec > 0 ? 'rgba(255,255,255,0.02)' : 'rgba(244,242,235,0.05)', border: '1px solid var(--line-strong)', color: lockoutRemainingSec > 0 ? 'rgba(255,255,255,0.3)' : 'var(--offwhite)', fontSize: '0.95rem', outline: 'none', cursor: lockoutRemainingSec > 0 ? 'not-allowed' : 'text' }}
               />
             </div>
-            <button type="submit" className="btn-primary" style={{ width: '100%', justifyContent: 'center' }}>
-              Authenticate & Access Portal <Key size={16} />
+            <button
+              type="submit"
+              className="btn-primary"
+              disabled={lockoutRemainingSec > 0}
+              style={{ width: '100%', justifyContent: 'center', opacity: lockoutRemainingSec > 0 ? 0.5 : 1, cursor: lockoutRemainingSec > 0 ? 'not-allowed' : 'pointer' }}
+            >
+              {lockoutRemainingSec > 0 ? `Locked Out (${lockoutRemainingSec}s)` : 'Authenticate & Access Portal'} <Key size={16} />
             </button>
           </form>
         </div>
@@ -346,21 +438,36 @@ export default function Admin() {
           </div>
         </div>
 
-        {/* CHANGE PASSWORD PANEL */}
+        {/* CHANGE PASSWORD & SECURITY PANEL */}
         {showPasswordChange && (
           <div className="glass-card" style={{ marginTop: '1.5rem', padding: '1.5rem', border: '1px solid var(--line-strong)' }}>
-            <h4 style={{ fontSize: '1rem', color: 'var(--offwhite)', marginBottom: '0.8rem' }}>Change Admin Password</h4>
-            {passSuccess && <p style={{ fontSize: '0.82rem', color: 'var(--teal-light)', marginBottom: '0.6rem' }}>{passSuccess}</p>}
-            <form onSubmit={handleChangePassword} style={{ display: 'flex', gap: '0.8rem', maxWidth: '420px' }}>
-              <input
-                type="password"
-                placeholder="Enter new password..."
-                value={newPassword}
-                onChange={(e) => setNewPassword(e.target.value)}
-                style={{ flexGrow: 1, padding: '0.6rem 1rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line)', color: 'var(--offwhite)', fontSize: '0.88rem' }}
-              />
-              <button type="submit" className="btn-primary" style={{ padding: '0.6rem 1.2rem' }}>Save Password</button>
-            </form>
+            <div style={{ display: 'flex', flexWrap: 'wrap', gap: '2rem', justifyContent: 'space-between', alignItems: 'flex-start' }}>
+              <div style={{ flex: 1, minWidth: '280px' }}>
+                <h4 style={{ fontSize: '1rem', color: 'var(--offwhite)', marginBottom: '0.8rem' }}>Change Admin Password</h4>
+                {passSuccess && <p style={{ fontSize: '0.82rem', color: 'var(--teal-light)', marginBottom: '0.6rem' }}>{passSuccess}</p>}
+                <form onSubmit={handleChangePassword} style={{ display: 'flex', gap: '0.8rem', maxWidth: '420px' }}>
+                  <input
+                    type="password"
+                    placeholder="Enter new password..."
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    style={{ flex: 1, padding: '0.65rem 0.9rem', borderRadius: '10px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line)', color: 'var(--offwhite)', fontSize: '0.9rem', outline: 'none' }}
+                  />
+                  <button type="submit" className="btn-primary" style={{ padding: '0.65rem 1.2rem' }}>
+                    Update
+                  </button>
+                </form>
+              </div>
+
+              <div style={{ padding: '1rem 1.2rem', borderRadius: '12px', background: 'rgba(29,158,117,0.08)', border: '1px solid rgba(29,158,117,0.25)', maxWidth: '360px', flex: 1 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '0.88rem', fontWeight: '700', color: 'var(--teal-light)', marginBottom: '0.4rem' }}>
+                  <ShieldCheck size={18} /> Rate Limiter & Brute-Force Protection
+                </div>
+                <p style={{ margin: 0, fontSize: '0.8rem', color: 'rgba(244,242,235,0.7)', lineHeight: 1.5 }}>
+                  Status: <strong style={{ color: '#5DCAA5' }}>Active</strong> (5 Max Failed Attempts, 60s Lockout Timer, Auto Session Sync).
+                </p>
+              </div>
+            </div>
           </div>
         )}
       </section>
