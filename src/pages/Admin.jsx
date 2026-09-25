@@ -4,13 +4,14 @@ import {
   Lock, Key, LogOut, Plus, Edit3, Trash2, Eye, Check, X, 
   Search, ArrowLeft, Image as ImageIcon, Heading, Type, Quote, 
   List as ListIcon, Code, Sparkles, LayoutDashboard, Globe, Save,
-  ShieldAlert, Clock, ShieldCheck
+  ShieldAlert, Clock, ShieldCheck, Mail
 } from 'lucide-react';
 import { 
   getStoredPosts, savePost, deletePost, checkAdminAuth, setAdminAuth, 
   getAdminPassword, setAdminPassword, formatDate, slugify 
 } from '../utils/blogStorage';
 import { getSiteSeo, saveSiteSeo, generateSitemapXml, applyGlobalSeo } from '../utils/seoStorage';
+import { getEmailConfig, saveEmailConfig } from '../utils/emailService';
 
 const MAX_FAILED_ATTEMPTS = 5;
 const LOCKOUT_DURATION_MS = 60 * 1000; // 60s security lockout
@@ -39,6 +40,10 @@ export default function Admin() {
   const [seoSavedMsg, setSeoSavedMsg] = useState('');
   const [showSitemapPreview, setShowSitemapPreview] = useState(false);
   const [sitemapCopied, setSitemapCopied] = useState(false);
+
+  // EmailJS Zero-Backend Settings State
+  const [emailConfig, setEmailConfigState] = useState({ serviceId: '', templateId: '', publicKey: '' });
+  const [emailSavedMsg, setEmailSavedMsg] = useState('');
 
   // Posts state
   const [posts, setPosts] = useState([]);
@@ -73,7 +78,16 @@ export default function Admin() {
     const initialSeo = getSiteSeo();
     setSiteSeo(initialSeo);
     applyGlobalSeo(initialSeo);
+    setEmailConfigState(getEmailConfig());
   }, []);
+
+  const handleSaveEmailConfig = (e) => {
+    e.preventDefault();
+    saveEmailConfig(emailConfig);
+    setEmailSavedMsg('✓ EmailJS Config Saved!');
+    showToast('success', 'Zero-backend automated email credentials saved!');
+    setTimeout(() => setEmailSavedMsg(''), 2000);
+  };
 
   // Lockout countdown timer & session storage persistence
   useEffect(() => {
@@ -588,6 +602,66 @@ export default function Admin() {
                   Download sitemap.xml
                 </button>
               </div>
+            </div>
+
+            {/* BOX 3: ZERO-BACKEND AUTOMATED EMAIL DISPATCH (EMAILJS) */}
+            <div className="glass-card" style={{ padding: '1.8rem', border: '1px solid var(--teal-light)', background: 'linear-gradient(135deg, rgba(29,158,117,0.06), rgba(26,26,24,0.7))' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Mail size={18} color="#5DCAA5" />
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--offwhite)' }}>Automated Client Emailing (Zero Backend)</h3>
+                </div>
+                {emailSavedMsg && <span style={{ fontSize: '0.78rem', color: 'var(--teal-light)', fontWeight: '700' }}>{emailSavedMsg}</span>}
+              </div>
+
+              <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', lineHeight: '1.5', marginBottom: '1rem' }}>
+                Connect your free <strong style={{ color: 'var(--teal-light)' }}>EmailJS</strong> account (200 free emails/mo) to automatically deliver brochure PDFs & lead alerts directly to client inboxes with <strong>₹0 server costs</strong>.
+              </p>
+
+              <form onSubmit={handleSaveEmailConfig}>
+                <div style={{ marginBottom: '0.9rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.78rem', color: 'rgba(244,242,235,0.85)', fontWeight: '600', marginBottom: '0.3rem' }}>
+                    EmailJS Service ID
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. service_nexivo"
+                    value={emailConfig.serviceId}
+                    onChange={(e) => setEmailConfigState({ ...emailConfig, serviceId: e.target.value })}
+                    style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line-strong)', color: 'var(--offwhite)', fontSize: '0.84rem' }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '0.9rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.78rem', color: 'rgba(244,242,235,0.85)', fontWeight: '600', marginBottom: '0.3rem' }}>
+                    EmailJS Template ID
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. template_brochure"
+                    value={emailConfig.templateId}
+                    onChange={(e) => setEmailConfigState({ ...emailConfig, templateId: e.target.value })}
+                    style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line-strong)', color: 'var(--offwhite)', fontSize: '0.84rem' }}
+                  />
+                </div>
+
+                <div style={{ marginBottom: '1.2rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.78rem', color: 'rgba(244,242,235,0.85)', fontWeight: '600', marginBottom: '0.3rem' }}>
+                    EmailJS Public Key (User ID)
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. user_9x8a7b6c5d4e..."
+                    value={emailConfig.publicKey}
+                    onChange={(e) => setEmailConfigState({ ...emailConfig, publicKey: e.target.value })}
+                    style={{ width: '100%', padding: '0.6rem 0.85rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line-strong)', color: 'var(--offwhite)', fontSize: '0.84rem' }}
+                  />
+                </div>
+
+                <button type="submit" className="btn-primary" style={{ padding: '0.65rem 1.3rem', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}>
+                  <Save size={15} /> Save Email Credentials
+                </button>
+              </form>
             </div>
 
           </div>

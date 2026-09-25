@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Phone, MapPin, MessageSquare, Send } from 'lucide-react';
 import FaqAccordion from '../components/FaqAccordion';
+import { sendContactEmail } from '../utils/emailService';
 
 export default function Contact({ triggerToast }) {
   const [formData, setFormData] = useState({
@@ -11,11 +12,15 @@ export default function Contact({ triggerToast }) {
     message: ''
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    
+    // Trigger zero-backend automated email sending asynchronously
+    sendContactEmail(formData).catch(err => console.error('Contact email error:', err));
+
     const text = encodeURIComponent(`Hi Nexivo! My name is ${formData.name} (${formData.phone}). Interested in ${formData.service}. Message: ${formData.message}`);
     window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
-    if (triggerToast) triggerToast('Thank you! Redirecting to WhatsApp chat...');
+    if (triggerToast) triggerToast('Thank you! Inquiry sent & opening WhatsApp chat...');
     setFormData({ name: '', phone: '', email: '', service: 'Business Website', message: '' });
   };
 

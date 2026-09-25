@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Download, Mail, CheckCircle2, FileText, X, Sparkles, Send, Phone, User } from 'lucide-react';
+import { sendBrochureEmail } from '../utils/emailService';
 
 export default function BrochureModal({ isOpen, onClose, triggerToast }) {
   const [name, setName] = useState('');
@@ -11,13 +12,13 @@ export default function BrochureModal({ isOpen, onClose, triggerToast }) {
 
   if (!isOpen) return null;
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!email || !name) return;
 
     setIsSubmitting(true);
 
-    // 1. Immediate local PDF download trigger
+    // 1. Immediate local browser PDF download trigger
     const link = document.createElement('a');
     link.href = '/Nexivo-Services-Brochure-2026.pdf';
     link.download = 'Nexivo-Services-Brochure-2026.pdf';
@@ -25,16 +26,18 @@ export default function BrochureModal({ isOpen, onClose, triggerToast }) {
     link.click();
     document.body.removeChild(link);
 
-    // 2. Simulate automated email dispatch & lead notification
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setIsSuccess(true);
-      if (triggerToast) {
-        triggerToast('Brochure PDF downloaded & sent to your email!');
-      }
+    // 2. Automated email dispatch directly to client inbox via EmailJS (zero backend server cost)
+    try {
+      await sendBrochureEmail({ name, email, phone, serviceInterest });
+    } catch (err) {
+      console.error('Email dispatch error:', err);
+    }
 
-      console.log('Lead Captured:', { name, email, phone, serviceInterest });
-    }, 1200);
+    setIsSubmitting(false);
+    setIsSuccess(true);
+    if (triggerToast) {
+      triggerToast('Brochure PDF downloaded & sent to your email inbox!');
+    }
   };
 
   const handleReset = () => {
