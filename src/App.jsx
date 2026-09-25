@@ -17,11 +17,13 @@ import Cookies from './pages/Cookies';
 import Blog from './pages/Blog';
 import BlogDetail from './pages/BlogDetail';
 import Admin from './pages/Admin';
+import { applyGlobalSeo } from './utils/seoStorage';
 
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => {
     window.scrollTo(0, 0);
+    applyGlobalSeo();
   }, [pathname]);
   return null;
 }
