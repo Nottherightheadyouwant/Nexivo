@@ -657,22 +657,35 @@ export default function Admin() {
 
                   <div style={{ marginBottom: '1.2rem' }}>
                     <label style={{ display: 'block', fontSize: '0.8rem', color: 'rgba(244,242,235,0.7)', fontWeight: '600', marginBottom: '0.4rem' }}>Author Name</label>
-                    <input
-                      type="text"
+                    <select
                       value={author}
-                      onChange={(e) => setAuthor(e.target.value)}
-                      style={{ width: '100%', padding: '0.6rem 0.9rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line)', color: 'var(--offwhite)', fontSize: '0.85rem' }}
-                    />
+                      onChange={(e) => {
+                        const nameVal = e.target.value;
+                        setAuthor(nameVal);
+                        if (nameVal === 'Jay Parmar') {
+                          setAuthorRole('Founder & Creative Director');
+                        } else {
+                          setAuthorRole('Co-Founder & Technical Lead');
+                        }
+                      }}
+                      style={{ width: '100%', padding: '0.65rem 0.9rem', borderRadius: '8px', background: 'rgba(244,242,235,0.06)', border: '1px solid var(--line)', color: 'var(--offwhite)', fontSize: '0.88rem' }}
+                    >
+                      <option value="Saurav Vaghela" style={{ background: '#1a1a18' }}>Saurav Vaghela</option>
+                      <option value="Jay Parmar" style={{ background: '#1a1a18' }}>Jay Parmar</option>
+                    </select>
                   </div>
 
                   <div>
                     <label style={{ display: 'block', fontSize: '0.8rem', color: 'rgba(244,242,235,0.7)', fontWeight: '600', marginBottom: '0.4rem' }}>Author Title / Role</label>
-                    <input
-                      type="text"
+                    <select
                       value={authorRole}
                       onChange={(e) => setAuthorRole(e.target.value)}
-                      style={{ width: '100%', padding: '0.6rem 0.9rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line)', color: 'var(--offwhite)', fontSize: '0.85rem' }}
-                    />
+                      style={{ width: '100%', padding: '0.65rem 0.9rem', borderRadius: '8px', background: 'rgba(244,242,235,0.06)', border: '1px solid var(--line)', color: 'var(--offwhite)', fontSize: '0.88rem' }}
+                    >
+                      <option value="Co-Founder & Technical Lead" style={{ background: '#1a1a18' }}>Co-Founder & Technical Lead</option>
+                      <option value="Founder & Creative Director" style={{ background: '#1a1a18' }}>Founder & Creative Director</option>
+                      <option value="Growth & SEO Strategist" style={{ background: '#1a1a18' }}>Growth & SEO Strategist</option>
+                    </select>
                   </div>
                 </div>
 
