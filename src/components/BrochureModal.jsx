@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Download, Mail, CheckCircle2, FileText, X, Sparkles, Send, Phone, User } from 'lucide-react';
 import { sendBrochureEmail } from '../utils/emailService';
+import { submitToGoogleSheet } from '../utils/sheetService';
 
 export default function BrochureModal({ isOpen, onClose, triggerToast }) {
   const [name, setName] = useState('');
@@ -31,6 +32,20 @@ export default function BrochureModal({ isOpen, onClose, triggerToast }) {
       await sendBrochureEmail({ name, email, phone, serviceInterest });
     } catch (err) {
       console.error('Email dispatch error:', err);
+    }
+
+    // 3. Automated Google Sheet Sync
+    try {
+      await submitToGoogleSheet({
+        name,
+        email,
+        phone,
+        service: serviceInterest,
+        source: 'Brochure PDF Download Form',
+        message: `Requested official brochure for ${serviceInterest}`
+      });
+    } catch (err) {
+      console.error('Google Sheet submission error:', err);
     }
 
     setIsSubmitting(false);

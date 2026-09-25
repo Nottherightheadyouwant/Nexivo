@@ -12,6 +12,7 @@ import {
 } from '../utils/blogStorage';
 import { getSiteSeo, saveSiteSeo, generateSitemapXml, applyGlobalSeo } from '../utils/seoStorage';
 import { getEmailConfig, saveEmailConfig } from '../utils/emailService';
+import { getSheetUrl, saveSheetUrl, GOOGLE_APPS_SCRIPT_CODE } from '../utils/sheetService';
 
 const MAX_FAILED_ATTEMPTS = 5;
 const LOCKOUT_DURATION_MS = 60 * 1000; // 60s security lockout
@@ -44,6 +45,11 @@ export default function Admin() {
   // EmailJS Zero-Backend Settings State
   const [emailConfig, setEmailConfigState] = useState({ serviceId: '', templateId: '', publicKey: '' });
   const [emailSavedMsg, setEmailSavedMsg] = useState('');
+
+  // Google Sheets Auto-Sync Settings State
+  const [sheetUrl, setSheetUrlState] = useState('');
+  const [sheetSavedMsg, setSheetSavedMsg] = useState('');
+  const [scriptCopied, setScriptCopied] = useState(false);
 
   // Posts state
   const [posts, setPosts] = useState([]);
@@ -79,6 +85,7 @@ export default function Admin() {
     setSiteSeo(initialSeo);
     applyGlobalSeo(initialSeo);
     setEmailConfigState(getEmailConfig());
+    setSheetUrlState(getSheetUrl());
   }, []);
 
   const handleSaveEmailConfig = (e) => {
@@ -87,6 +94,21 @@ export default function Admin() {
     setEmailSavedMsg('✓ EmailJS Config Saved!');
     showToast('success', 'Zero-backend automated email credentials saved!');
     setTimeout(() => setEmailSavedMsg(''), 2000);
+  };
+
+  const handleSaveSheetUrl = (e) => {
+    e.preventDefault();
+    saveSheetUrl(sheetUrl);
+    setSheetSavedMsg('✓ Google Sheet Webhook Saved!');
+    showToast('success', 'Google Sheet lead webhook saved successfully!');
+    setTimeout(() => setSheetSavedMsg(''), 2000);
+  };
+
+  const handleCopyScriptCode = () => {
+    navigator.clipboard.writeText(GOOGLE_APPS_SCRIPT_CODE);
+    setScriptCopied(true);
+    showToast('success', 'Apps Script code copied to clipboard!');
+    setTimeout(() => setScriptCopied(false), 2000);
   };
 
   // Lockout countdown timer & session storage persistence
@@ -661,6 +683,49 @@ export default function Admin() {
                 <button type="submit" className="btn-primary" style={{ padding: '0.65rem 1.3rem', fontSize: '0.85rem', width: '100%', justifyContent: 'center' }}>
                   <Save size={15} /> Save Email Credentials
                 </button>
+              </form>
+            </div>
+
+            {/* BOX 4: GOOGLE SHEETS LIVE LEAD AUTO-SYNC */}
+            <div className="glass-card" style={{ padding: '1.8rem', border: '1px solid var(--teal-light)', background: 'linear-gradient(135deg, rgba(29,158,117,0.06), rgba(26,26,24,0.7))' }}>
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+                  <Globe size={18} color="#25D366" />
+                  <h3 style={{ fontSize: '1.15rem', fontWeight: '800', color: 'var(--offwhite)' }}>Google Sheets Live Lead Sync</h3>
+                </div>
+                {sheetSavedMsg && <span style={{ fontSize: '0.78rem', color: 'var(--teal-light)', fontWeight: '700' }}>{sheetSavedMsg}</span>}
+              </div>
+
+              <p style={{ fontSize: '0.82rem', color: 'rgba(244,242,235,0.7)', lineHeight: '1.5', marginBottom: '1rem' }}>
+                Automatically stream all client form submissions (Brochure, Contact, Audits) into your <a href="https://docs.google.com/spreadsheets/d/13l0VAA-l6a7_-L0Aa1CWd6PqmIE0myqQplX9f9zS55w/edit" target="_blank" rel="noopener noreferrer" style={{ color: 'var(--teal-light)', textDecoration: 'underline' }}>Google Sheet</a> in real-time.
+              </p>
+
+              <form onSubmit={handleSaveSheetUrl}>
+                <div style={{ marginBottom: '1.1rem' }}>
+                  <label style={{ display: 'block', fontSize: '0.78rem', color: 'rgba(244,242,235,0.85)', fontWeight: '600', marginBottom: '0.3rem' }}>
+                    Google Apps Script Web App URL
+                  </label>
+                  <input
+                    type="url"
+                    placeholder="https://script.google.com/macros/s/AKfycb.../exec"
+                    value={sheetUrl}
+                    onChange={(e) => setSheetUrlState(e.target.value)}
+                    style={{ width: '100%', padding: '0.65rem 0.85rem', borderRadius: '8px', background: 'rgba(244,242,235,0.05)', border: '1px solid var(--line-strong)', color: 'var(--offwhite)', fontSize: '0.84rem' }}
+                  />
+                </div>
+
+                <div style={{ display: 'flex', gap: '0.8rem', marginBottom: '1rem' }}>
+                  <button type="submit" className="btn-primary" style={{ flex: 1, padding: '0.65rem 1rem', fontSize: '0.84rem', justifyContent: 'center' }}>
+                    <Save size={15} /> Save Webhook URL
+                  </button>
+                  <button type="button" onClick={handleCopyScriptCode} className="btn-outline" style={{ flex: 1, padding: '0.65rem 1rem', fontSize: '0.84rem', justifyContent: 'center' }}>
+                    {scriptCopied ? '✓ Copied Script!' : 'Copy Apps Script Code'}
+                  </button>
+                </div>
+
+                <div style={{ fontSize: '0.74rem', color: 'rgba(244,242,235,0.45)', lineHeight: 1.4 }}>
+                  💡 <strong>Setup (30 Seconds):</strong> In your Google Sheet → Extensions → Apps Script → Paste the code → Deploy as Web App → Execute as "Me", Access: "Anyone".
+                </div>
               </form>
             </div>
 

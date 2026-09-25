@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Mail, Phone, MapPin, MessageSquare, Send } from 'lucide-react';
 import FaqAccordion from '../components/FaqAccordion';
 import { sendContactEmail } from '../utils/emailService';
+import { submitToGoogleSheet } from '../utils/sheetService';
 
 export default function Contact({ triggerToast }) {
   const [formData, setFormData] = useState({
@@ -17,6 +18,12 @@ export default function Contact({ triggerToast }) {
     
     // Trigger zero-backend automated email sending asynchronously
     sendContactEmail(formData).catch(err => console.error('Contact email error:', err));
+
+    // Trigger Google Sheet Lead Auto-Sync
+    submitToGoogleSheet({
+      ...formData,
+      source: 'Contact Page Form'
+    }).catch(err => console.error('Contact Google Sheet error:', err));
 
     const text = encodeURIComponent(`Hi Nexivo! My name is ${formData.name} (${formData.phone}). Interested in ${formData.service}. Message: ${formData.message}`);
     window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
