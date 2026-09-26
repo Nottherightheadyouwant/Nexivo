@@ -19,12 +19,23 @@ try {
   console.error('[Nexivo Bot] Warning: Could not load knowledge JSON:', err.message);
 }
 
+import puppeteer from 'puppeteer';
+
+let customExecPath = null;
+try {
+  customExecPath = puppeteer.executablePath();
+  console.log('[Nexivo Bot] Chrome binary path resolved:', customExecPath);
+} catch (e) {
+  console.log('[Nexivo Bot] Using default system browser launcher.');
+}
+
 console.log('🤖 Starting Nexivo Native WhatsApp Bot (0 Third-Party Cost)...');
 
 const client = new Client({
   authStrategy: new LocalAuth({ dataPath: '.wwebjs_auth' }),
   puppeteer: {
     headless: true,
+    ...(customExecPath ? { executablePath: customExecPath } : {}),
     args: [
       '--no-sandbox',
       '--disable-setuid-sandbox',

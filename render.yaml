@@ -3,6 +3,6 @@ services:
     name: nexivo-whatsapp-bot
     env: node
     region: oregon
-    buildCommand: npm install
+    buildCommand: npm install && npx puppeteer browsers install chrome
     startCommand: npm run bot
     autoDeploy: true
