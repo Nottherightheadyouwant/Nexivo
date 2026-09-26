@@ -12,12 +12,14 @@ if (!process.env.PUPPETEER_CACHE_DIR && fs.existsSync('/opt/render/project/src/.
 }
 
 let latestQrData = null;
+let botStatus = 'INITIALIZING'; // 'INITIALIZING' | 'QR_READY' | 'CONNECTED' | 'AUTH_FAILURE'
 
 // Lightweight HTTP Health Check Server & Visual QR Web Page (enables Render.com 100% Free Web Service Tier)
 const PORT = process.env.PORT || 3000;
 http.createServer((req, res) => {
   res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
-  if (latestQrData) {
+
+  if (botStatus === 'QR_READY' && latestQrData) {
     res.end(`
       <!DOCTYPE html>
       <html>
@@ -33,7 +35,7 @@ http.createServer((req, res) => {
             .qr-box img { display: block; width: 260px; height: 260px; }
             .sub { font-size: 0.78rem; color: rgba(244, 242, 235, 0.4); }
           </style>
-          <script>setTimeout(() => location.reload(), 12000);</script>
+          <script>setTimeout(() => location.reload(), 10000);</script>
         </head>
         <body>
           <div class="card">
@@ -42,12 +44,12 @@ http.createServer((req, res) => {
             <div class="qr-box">
               <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(latestQrData)}" alt="WhatsApp QR Code" />
             </div>
-            <p class="sub">Page auto-refreshes every 12 seconds until paired.</p>
+            <p class="sub">Page auto-refreshes every 10 seconds until paired.</p>
           </div>
         </body>
       </html>
     `);
-  } else {
+  } else if (botStatus === 'CONNECTED') {
     res.end(`
       <!DOCTYPE html>
       <html>
@@ -62,8 +64,37 @@ http.createServer((req, res) => {
         </head>
         <body>
           <div class="card">
-            <h2>Nexivo WhatsApp AI Bot is Live 24/7!</h2>
-            <p>Connected to WhatsApp. Listening for incoming customer inquiries.</p>
+            <h2>Nexivo WhatsApp AI Bot is Connected & Live 24/7!</h2>
+            <p>Successfully paired with WhatsApp. Listening for incoming customer inquiries.</p>
+          </div>
+        </body>
+      </html>
+    `);
+  } else {
+    // INITIALIZING or AUTH_FAILURE
+    res.end(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Initializing WhatsApp Bot | Studio Nexivo</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            body { background: #121210; color: #F4F2EB; font-family: system-ui, sans-serif; text-align: center; padding: 3rem 1rem; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+            .card { background: rgba(244, 242, 235, 0.05); border: 1px solid rgba(244, 242, 235, 0.15); border-radius: 20px; padding: 2.5rem; max-width: 460px; width: 100%; }
+            h2 { color: #5DCAA5; margin-top: 0; }
+            p { color: rgba(244, 242, 235, 0.75); line-height: 1.5; }
+            .spinner { border: 3px solid rgba(244,242,235,0.1); border-top: 3px solid #5DCAA5; border-radius: 50%; width: 36px; height: 36px; animation: spin 1s linear infinite; margin: 1.5rem auto 0.5rem; }
+            @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+            .sub { font-size: 0.8rem; color: rgba(244,242,235,0.4); margin-top: 1rem; }
+          </style>
+          <script>setTimeout(() => location.reload(), 4000);</script>
+        </head>
+        <body>
+          <div class="card">
+            <h2>Launching WhatsApp Engine...</h2>
+            <div class="spinner"></div>
+            <p>Starting Chrome container & generating QR code.<br/>Please wait a few seconds...</p>
+            <p class="sub">This page auto-refreshes automatically.</p>
           </div>
         </body>
       </html>
@@ -183,6 +214,7 @@ const client = new Client({
 // Display QR Code for 1-time WhatsApp pairing
 client.on('qr', (qr) => {
   latestQrData = qr;
+  botStatus = 'QR_READY';
   console.log('\n====================================================');
   console.log('SCAN THIS QR CODE WITH WHATSAPP BUSINESS APP:');
   console.log('====================================================\n');
@@ -191,15 +223,21 @@ client.on('qr', (qr) => {
 });
 
 client.on('ready', () => {
+  botStatus = 'CONNECTED';
+  latestQrData = null;
   console.log('\n✅ NEXIVO WHATSAPP BOT IS LIVE & READY 24/7!');
   console.log('Connected to WhatsApp. Listening for incoming customer messages...\n');
 });
 
 client.on('authenticated', () => {
+  botStatus = 'CONNECTED';
+  latestQrData = null;
   console.log('🔑 Session authenticated successfully. No QR scan needed on restart!');
 });
 
 client.on('auth_failure', (msg) => {
+  botStatus = 'AUTH_FAILURE';
+  latestQrData = null;
   console.error('❌ Authentication failed:', msg);
 });
 
