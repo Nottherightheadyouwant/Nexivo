@@ -11,11 +11,64 @@ if (!process.env.PUPPETEER_CACHE_DIR && fs.existsSync('/opt/render/project/src/.
   process.env.PUPPETEER_CACHE_DIR = '/opt/render/project/src/.cache/puppeteer';
 }
 
-// Lightweight HTTP Health Check Server (enables Render.com 100% Free Web Service Tier)
+let latestQrData = null;
+
+// Lightweight HTTP Health Check Server & Visual QR Web Page (enables Render.com 100% Free Web Service Tier)
 const PORT = process.env.PORT || 3000;
 http.createServer((req, res) => {
-  res.writeHead(200, { 'Content-Type': 'text/plain' });
-  res.end('Nexivo WhatsApp Bot is active!\n');
+  res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+  if (latestQrData) {
+    res.end(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Scan WhatsApp QR Code | Studio Nexivo</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            body { background: #121210; color: #F4F2EB; font-family: system-ui, sans-serif; text-align: center; padding: 2rem 1rem; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+            .card { background: rgba(244, 242, 235, 0.05); border: 1px solid rgba(244, 242, 235, 0.15); border-radius: 20px; padding: 2.5rem 2rem; max-width: 440px; width: 100%; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+            h2 { color: #5DCAA5; font-size: 1.6rem; margin-top: 0; }
+            p { color: rgba(244, 242, 235, 0.7); font-size: 0.95rem; line-height: 1.5; }
+            .qr-box { background: #ffffff; padding: 1rem; border-radius: 12px; display: inline-block; margin: 1.5rem 0; }
+            .qr-box img { display: block; width: 260px; height: 260px; }
+            .sub { font-size: 0.78rem; color: rgba(244, 242, 235, 0.4); }
+          </style>
+          <script>setTimeout(() => location.reload(), 12000);</script>
+        </head>
+        <body>
+          <div class="card">
+            <h2>Scan WhatsApp QR Code</h2>
+            <p>Open WhatsApp on your phone -> <b>Linked Devices</b> -> <b>Link a Device</b> and point camera at the QR code below:</p>
+            <div class="qr-box">
+              <img src="https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=${encodeURIComponent(latestQrData)}" alt="WhatsApp QR Code" />
+            </div>
+            <p class="sub">Page auto-refreshes every 12 seconds until paired.</p>
+          </div>
+        </body>
+      </html>
+    `);
+  } else {
+    res.end(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>Nexivo WhatsApp AI Bot</title>
+          <style>
+            body { background: #121210; color: #F4F2EB; font-family: system-ui, sans-serif; text-align: center; padding: 3rem 1rem; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+            .card { background: rgba(244, 242, 235, 0.05); border: 1px solid rgba(244, 242, 235, 0.15); border-radius: 20px; padding: 2.5rem; max-width: 460px; }
+            h2 { color: #5DCAA5; margin-top: 0; }
+            p { color: rgba(244, 242, 235, 0.75); }
+          </style>
+        </head>
+        <body>
+          <div class="card">
+            <h2>Nexivo WhatsApp AI Bot is Live 24/7!</h2>
+            <p>Connected to WhatsApp. Listening for incoming customer inquiries.</p>
+          </div>
+        </body>
+      </html>
+    `);
+  }
 }).listen(PORT, () => {
   console.log(`[Nexivo Bot] Free Web Service health check listening on port ${PORT}`);
 });
@@ -129,8 +182,9 @@ const client = new Client({
 
 // Display QR Code for 1-time WhatsApp pairing
 client.on('qr', (qr) => {
+  latestQrData = qr;
   console.log('\n====================================================');
-  console.log('📱 SCAN THIS QR CODE WITH WHATSAPP BUSINESS APP:');
+  console.log('SCAN THIS QR CODE WITH WHATSAPP BUSINESS APP:');
   console.log('====================================================\n');
   qrcode.generate(qr, { small: true });
   console.log('\nOpen WhatsApp -> Linked Devices -> Link a Device -> Scan QR Code above.\n');
