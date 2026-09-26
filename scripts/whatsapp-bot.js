@@ -70,8 +70,35 @@ http.createServer((req, res) => {
         </body>
       </html>
     `);
+  } else if (botStatus === 'ERROR' || initError) {
+    res.end(`
+      <!DOCTYPE html>
+      <html>
+        <head>
+          <title>WhatsApp Bot Error | Studio Nexivo</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <style>
+            body { background: #121210; color: #F4F2EB; font-family: system-ui, sans-serif; text-align: center; padding: 3rem 1rem; display: flex; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
+            .card { background: rgba(244, 242, 235, 0.05); border: 1px solid rgba(244, 67, 54, 0.4); border-radius: 20px; padding: 2.5rem; max-width: 460px; width: 100%; }
+            h2 { color: #F44336; margin-top: 0; }
+            p { color: rgba(244, 242, 235, 0.75); line-height: 1.5; font-size: 0.9rem; }
+            pre { background: rgba(0,0,0,0.4); padding: 0.8rem; border-radius: 8px; font-size: 0.75rem; text-align: left; overflow-x: auto; color: #FF8A80; }
+            .sub { font-size: 0.8rem; color: rgba(244,242,235,0.4); margin-top: 1rem; }
+          </style>
+          <script>setTimeout(() => location.reload(), 8000);</script>
+        </head>
+        <body>
+          <div class="card">
+            <h2>Initialization Notice</h2>
+            <p>The bot engine encountered a startup condition:</p>
+            <pre>${initError || 'Unknown initialization issue'}</pre>
+            <p class="sub">Auto-retrying in 8 seconds...</p>
+          </div>
+        </body>
+      </html>
+    `);
   } else {
-    // INITIALIZING or AUTH_FAILURE
+    // INITIALIZING
     res.end(`
       <!DOCTYPE html>
       <html>
@@ -188,6 +215,8 @@ if (customExecPath) {
 
 console.log('Starting Nexivo Native WhatsApp Bot (0 Third-Party Cost)...');
 
+let initError = null;
+
 const puppeteerOptions = {
   headless: true,
   args: [
@@ -197,8 +226,8 @@ const puppeteerOptions = {
     '--disable-accelerated-2d-canvas',
     '--no-first-run',
     '--no-zygote',
-    '--single-process',
-    '--disable-gpu'
+    '--disable-gpu',
+    '--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36'
   ]
 };
 
@@ -208,13 +237,18 @@ if (customExecPath) {
 
 const client = new Client({
   authStrategy: new LocalAuth({ dataPath: '.wwebjs_auth' }),
-  puppeteer: puppeteerOptions
+  puppeteer: puppeteerOptions,
+  webVersionCache: {
+    type: 'remote',
+    remotePath: 'https://raw.githubusercontent.com/wppconnect-team/wa-version/main/html/2.2412.54.html'
+  }
 });
 
 // Display QR Code for 1-time WhatsApp pairing
 client.on('qr', (qr) => {
   latestQrData = qr;
   botStatus = 'QR_READY';
+  initError = null;
   console.log('\n====================================================');
   console.log('SCAN THIS QR CODE WITH WHATSAPP BUSINESS APP:');
   console.log('====================================================\n');
@@ -225,6 +259,7 @@ client.on('qr', (qr) => {
 client.on('ready', () => {
   botStatus = 'CONNECTED';
   latestQrData = null;
+  initError = null;
   console.log('\n✅ NEXIVO WHATSAPP BOT IS LIVE & READY 24/7!');
   console.log('Connected to WhatsApp. Listening for incoming customer messages...\n');
 });
@@ -232,11 +267,13 @@ client.on('ready', () => {
 client.on('authenticated', () => {
   botStatus = 'CONNECTED';
   latestQrData = null;
+  initError = null;
   console.log('🔑 Session authenticated successfully. No QR scan needed on restart!');
 });
 
 client.on('auth_failure', (msg) => {
   botStatus = 'AUTH_FAILURE';
+  initError = typeof msg === 'string' ? msg : JSON.stringify(msg);
   latestQrData = null;
   console.error('❌ Authentication failed:', msg);
 });
@@ -369,5 +406,7 @@ Please tell us a bit about your business name and goals, and Jay will reply shor
 
 // Launch Client
 client.initialize().catch((err) => {
+  botStatus = 'ERROR';
+  initError = err.message || String(err);
   console.error('[Nexivo Bot] Client Initialization Error:', err.message || err);
 });
