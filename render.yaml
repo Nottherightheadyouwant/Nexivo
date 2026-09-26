@@ -4,9 +4,6 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: export PUPPETEER_CACHE_DIR=$PWD/.cache/puppeteer && npm install && npx puppeteer browsers install chrome
-    startCommand: export PUPPETEER_CACHE_DIR=$PWD/.cache/puppeteer && node scripts/whatsapp-bot.js
+    buildCommand: npm install
+    startCommand: npm run bot
     autoDeploy: true
-    envVars:
-      - key: PUPPETEER_CACHE_DIR
-        value: ./.cache/puppeteer
