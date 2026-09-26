@@ -147,43 +147,57 @@ try {
 }
 
 import puppeteer from 'puppeteer';
+import chromium from '@sparticuz/chromium';
 
 let customExecPath = null;
 
-const searchDirs = [
-  path.join(os.homedir(), '.cache/puppeteer'),
-  '/opt/render/.cache/puppeteer',
-  '/opt/render/project/src/.cache/puppeteer',
-  path.join(process.cwd(), '.cache/puppeteer'),
-  '/root/.cache/puppeteer'
-];
+try {
+  // Use @sparticuz/chromium pre-compiled Linux binary if available
+  const sparticuzPath = await chromium.executablePath();
+  if (sparticuzPath && fs.existsSync(sparticuzPath)) {
+    customExecPath = sparticuzPath;
+    console.log('[Nexivo Bot] Resolved @sparticuz/chromium binary:', customExecPath);
+  }
+} catch (e) {
+  console.log('[Nexivo Bot] @sparticuz/chromium path notice:', e.message);
+}
 
-const findBinary = (dir) => {
-  try {
-    if (!fs.existsSync(dir)) return null;
-    const files = fs.readdirSync(dir);
-    for (const f of files) {
-      const full = path.join(dir, f);
-      try {
-        const stat = fs.statSync(full);
-        if (!stat.isDirectory() && (f === 'chrome' || f === 'chrome.exe' || f === 'chromium')) {
-          return full;
-        }
-        if (stat.isDirectory()) {
-          const res = findBinary(full);
-          if (res) return res;
-        }
-      } catch (e) {}
+if (!customExecPath) {
+  const searchDirs = [
+    path.join(os.homedir(), '.cache/puppeteer'),
+    '/opt/render/.cache/puppeteer',
+    '/opt/render/project/src/.cache/puppeteer',
+    path.join(process.cwd(), '.cache/puppeteer'),
+    '/root/.cache/puppeteer'
+  ];
+
+  const findBinary = (dir) => {
+    try {
+      if (!fs.existsSync(dir)) return null;
+      const files = fs.readdirSync(dir);
+      for (const f of files) {
+        const full = path.join(dir, f);
+        try {
+          const stat = fs.statSync(full);
+          if (!stat.isDirectory() && (f === 'chrome' || f === 'chrome.exe' || f === 'chromium')) {
+            return full;
+          }
+          if (stat.isDirectory()) {
+            const res = findBinary(full);
+            if (res) return res;
+          }
+        } catch (e) {}
+      }
+    } catch (err) {}
+    return null;
+  };
+
+  for (const dir of searchDirs) {
+    const found = findBinary(dir);
+    if (found) {
+      customExecPath = found;
+      break;
     }
-  } catch (err) {}
-  return null;
-};
-
-for (const dir of searchDirs) {
-  const found = findBinary(dir);
-  if (found) {
-    customExecPath = found;
-    break;
   }
 }
 
@@ -210,23 +224,6 @@ if (!customExecPath) {
   }
 }
 
-// On-demand dynamic install fallback if no binary was pre-installed
-if (!customExecPath) {
-  try {
-    console.log('[Nexivo Bot] Chrome binary missing. Executing on-demand browser download...');
-    execSync('npx puppeteer browsers install chrome --path ./.cache/puppeteer', { stdio: 'inherit' });
-    for (const dir of searchDirs) {
-      const found = findBinary(dir);
-      if (found) {
-        customExecPath = found;
-        break;
-      }
-    }
-  } catch (e) {
-    console.error('[Nexivo Bot] On-demand browser download error:', e.message);
-  }
-}
-
 if (customExecPath) {
   console.log('[Nexivo Bot] Chrome binary path resolved:', customExecPath);
 } else {
@@ -239,7 +236,7 @@ let initError = null;
 
 const puppeteerOptions = {
   headless: true,
-  args: [
+  args: chromium.args || [
     '--no-sandbox',
     '--disable-setuid-sandbox',
     '--disable-dev-shm-usage',
