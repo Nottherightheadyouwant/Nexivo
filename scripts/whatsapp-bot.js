@@ -9,6 +9,9 @@ import { fileURLToPath } from 'url';
 import os from 'os';
 import { execSync } from 'child_process';
 
+// Force PUPPETEER_CACHE_DIR to project root workspace folder so Render container retains browser binary
+process.env.PUPPETEER_CACHE_DIR = path.join(process.cwd(), '.cache/puppeteer');
+
 let latestQrData = null;
 let botStatus = 'INITIALIZING'; // 'INITIALIZING' | 'QR_READY' | 'CONNECTED' | 'AUTH_FAILURE'
 
@@ -209,7 +212,7 @@ if (!customExecPath) {
 if (!customExecPath) {
   try {
     console.log('[Nexivo Bot] Chrome binary missing. Executing on-demand browser download...');
-    execSync('npx puppeteer browsers install chrome', { stdio: 'inherit' });
+    execSync('npx puppeteer browsers install chrome --path ./.cache/puppeteer', { stdio: 'inherit' });
     for (const dir of searchDirs) {
       const found = findBinary(dir);
       if (found) {
