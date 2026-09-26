@@ -7,6 +7,7 @@ import http from 'http';
 import { fileURLToPath } from 'url';
 
 import os from 'os';
+import { execSync } from 'child_process';
 
 let latestQrData = null;
 let botStatus = 'INITIALIZING'; // 'INITIALIZING' | 'QR_READY' | 'CONNECTED' | 'AUTH_FAILURE'
@@ -204,10 +205,27 @@ if (!customExecPath) {
   }
 }
 
+// On-demand dynamic install fallback if no binary was pre-installed
+if (!customExecPath) {
+  try {
+    console.log('[Nexivo Bot] Chrome binary missing. Executing on-demand browser download...');
+    execSync('npx puppeteer browsers install chrome', { stdio: 'inherit' });
+    for (const dir of searchDirs) {
+      const found = findBinary(dir);
+      if (found) {
+        customExecPath = found;
+        break;
+      }
+    }
+  } catch (e) {
+    console.error('[Nexivo Bot] On-demand browser download error:', e.message);
+  }
+}
+
 if (customExecPath) {
   console.log('[Nexivo Bot] Chrome binary path resolved:', customExecPath);
 } else {
-  console.log('[Nexivo Bot] Using default Puppeteer browser launcher.');
+  console.log('[Nexivo Bot] Defaulting to standard Puppeteer executable resolution.');
 }
 
 console.log('Starting Nexivo Native WhatsApp Bot (0 Third-Party Cost)...');
