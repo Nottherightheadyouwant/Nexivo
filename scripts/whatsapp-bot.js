@@ -164,14 +164,16 @@ const findBinary = (dir) => {
     const files = fs.readdirSync(dir);
     for (const f of files) {
       const full = path.join(dir, f);
-      const stat = fs.statSync(full);
-      if (stat.isFile() && (f === 'chrome' || f === 'chrome.exe' || f === 'chromium')) {
-        return full;
-      }
-      if (stat.isDirectory()) {
-        const res = findBinary(full);
-        if (res) return res;
-      }
+      try {
+        const stat = fs.statSync(full);
+        if (!stat.isDirectory() && (f === 'chrome' || f === 'chrome.exe' || f === 'chromium')) {
+          return full;
+        }
+        if (stat.isDirectory()) {
+          const res = findBinary(full);
+          if (res) return res;
+        }
+      } catch (e) {}
     }
   } catch (err) {}
   return null;
