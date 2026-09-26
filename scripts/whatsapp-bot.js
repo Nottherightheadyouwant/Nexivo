@@ -146,7 +146,7 @@ try {
   console.error('[Nexivo Bot] Warning: Could not load knowledge JSON:', err.message);
 }
 
-import puppeteer from 'puppeteer';
+import puppeteer from 'puppeteer-core';
 import chromium from '@sparticuz/chromium';
 
 let customExecPath = null;
