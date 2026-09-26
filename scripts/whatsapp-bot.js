@@ -128,7 +128,7 @@ http.createServer((req, res) => {
       </html>
     `);
   }
-}).listen(PORT, () => {
+}).listen(PORT, '0.0.0.0', () => {
   console.log(`[Nexivo Bot] Free Web Service health check listening on port ${PORT}`);
 });
 
