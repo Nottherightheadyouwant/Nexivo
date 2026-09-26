@@ -148,61 +148,60 @@ try {
 import puppeteer from 'puppeteer';
 
 let customExecPath = null;
-try {
-  const rawPath = typeof puppeteer.executablePath === 'function' ? puppeteer.executablePath() : null;
-  if (typeof rawPath === 'string' && rawPath.length > 0 && fs.existsSync(rawPath)) {
-    customExecPath = rawPath;
+
+const searchDirs = [
+  path.join(process.cwd(), '.cache/puppeteer'),
+  '/opt/render/project/src/.cache/puppeteer',
+  '/opt/render/.cache/puppeteer',
+  path.join(process.env.HOME || '/root', '.cache/puppeteer')
+];
+
+const findBinary = (dir) => {
+  try {
+    if (!fs.existsSync(dir)) return null;
+    const files = fs.readdirSync(dir);
+    for (const f of files) {
+      const full = path.join(dir, f);
+      const stat = fs.statSync(full);
+      if (stat.isFile() && (f === 'chrome' || f === 'chrome.exe' || f === 'chromium')) {
+        return full;
+      }
+      if (stat.isDirectory()) {
+        const res = findBinary(full);
+        if (res) return res;
+      }
+    }
+  } catch (err) {}
+  return null;
+};
+
+for (const dir of searchDirs) {
+  const found = findBinary(dir);
+  if (found) {
+    customExecPath = found;
+    break;
   }
-} catch (e) {
-  console.log('[Nexivo Bot] Defaulting to Puppeteer launcher.');
 }
 
-// Fallback search for common Linux binary paths and Render cache directory
 if (!customExecPath) {
-  const searchDirs = [
-    '/opt/render/.cache/puppeteer',
-    '/opt/render/project/src/.cache/puppeteer',
-    path.join(process.cwd(), '.cache/puppeteer')
-  ];
-
-  const findBinary = (dir) => {
-    try {
-      if (!fs.existsSync(dir)) return null;
-      const files = fs.readdirSync(dir);
-      for (const f of files) {
-        const full = path.join(dir, f);
-        const stat = fs.statSync(full);
-        if (stat.isFile() && (f === 'chrome' || f === 'chrome.exe' || f === 'chromium')) {
-          return full;
-        }
-        if (stat.isDirectory()) {
-          const res = findBinary(full);
-          if (res) return res;
-        }
-      }
-    } catch (err) {}
-    return null;
-  };
-
-  for (const dir of searchDirs) {
-    const found = findBinary(dir);
-    if (found) {
-      customExecPath = found;
-      break;
+  try {
+    const rawPath = typeof puppeteer.executablePath === 'function' ? puppeteer.executablePath() : null;
+    if (typeof rawPath === 'string' && rawPath.length > 0 && fs.existsSync(rawPath)) {
+      customExecPath = rawPath;
     }
-  }
+  } catch (e) {}
+}
 
-  if (!customExecPath) {
-    const possiblePaths = [
-      '/usr/bin/google-chrome',
-      '/usr/bin/chromium-browser',
-      '/usr/bin/chromium'
-    ];
-    for (const p of possiblePaths) {
-      if (fs.existsSync(p)) {
-        customExecPath = p;
-        break;
-      }
+if (!customExecPath) {
+  const possiblePaths = [
+    '/usr/bin/google-chrome',
+    '/usr/bin/chromium-browser',
+    '/usr/bin/chromium'
+  ];
+  for (const p of possiblePaths) {
+    if (fs.existsSync(p)) {
+      customExecPath = p;
+      break;
     }
   }
 }
