@@ -41,17 +41,52 @@ try {
   console.log('[Nexivo Bot] Defaulting to Puppeteer launcher.');
 }
 
-// Fallback search for common Linux binary paths on Render
+// Fallback search for common Linux binary paths and Render cache directory
 if (!customExecPath) {
-  const possiblePaths = [
-    '/usr/bin/google-chrome',
-    '/usr/bin/chromium-browser',
-    '/usr/bin/chromium'
+  const searchDirs = [
+    '/opt/render/.cache/puppeteer',
+    '/opt/render/project/src/.cache/puppeteer',
+    path.join(process.cwd(), '.cache/puppeteer')
   ];
-  for (const p of possiblePaths) {
-    if (fs.existsSync(p)) {
-      customExecPath = p;
+
+  const findBinary = (dir) => {
+    try {
+      if (!fs.existsSync(dir)) return null;
+      const files = fs.readdirSync(dir);
+      for (const f of files) {
+        const full = path.join(dir, f);
+        const stat = fs.statSync(full);
+        if (stat.isFile() && (f === 'chrome' || f === 'chrome.exe' || f === 'chromium')) {
+          return full;
+        }
+        if (stat.isDirectory()) {
+          const res = findBinary(full);
+          if (res) return res;
+        }
+      }
+    } catch (err) {}
+    return null;
+  };
+
+  for (const dir of searchDirs) {
+    const found = findBinary(dir);
+    if (found) {
+      customExecPath = found;
       break;
+    }
+  }
+
+  if (!customExecPath) {
+    const possiblePaths = [
+      '/usr/bin/google-chrome',
+      '/usr/bin/chromium-browser',
+      '/usr/bin/chromium'
+    ];
+    for (const p of possiblePaths) {
+      if (fs.existsSync(p)) {
+        customExecPath = p;
+        break;
+      }
     }
   }
 }
