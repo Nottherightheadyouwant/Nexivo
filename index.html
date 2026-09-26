@@ -45,65 +45,200 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&amp;family=Syne:wght@700;800&amp;display=swap" rel="stylesheet">
 
-  <!-- Schema.org JSON-LD Structured Data -->
+  <!-- Schema.org JSON-LD Structured Data Graph -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Studio Nexivo",
-    "image": "https://www.studionexivo.com/favicon.svg",
-    "@id": "https://www.studionexivo.com/#organization",
-    "url": "https://www.studionexivo.com/",
-    "telephone": "+919313888364",
-    "priceRange": "₹7000 - ₹50000",
-    "address": [
+    "@graph": [
       {
-        "@type": "PostalAddress",
-        "addressLocality": "Ahmedabad",
-        "addressCountry": "IN"
+        "@type": "Organization",
+        "@id": "https://www.studionexivo.com/#organization",
+        "name": "Studio Nexivo",
+        "legalName": "Studio Nexivo Digital Agency",
+        "url": "https://www.studionexivo.com/",
+        "logo": {
+          "@type": "ImageObject",
+          "url": "https://www.studionexivo.com/favicon.svg"
+        },
+        "founder": {
+          "@type": "Person",
+          "name": "Jay Parmar"
+        },
+        "sameAs": [
+          "https://www.instagram.com/studio.nexivo/"
+        ],
+        "contactPoint": [
+          {
+            "@type": "ContactPoint",
+            "telephone": "+919724470737",
+            "contactType": "customer service",
+            "email": "studio.nexivo@gmail.com",
+            "availableLanguage": ["English", "Gujarati", "Hindi"]
+          }
+        ]
       },
       {
-        "@type": "PostalAddress",
-        "addressLocality": "London",
-        "addressCountry": "UK"
-      }
-    ],
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 23.0225,
-      "longitude": 72.5714
-    },
-    "sameAs": [
-      "https://www.instagram.com/studio.nexivo/"
-    ],
-    "serviceArea": ["IN", "UK", "US", "AE"],
-    "hasOfferCatalog": {
-      "@type": "OfferCatalog",
-      "name": "Digital Services",
-      "itemListElement": [
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Website Development"
-          }
+        "@type": "WebSite",
+        "@id": "https://www.studionexivo.com/#website",
+        "url": "https://www.studionexivo.com/",
+        "name": "Studio Nexivo",
+        "description": "Modern Web Design & Digital Marketing Agency",
+        "publisher": {
+          "@id": "https://www.studionexivo.com/#organization"
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Local SEO & Google Maps Ranking"
+        "inLanguage": "en"
+      },
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://www.studionexivo.com/#localbusiness",
+        "name": "Studio Nexivo",
+        "image": "https://www.studionexivo.com/favicon.svg",
+        "url": "https://www.studionexivo.com/",
+        "telephone": "+919724470737",
+        "email": "studio.nexivo@gmail.com",
+        "priceRange": "₹7000 - ₹50000",
+        "address": [
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "Ahmedabad",
+            "addressRegion": "Gujarat",
+            "addressCountry": "IN"
+          },
+          {
+            "@type": "PostalAddress",
+            "addressLocality": "London",
+            "addressCountry": "UK"
           }
+        ],
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 23.0225,
+          "longitude": 72.5714
         },
-        {
-          "@type": "Offer",
-          "itemOffered": {
-            "@type": "Service",
-            "name": "Google & Meta Paid Ads Management"
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "09:00",
+            "closes": "19:00"
           }
+        ],
+        "areaServed": ["IN", "UK", "US", "AE", "CA"],
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Digital & Web Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Custom Web Development",
+                "description": "Fast, phone-optimized custom websites built for sub-second speed."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Local SEO & Google Maps Domination",
+                "description": "Google Business Profile optimization and top local search ranking."
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Paid Digital Marketing & Meta Ads",
+                "description": "Targeted Google Search and Meta Instagram/Facebook advertising campaigns."
+              }
+            }
+          ]
         }
-      ]
-    }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://www.studionexivo.com/#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "What services does Studio Nexivo provide?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Studio Nexivo specializes in custom Web Development, Local SEO & Google Maps domination, Meta/Google Paid Advertising campaigns, Brand Identity, and UI/UX design."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does a website development project take?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Starter website packages are typically delivered within 10 to 14 days. Standard and custom web development projects take 14 to 21 days."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer Google Maps & Local SEO ranking?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, our Local SEO packages cover Google Business Profile setup, local keyword research, directory citations, schema markup, and Google Maps pack optimization."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What are the payment terms for client projects?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Projects require a 50% advance payment to commence design and development, and the remaining 50% balance upon final review and official go-live."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How can I speak directly with founder Jay Parmar?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "You can connect directly with Jay Parmar via WhatsApp or phone at +91 97244 70737 or by email at studio.nexivo@gmail.com."
+            }
+          }
+        ]
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": "https://www.studionexivo.com/#breadcrumb",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://www.studionexivo.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Services",
+            "item": "https://www.studionexivo.com/services"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Pricing",
+            "item": "https://www.studionexivo.com/pricing"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Contact",
+            "item": "https://www.studionexivo.com/contact"
+          }
+        ]
+      }
+    ]
   }
   </script>
 </head>
