@@ -41,6 +41,21 @@ try {
   console.log('[Nexivo Bot] Defaulting to Puppeteer launcher.');
 }
 
+// Fallback search for common Linux binary paths on Render
+if (!customExecPath) {
+  const possiblePaths = [
+    '/usr/bin/google-chrome',
+    '/usr/bin/chromium-browser',
+    '/usr/bin/chromium'
+  ];
+  for (const p of possiblePaths) {
+    if (fs.existsSync(p)) {
+      customExecPath = p;
+      break;
+    }
+  }
+}
+
 if (customExecPath) {
   console.log('[Nexivo Bot] Chrome binary path resolved:', customExecPath);
 } else {
@@ -58,6 +73,7 @@ const puppeteerOptions = {
     '--disable-accelerated-2d-canvas',
     '--no-first-run',
     '--no-zygote',
+    '--single-process',
     '--disable-gpu'
   ]
 };
@@ -220,4 +236,6 @@ Please tell us a bit about your business name and goals, and Jay will reply shor
 });
 
 // Launch Client
-client.initialize();
+client.initialize().catch((err) => {
+  console.error('[Nexivo Bot] Client Initialization Error:', err.message || err);
+});

@@ -7,3 +7,6 @@ services:
     buildCommand: npm install && npx puppeteer browsers install chrome
     startCommand: npm run bot
     autoDeploy: true
+    envVars:
+      - key: PUPPETEER_CACHE_DIR
+        value: /opt/render/project/src/.cache/puppeteer
