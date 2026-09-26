@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build && node scripts/prerender.js",
     "bot": "node scripts/whatsapp-bot.js",
-    "postinstall": "npx puppeteer browsers install chrome --path ./.cache/puppeteer",
+    "postinstall": "npx puppeteer browsers install chrome",
     "lint": "oxlint",
     "preview": "vite preview"
   },

@@ -6,10 +6,7 @@ import path from 'path';
 import http from 'http';
 import { fileURLToPath } from 'url';
 
-// Ensure PUPPETEER_CACHE_DIR points to project workspace on Render
-if (!process.env.PUPPETEER_CACHE_DIR && fs.existsSync('/opt/render/project/src/.cache/puppeteer')) {
-  process.env.PUPPETEER_CACHE_DIR = '/opt/render/project/src/.cache/puppeteer';
-}
+import os from 'os';
 
 let latestQrData = null;
 let botStatus = 'INITIALIZING'; // 'INITIALIZING' | 'QR_READY' | 'CONNECTED' | 'AUTH_FAILURE'
@@ -150,10 +147,11 @@ import puppeteer from 'puppeteer';
 let customExecPath = null;
 
 const searchDirs = [
-  path.join(process.cwd(), '.cache/puppeteer'),
-  '/opt/render/project/src/.cache/puppeteer',
+  path.join(os.homedir(), '.cache/puppeteer'),
   '/opt/render/.cache/puppeteer',
-  path.join(process.env.HOME || '/root', '.cache/puppeteer')
+  '/opt/render/project/src/.cache/puppeteer',
+  path.join(process.cwd(), '.cache/puppeteer'),
+  '/root/.cache/puppeteer'
 ];
 
 const findBinary = (dir) => {
