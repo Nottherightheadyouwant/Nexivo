@@ -4,9 +4,9 @@ services:
     env: node
     plan: free
     region: oregon
-    buildCommand: npm install && npx puppeteer browsers install chrome
+    buildCommand: export PUPPETEER_CACHE_DIR=/opt/render/project/src/.cache/puppeteer && npm install && npx puppeteer browsers install chrome
     startCommand: npm run bot
     autoDeploy: true
     envVars:
       - key: PUPPETEER_CACHE_DIR
-        value: /opt/render/.cache/puppeteer
+        value: /opt/render/project/src/.cache/puppeteer

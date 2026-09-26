@@ -6,6 +6,11 @@ import path from 'path';
 import http from 'http';
 import { fileURLToPath } from 'url';
 
+// Ensure PUPPETEER_CACHE_DIR points to project workspace on Render
+if (!process.env.PUPPETEER_CACHE_DIR && fs.existsSync('/opt/render/project/src/.cache/puppeteer')) {
+  process.env.PUPPETEER_CACHE_DIR = '/opt/render/project/src/.cache/puppeteer';
+}
+
 // Lightweight HTTP Health Check Server (enables Render.com 100% Free Web Service Tier)
 const PORT = process.env.PORT || 3000;
 http.createServer((req, res) => {
