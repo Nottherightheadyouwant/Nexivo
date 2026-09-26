@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { 
-  Lock, Key, LogOut, Plus, Edit3, Trash2, Eye, Check, X, 
-  Search, ArrowLeft, Image as ImageIcon, Heading, Type, Quote, 
+import {
+  Lock, Key, LogOut, Plus, Edit3, Trash2, Eye, Check, X,
+  Search, ArrowLeft, Image as ImageIcon, Heading, Type, Quote,
   List as ListIcon, Code, Sparkles, LayoutDashboard, Globe, Save,
   ShieldAlert, Clock, ShieldCheck, Mail, MessageSquare
 } from 'lucide-react';
-import { 
-  getStoredPosts, savePost, deletePost, checkAdminAuth, setAdminAuth, 
-  getAdminPassword, setAdminPassword, formatDate, slugify 
+import {
+  getStoredPosts, savePost, deletePost, checkAdminAuth, setAdminAuth,
+  getAdminPassword, setAdminPassword, formatDate, slugify
 } from '../utils/blogStorage';
 import { getSiteSeo, saveSiteSeo, generateSitemapXml, applyGlobalSeo } from '../utils/seoStorage';
 import { getEmailConfig, saveEmailConfig } from '../utils/emailService';
@@ -138,7 +138,7 @@ export default function Admin() {
             setLockoutRemainingSec(0);
           }
         }
-      } catch (e) {}
+      } catch (e) { }
     };
 
     checkLockout();
@@ -536,7 +536,7 @@ export default function Admin() {
 
           {/* SITE-WIDE SEO & AUTOMATIC SITEMAP CONTROL BOX */}
           <div className="admin-seo-grid">
-            
+
             {/* BOX 1: WHOLE SITE GLOBAL SEO TITLE & META DESCRIPTION */}
             <div className="glass-card" style={{ padding: '1.8rem', border: '1px solid var(--teal-light)', background: 'linear-gradient(135deg, rgba(29,158,117,0.08), rgba(26,26,24,0.6))' }}>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '1.2rem' }}>
@@ -614,7 +614,7 @@ export default function Admin() {
                   Total Indexed URLs: <span style={{ color: 'var(--teal-light)' }}>{16 + posts.filter(p => p.status === 'published').length}</span>
                 </div>
                 <div style={{ fontSize: '0.76rem', color: 'rgba(244,242,235,0.5)' }}>
-                  • 16 Core Static Pages & Service Routes<br/>
+                  • 16 Core Static Pages & Service Routes<br />
                   • {posts.filter(p => p.status === 'published').length} Published Blog Post URLs
                 </div>
               </div>
@@ -753,11 +753,11 @@ export default function Admin() {
                   {promptCopied ? '✓ Copied AI System Prompt!' : 'Copy WhatsApp AI System Prompt'}
                 </button>
 
-                <a 
-                  href="/nexivo-ai-knowledge.json" 
-                  target="_blank" 
+                <a
+                  href="/nexivo-ai-knowledge.json"
+                  target="_blank"
                   rel="noopener noreferrer"
-                  className="btn-outline" 
+                  className="btn-outline"
                   style={{ padding: '0.65rem 1rem', fontSize: '0.84rem', justifyContent: 'center', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '6px' }}
                 >
                   View JSON Knowledge Base (www.studionexivo.com/nexivo-ai-knowledge.json)
@@ -885,7 +885,7 @@ export default function Admin() {
         <section style={{ paddingTop: '2.5rem' }}>
           <form onSubmit={handleSavePost}>
             <div className="admin-editor-layout">
-              
+
               {/* LEFT COLUMN: MAIN EDITOR BLOCKS */}
               <div>
                 <div className="glass-card" style={{ padding: '2rem', marginBottom: '2rem', border: '1px solid var(--line-strong)' }}>
@@ -939,7 +939,7 @@ export default function Admin() {
                   <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                     {blocks.map((block, idx) => (
                       <div key={block.id} style={{ padding: '1.2rem', borderRadius: '12px', background: 'rgba(244,242,235,0.03)', border: '1px solid var(--line)', position: 'relative' }}>
-                        
+
                         {/* BLOCK HEADER CONTROLS */}
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '0.8rem', paddingBottom: '0.5rem', borderBottom: '1px solid var(--line)' }}>
                           <span style={{ fontSize: '0.75rem', fontWeight: '700', textTransform: 'uppercase', color: 'var(--teal-light)', display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
@@ -1062,7 +1062,7 @@ export default function Admin() {
                 {/* ACTION BUTTONS */}
                 <div className="glass-card" style={{ padding: '1.5rem', marginBottom: '1.8rem', border: '1px solid var(--teal-light)' }}>
                   <h4 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--offwhite)', marginBottom: '1rem' }}>Publish Settings</h4>
-                  
+
                   <div style={{ marginBottom: '1.2rem' }}>
                     <label style={{ display: 'block', fontSize: '0.8rem', color: 'rgba(244,242,235,0.7)', fontWeight: '600', marginBottom: '0.4rem' }}>Post Status</label>
                     <select
@@ -1094,7 +1094,7 @@ export default function Admin() {
                 {/* CATEGORY & AUTHOR */}
                 <div className="glass-card" style={{ padding: '1.5rem', marginBottom: '1.8rem', border: '1px solid var(--line)' }}>
                   <h4 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--offwhite)', marginBottom: '1rem' }}>Categorization & Author</h4>
-                  
+
                   <div style={{ marginBottom: '1.2rem' }}>
                     <label style={{ display: 'block', fontSize: '0.8rem', color: 'rgba(244,242,235,0.7)', fontWeight: '600', marginBottom: '0.4rem' }}>Category</label>
                     <select
@@ -1165,7 +1165,7 @@ export default function Admin() {
                 {/* SEO OPTIMIZATION FIELDS */}
                 <div className="glass-card" style={{ padding: '1.5rem', border: '1px solid var(--line)' }}>
                   <h4 style={{ fontSize: '1rem', fontWeight: '700', color: 'var(--offwhite)', marginBottom: '1rem' }}>SEO Settings</h4>
-                  
+
                   <div style={{ marginBottom: '1rem' }}>
                     <label style={{ display: 'block', fontSize: '0.78rem', color: 'rgba(244,242,235,0.7)', fontWeight: '600', marginBottom: '0.3rem' }}>Meta Title</label>
                     <input

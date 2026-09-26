@@ -27,9 +27,9 @@ export default function Navbar({ openBrochure }) {
         </Link>
         <ul className="nav-links">
           <li><NavLink to="/" end className={({ isActive }) => isActive ? 'active' : ''}>Home</NavLink></li>
-          
+
           {/* OUR SERVICES WITH MEGA MENU DROPDOWN */}
-          <li 
+          <li
             className="nav-dropdown-wrapper"
             onMouseEnter={() => setDropdownOpen(true)}
             onMouseLeave={() => setDropdownOpen(false)}

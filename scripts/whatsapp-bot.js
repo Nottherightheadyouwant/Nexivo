@@ -3,7 +3,17 @@ const { Client, LocalAuth } = pkg;
 import qrcode from 'qrcode-terminal';
 import fs from 'fs';
 import path from 'path';
+import http from 'http';
 import { fileURLToPath } from 'url';
+
+// Lightweight HTTP Health Check Server (enables Render.com 100% Free Web Service Tier)
+const PORT = process.env.PORT || 3000;
+http.createServer((req, res) => {
+  res.writeHead(200, { 'Content-Type': 'text/plain' });
+  res.end('Nexivo WhatsApp Bot is active!\n');
+}).listen(PORT, () => {
+  console.log(`[Nexivo Bot] Free Web Service health check listening on port ${PORT}`);
+});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,29 +33,42 @@ import puppeteer from 'puppeteer';
 
 let customExecPath = null;
 try {
-  customExecPath = puppeteer.executablePath();
-  console.log('[Nexivo Bot] Chrome binary path resolved:', customExecPath);
+  const rawPath = typeof puppeteer.executablePath === 'function' ? puppeteer.executablePath() : null;
+  if (typeof rawPath === 'string' && rawPath.length > 0 && fs.existsSync(rawPath)) {
+    customExecPath = rawPath;
+  }
 } catch (e) {
-  console.log('[Nexivo Bot] Using default system browser launcher.');
+  console.log('[Nexivo Bot] Defaulting to Puppeteer launcher.');
 }
 
-console.log('🤖 Starting Nexivo Native WhatsApp Bot (0 Third-Party Cost)...');
+if (customExecPath) {
+  console.log('[Nexivo Bot] Chrome binary path resolved:', customExecPath);
+} else {
+  console.log('[Nexivo Bot] Using default Puppeteer browser launcher.');
+}
+
+console.log('Starting Nexivo Native WhatsApp Bot (0 Third-Party Cost)...');
+
+const puppeteerOptions = {
+  headless: true,
+  args: [
+    '--no-sandbox',
+    '--disable-setuid-sandbox',
+    '--disable-dev-shm-usage',
+    '--disable-accelerated-2d-canvas',
+    '--no-first-run',
+    '--no-zygote',
+    '--disable-gpu'
+  ]
+};
+
+if (customExecPath) {
+  puppeteerOptions.executablePath = customExecPath;
+}
 
 const client = new Client({
   authStrategy: new LocalAuth({ dataPath: '.wwebjs_auth' }),
-  puppeteer: {
-    headless: true,
-    ...(customExecPath ? { executablePath: customExecPath } : {}),
-    args: [
-      '--no-sandbox',
-      '--disable-setuid-sandbox',
-      '--disable-dev-shm-usage',
-      '--disable-accelerated-2d-canvas',
-      '--no-first-run',
-      '--no-zygote',
-      '--disable-gpu'
-    ]
-  }
+  puppeteer: puppeteerOptions
 });
 
 // Display QR Code for 1-time WhatsApp pairing
@@ -81,14 +104,14 @@ client.on('message', async (msg) => {
   console.log(`[Incoming Message] From: ${msg.from} | Text: "${body}"`);
 
   // MENU RESPONSE
-  const menuText = `👋 Hello! Welcome to *Nexivo* (https://www.studionexivo.com/). How can we help scale your business today?
+  const menuText = `Hello! Welcome to *Nexivo* (https://www.studionexivo.com/). How can we help scale your business today?
 
 Please reply with a number:
-1️⃣ *Web Development*
-2️⃣ *Local SEO & Google Maps*
-3️⃣ *Digital Marketing & Ads*
-4️⃣ *Get 2026 Services Brochure (PDF)*
-5️⃣ *Speak with Founder Jay Parmar*`;
+[1] *Web Development*
+[2] *Local SEO & Google Maps*
+[3] *Digital Marketing & Ads*
+[4] *Get 2026 Services Brochure (PDF)*
+[5] *Speak with Founder Jay Parmar*`;
 
   // 1. Greetings & Menu Triggers
   if (
@@ -107,23 +130,23 @@ Please reply with a number:
   }
 
   // 2. Option 1: Web Development
-  if (lower === '1' || lower === '1️⃣' || lower.includes('web dev') || lower.includes('website')) {
-    const reply = `🌐 *Nexivo Web Development*
+  if (lower === '1' || lower.includes('web dev') || lower.includes('website')) {
+    const reply = `*Nexivo Web Development*
 We build fast, phone-optimized custom websites engineered for sub-second speed.
 
 • *Starter Plan*: 4 static pages, mobile responsive, 1-tap WhatsApp trigger. Live in 10-14 days.
 • *Standard Plan*: Dynamic pages, services showcase, SEO-friendly architecture, 1 month support.
 • *E-commerce / Custom*: Full cart & payment gateway setup.
 
-💡 *Turnaround*: 21 days typical site turnaround (50% advance to start).
+*Turnaround*: 21 days typical site turnaround (50% advance to start).
 Would you like to discuss scope for your business? Reply *5* to speak directly with founder Jay Parmar.`;
     await msg.reply(reply);
     return;
   }
 
   // 3. Option 2: Local SEO & Google Maps
-  if (lower === '2' || lower === '2️⃣' || lower.includes('seo') || lower.includes('google map')) {
-    const reply = `🚀 *Nexivo Local SEO & Google Maps Domination*
+  if (lower === '2' || lower.includes('seo') || lower.includes('google map')) {
+    const reply = `*Nexivo Local SEO & Google Maps Domination*
 Get found when nearby customers search for your services.
 
 • *Local Boost*: Google Business Profile setup, top 5 local keywords, directory citations.
@@ -136,8 +159,8 @@ Reply *4* to download our complete Services Brochure PDF or *5* to talk to Jay P
   }
 
   // 4. Option 3: Digital Marketing & Ads
-  if (lower === '3' || lower === '3️⃣' || lower.includes('marketing') || lower.includes('ads')) {
-    const reply = `📈 *Nexivo Digital Marketing & Paid Ads*
+  if (lower === '3' || lower.includes('marketing') || lower.includes('ads')) {
+    const reply = `*Nexivo Digital Marketing & Paid Ads*
 Turn website traffic into high-converting inquiries.
 
 • *Growth Funnel*: Lead capture landing pages & WhatsApp conversion triggers.
@@ -150,11 +173,11 @@ Reply *5* to discuss custom campaign strategy with founder Jay Parmar!`;
   }
 
   // 5. Option 4: Brochure PDF Download
-  if (lower === '4' || lower === '4️⃣' || lower.includes('brochure') || lower.includes('pdf')) {
-    const reply = `📄 *Nexivo Official 2026 Services & Pricing Brochure (PDF)*
+  if (lower === '4' || lower.includes('brochure') || lower.includes('pdf')) {
+    const reply = `*Nexivo Official 2026 Services & Pricing Brochure (PDF)*
 
 You can view and download our complete 5-page official brochure directly here:
-👉 https://www.studionexivo.com/Nexivo-Services-Brochure-2026.pdf
+https://www.studionexivo.com/Nexivo-Services-Brochure-2026.pdf
 
 Includes deliverables scope for Web Development, Local SEO, Social Media, and Paid Ads packages!`;
     await msg.reply(reply);
@@ -162,14 +185,14 @@ Includes deliverables scope for Web Development, Local SEO, Social Media, and Pa
   }
 
   // 6. Option 5: Human Founder Contact
-  if (lower === '5' || lower === '5️⃣' || lower.includes('jay') || lower.includes('founder') || lower.includes('talk')) {
-    const reply = `👤 *Connect with Founder Jay Parmar*
+  if (lower === '5' || lower.includes('jay') || lower.includes('founder') || lower.includes('talk')) {
+    const reply = `*Connect with Founder Jay Parmar*
 
 Thank you! Founder **Jay Parmar** will assist you directly with custom project scope, fixed pricing, and timelines.
 
-📞 *WhatsApp / Phone*: +91 97244 70737
-✉️ *Email*: studio.nexivo@gmail.com
-🌐 *Website*: https://www.studionexivo.com/
+• *WhatsApp / Phone*: +91 97244 70737
+• *Email*: studio.nexivo@gmail.com
+• *Website*: https://www.studionexivo.com/
 
 Please tell us a bit about your business name and goals, and Jay will reply shortly!`;
     await msg.reply(reply);
@@ -178,22 +201,22 @@ Please tell us a bit about your business name and goals, and Jay will reply shor
 
   // 7. General Knowledge Answers (Turnaround, Location, Payment)
   if (lower.includes('turnaround') || lower.includes('time') || lower.includes('days')) {
-    await msg.reply('⏳ *Nexivo Turnaround Time*: Starter sites take 10-14 days. Standard and custom web builds take 14-21 days typical turnaround.');
+    await msg.reply('*Nexivo Turnaround Time*: Starter sites take 10-14 days. Standard and custom web builds take 14-21 days typical turnaround.');
     return;
   }
 
   if (lower.includes('location') || lower.includes('office') || lower.includes('where')) {
-    await msg.reply('📍 *Nexivo Hubs*: We operate dual hubs in London, UK and Ahmedabad, India.');
+    await msg.reply('*Nexivo Hubs*: We operate dual hubs in London, UK and Ahmedabad, India.');
     return;
   }
 
   if (lower.includes('payment') || lower.includes('advance') || lower.includes('terms')) {
-    await msg.reply('💳 *Payment Terms*: 50% advance payment to commence project work, and the remaining 50% balance upon final review & go-live.');
+    await msg.reply('*Payment Terms*: 50% advance payment to commence project work, and the remaining 50% balance upon final review & go-live.');
     return;
   }
 
   // Fallback: If message wasn't recognized, present menu
-  await msg.reply(`Thank you for messaging Nexivo! \n\n${menuText}`);
+  await msg.reply(`Thank you for messaging Nexivo!\n\n${menuText}`);
 });
 
 // Launch Client

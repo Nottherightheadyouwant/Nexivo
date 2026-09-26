@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { MessageSquare, Zap } from 'lucide-react';
 import Estimator from '../components/Estimator';
 import FaqAccordion from '../components/FaqAccordion';

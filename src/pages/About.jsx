@@ -36,9 +36,9 @@ export default function About() {
           <div className="glass-card founder-card">
             <div className="founder-img-wrap" style={{ position: 'relative', marginBottom: '1.8rem' }}>
               <div className="founder-img-container">
-                <img 
-                  src={jayParmarImg} 
-                  alt="Jay Parmar - Founder & Creative Director / Lead Developer at Nexivo" 
+                <img
+                  src={jayParmarImg}
+                  alt="Jay Parmar - Founder & Creative Director / Lead Developer at Nexivo"
                   style={{ width: '100%', height: '360px', objectFit: 'cover', objectPosition: '35% 55%', display: 'block' }}
                 />
               </div>
@@ -75,9 +75,9 @@ export default function About() {
           <div className="glass-card founder-card" style={{ border: '1px solid rgba(55, 138, 221, 0.4)' }}>
             <div className="founder-img-wrap" style={{ position: 'relative', marginBottom: '1.8rem' }}>
               <div className="founder-img-container" style={{ border: '2px solid rgba(55, 138, 221, 0.4)' }}>
-                <img 
-                  src={sauravVaghelaImg} 
-                  alt="Saurav Vaghela - Co-Founder & Technical Lead at Nexivo" 
+                <img
+                  src={sauravVaghelaImg}
+                  alt="Saurav Vaghela - Co-Founder & Technical Lead at Nexivo"
                   style={{ width: '100%', height: '360px', objectFit: 'cover', objectPosition: 'center 65%', display: 'block' }}
                 />
               </div>

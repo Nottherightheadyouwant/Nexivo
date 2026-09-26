@@ -1,7 +1,8 @@
 services:
-  - type: worker
+  - type: web
     name: nexivo-whatsapp-bot
     env: node
+    plan: free
     region: oregon
     buildCommand: npm install && npx puppeteer browsers install chrome
     startCommand: npm run bot

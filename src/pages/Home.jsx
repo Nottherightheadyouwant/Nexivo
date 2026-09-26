@@ -67,7 +67,7 @@ export default function Home({ triggerToast, openBrochure }) {
         <WebsiteHealthCheck triggerToast={triggerToast} />
       </section>
 
-            {/* BROCHURE DOWNLOAD LEAD MAGNET BANNER */}
+      {/* BROCHURE DOWNLOAD LEAD MAGNET BANNER */}
       {openBrochure && (
         <section>
           <div className="glass-card" style={{ padding: '2.5rem', background: 'linear-gradient(135deg, rgba(29,158,117,0.14), rgba(55,138,221,0.08))', border: '1.5px solid var(--teal-light)', display: 'flex', flexWrap: 'wrap', alignItems: 'center', justifyContent: 'space-between', gap: '1.5rem' }}>

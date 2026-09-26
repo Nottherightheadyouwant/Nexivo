@@ -1,4 +1,4 @@
-﻿import React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Search, AlertTriangle, CheckCircle2, XCircle, RefreshCw, Zap, ShieldCheck, Globe, MessageSquare, ExternalLink } from 'lucide-react';
 
 export default function WebsiteHealthCheck({ triggerToast }) {
@@ -43,7 +43,7 @@ export default function WebsiteHealthCheck({ triggerToast }) {
         const cleanDomain = targetUrl.replace(/^(https?:\/\/)?(www\.)?/, '').split('/')[0];
         const controller = new AbortController();
         const timeoutId = setTimeout(() => controller.abort(), 2000);
-        await fetch(`https://${cleanDomain}`, { mode: 'no-cors', signal: controller.signal }).catch(() => {});
+        await fetch(`https://${cleanDomain}`, { mode: 'no-cors', signal: controller.signal }).catch(() => { });
         clearTimeout(timeoutId);
         pingTimeMs = Math.round(performance.now() - startTime);
       } catch (e) {
@@ -221,8 +221,8 @@ export default function WebsiteHealthCheck({ triggerToast }) {
   };
 
   const handleWhatsAppFix = () => {
-    const target = auditResult?.displayUrl && auditResult.displayUrl !== 'No Website Yet' 
-      ? `my site (${auditResult.displayUrl} - Audit Score ${auditResult.score}/100)` 
+    const target = auditResult?.displayUrl && auditResult.displayUrl !== 'No Website Yet'
+      ? `my site (${auditResult.displayUrl} - Audit Score ${auditResult.score}/100)`
       : 'a new website build';
     const text = encodeURIComponent(`Hi Nexivo! I ran an honest Website Health Check for ${target} on your website. I want to discuss fixing these bottlenecks.`);
     window.open(`https://wa.me/919724470737?text=${text}`, '_blank');
@@ -369,7 +369,7 @@ export default function WebsiteHealthCheck({ triggerToast }) {
           {/* CHECKLIST OF FINDINGS */}
           <div className="audit-checklist-section">
             <h4 className="audit-section-heading">
-              <ShieldCheck size={20} color="#5DCAA5" /> 
+              <ShieldCheck size={20} color="#5DCAA5" />
               {auditResult.isNew ? 'Essentials Checklist for Your New Build:' : 'Detailed Technical & Conversion Analysis:'}
             </h4>
 
