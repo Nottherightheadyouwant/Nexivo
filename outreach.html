@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexivo Lead Command Center | Direct Outreach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #070A12;
+      --card-bg: rgba(255, 255, 255, 0.035);
+      --card-border: rgba(244, 242, 235, 0.08);
+      --teal: #1D9E75;
+      --teal-light: #5DCAA5;
+      --sky: #378ADD;
+      --text: #F4F2EB;
+      --muted: #94A3B8;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      padding: 2.5rem;
+      min-height: 100vh;
+      background-image: 
+        radial-gradient(circle at 15% 15%, rgba(29, 158, 117, 0.12), transparent 40%),
+        radial-gradient(circle at 85% 10%, rgba(55, 138, 221, 0.10), transparent 35%);
+    }
+    .header {
+      max-width: 1400px;
+      margin: 0 auto 2.5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+      border-bottom: 1px solid var(--card-border);
+      padding-bottom: 1.5rem;
+    }
+    .title-group h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+    .title-group h1 img { height: 32px; width: auto; object-fit: contain; }
+    .title-group p { color: var(--muted); font-size: 0.95rem; margin-top: 0.4rem; }
+    .badge-count {
+      background: rgba(29, 158, 117, 0.15);
+      border: 1px solid rgba(29, 158, 117, 0.3);
+      color: var(--teal-light);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    .search-bar {
+      width: 100%;
+      max-width: 1400px;
+      margin: 0 auto 2rem;
+    }
+    .search-input {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 0.9rem 1.25rem;
+      color: var(--text);
+      font-size: 0.95rem;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .search-input:focus { border-color: var(--teal-light); }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 1.5rem;
+      backdrop-filter: blur(12px);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(93, 202, 165, 0.35);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+    }
+    .card-top { margin-bottom: 1.2rem; }
+    .cat-tag {
+      display: inline-block;
+      background: rgba(55, 138, 221, 0.12);
+      border: 1px solid rgba(55, 138, 221, 0.25);
+      color: var(--sky);
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .lead-name { font-size: 1.2rem; font-weight: 800; color: var(--text); margin-bottom: 0.35rem; }
+    .lead-phone { color: var(--muted); font-size: 0.88rem; display: flex; align-items: center; gap: 6px; }
+    .btn-wa {
+      background: linear-gradient(135deg, #1D9E75, #25D366);
+      color: #070A12;
+      text-decoration: none;
+      padding: 0.9rem 1rem;
+      border-radius: 12px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      text-align: center;
+      box-shadow: 0 4px 15px rgba(29, 158, 117, 0.25);
+      transition: all 0.2s;
+      display: block;
+    }
+    .btn-wa:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="title-group">
+      <h1><img src="/logo.png" alt="Nexivo"> Lead <span>Command Center</span></h1>
+      <p>Direct 1-Click WhatsApp Pitching (Links directly to https://www.studionexivo.com)</p>
+    </div>
+    <div class="badge-count">
+      41 High-Value Leads Ready
+    </div>
+  </div>
+
+  <div class="search-bar">
+    <input type="text" id="searchInput" class="search-input" placeholder="🔍 Search lead by business name or category (e.g. Pixel Studio, Photography)..." onkeyup="filterLeads()">
+  </div>
+
+  <div class="grid" id="leadsGrid">
+    
+      <div class="card" data-name="black drop tattoo art" data-cat="tattoo studio">
+        <div class="card-top">
+          <span class="cat-tag">#1 • Tattoo Studio</span>
+          <div class="lead-name">Black Drop Tattoo Art</div>
+          <div class="lead-phone">📞 99252 85835</div>
+        </div>
+        <a href="https://wa.me/919925285835?text=Namaste%20Black%20Drop%20Tattoo%20Art%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Black%20Drop%20Tattoo%20Art!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Black Drop Tattoo Art</a>
+      </div>
+    
+      <div class="card" data-name="naina studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#2 • Photography studio</span>
+          <div class="lead-name">Naina Studio</div>
+          <div class="lead-phone">📞 099253 85835</div>
+        </div>
+        <a href="https://wa.me/919925385835?text=Namaste%20Naina%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Naina%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Naina Studio</a>
+      </div>
+    
+      <div class="card" data-name="pixel studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#3 • Photography studio</span>
+          <div class="lead-name">Pixel Studio</div>
+          <div class="lead-phone">📞 080002 32463</div>
+        </div>
+        <a href="https://wa.me/918000232463?text=Namaste%20Pixel%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Pixel%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Pixel Studio</a>
+      </div>
+    
+      <div class="card" data-name="star digital studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#4 • Photography studio</span>
+          <div class="lead-name">Star Digital Studio</div>
+          <div class="lead-phone">📞 098256 17300</div>
+        </div>
+        <a href="https://wa.me/919825617300?text=Namaste%20Star%20Digital%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Star%20Digital%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Star Digital Studio</a>
+      </div>
+    
+      <div class="card" data-name="radha swami modeling studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#5 • Photography studio</span>
+          <div class="lead-name">Radha Swami Modeling Studio</div>
+          <div class="lead-phone">📞 098258 41995</div>
+        </div>
+        <a href="https://wa.me/919825841995?text=Namaste%20Radha%20Swami%20Modeling%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Radha%20Swami%20Modeling%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Radha Swami Modeling Studio</a>
+      </div>
+    
+      <div class="card" data-name="niya studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#6 • Photography studio</span>
+          <div class="lead-name">Niya studio</div>
+          <div class="lead-phone">📞 087801 86643</div>
+        </div>
+        <a href="https://wa.me/918780186643?text=Namaste%20Niya%20studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Niya%20studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Niya studio</a>
+      </div>
+    
+      <div class="card" data-name="purohit studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#7 • Photography studio</span>
+          <div class="lead-name">Purohit Studio</div>
+          <div class="lead-phone">📞 098241 62168</div>
+        </div>
+        <a href="https://wa.me/919824162168?text=Namaste%20Purohit%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Purohit%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Purohit Studio</a>
+      </div>
+    
+      <div class="card" data-name="maruti digital studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#8 • Photography studio</span>
+          <div class="lead-name">Maruti Digital Studio</div>
+          <div class="lead-phone">📞 099244 22600</div>
+        </div>
+        <a href="https://wa.me/919924422600?text=Namaste%20Maruti%20Digital%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Maruti%20Digital%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Maruti Digital Studio</a>
+      </div>
+    
+      <div class="card" data-name="ronak studio" data-cat="photographer">
+        <div class="card-top">
+          <span class="cat-tag">#9 • Photographer</span>
+          <div class="lead-name">Ronak Studio</div>
+          <div class="lead-phone">📞 096248 54691</div>
+        </div>
+        <a href="https://wa.me/919624854691?text=Namaste%20Ronak%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Ronak%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Ronak Studio</a>
+      </div>
+    
+      <div class="card" data-name="m13 design studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#10 • Photography studio</span>
+          <div class="lead-name">M13 design studio</div>
+          <div class="lead-phone">📞 092507 71418</div>
+        </div>
+        <a href="https://wa.me/919250771418?text=Namaste%20M13%20design%20studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20M13%20design%20studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to M13 design studio</a>
+      </div>
+    
+      <div class="card" data-name="hs the photography studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#11 • Photography studio</span>
+          <div class="lead-name">HS The Photography Studio</div>
+          <div class="lead-phone">📞 078781 03080</div>
+        </div>
+        <a href="https://wa.me/917878103080?text=Namaste%20HS%20The%20Photography%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20HS%20The%20Photography%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to HS The Photography Studio</a>
+      </div>
+    
+      <div class="card" data-name="praxis studio" data-cat="animation studio">
+        <div class="card-top">
+          <span class="cat-tag">#12 • Animation Studio</span>
+          <div class="lead-name">Praxis Studio</div>
+          <div class="lead-phone">📞 02545 002 525</div>
+        </div>
+        <a href="https://wa.me/912545002525?text=Namaste%20Praxis%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Praxis%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Praxis Studio</a>
+      </div>
+    
+      <div class="card" data-name="mankee photo studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#13 • Photography studio</span>
+          <div class="lead-name">Mankee photo studio</div>
+          <div class="lead-phone">📞 084018 40777</div>
+        </div>
+        <a href="https://wa.me/918401840777?text=Namaste%20Mankee%20photo%20studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Mankee%20photo%20studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Mankee photo studio</a>
+      </div>
+    
+      <div class="card" data-name="pruthvi modeling studio" data-cat="photographer">
+        <div class="card-top">
+          <span class="cat-tag">#14 • Photographer</span>
+          <div class="lead-name">Pruthvi Modeling Studio</div>
+          <div class="lead-phone">📞 077780 31114</div>
+        </div>
+        <a href="https://wa.me/917778031114?text=Namaste%20Pruthvi%20Modeling%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Pruthvi%20Modeling%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Pruthvi Modeling Studio</a>
+      </div>
+    
+      <div class="card" data-name="chandan studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#15 • Photography studio</span>
+          <div class="lead-name">Chandan Studio</div>
+          <div class="lead-phone">📞 098790 93251</div>
+        </div>
+        <a href="https://wa.me/919879093251?text=Namaste%20Chandan%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Chandan%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Chandan Studio</a>
+      </div>
+    
+      <div class="card" data-name="shree krishna multie recording studio" data-cat="recording studio">
+        <div class="card-top">
+          <span class="cat-tag">#16 • Recording studio</span>
+          <div class="lead-name">Shree krishna multie recording studio</div>
+          <div class="lead-phone">📞 099241 40816</div>
+        </div>
+        <a href="https://wa.me/919924140816?text=Namaste%20Shree%20krishna%20multie%20recording%20studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Shree%20krishna%20multie%20recording%20studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Shree krishna multie recording studio</a>
+      </div>
+    
+      <div class="card" data-name="saanjh studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#17 • Photography studio</span>
+          <div class="lead-name">Saanjh Studio</div>
+          <div class="lead-phone">📞 097231 37679</div>
+        </div>
+        <a href="https://wa.me/919723137679?text=Namaste%20Saanjh%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Saanjh%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Saanjh Studio</a>
+      </div>
+    
+      <div class="card" data-name="krishna photo studio" data-cat="photographer">
+        <div class="card-top">
+          <span class="cat-tag">#18 • Photographer</span>
+          <div class="lead-name">Krishna Photo Studio</div>
+          <div class="lead-phone">📞 087340 29566</div>
+        </div>
+        <a href="https://wa.me/918734029566?text=Namaste%20Krishna%20Photo%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Krishna%20Photo%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Krishna Photo Studio</a>
+      </div>
+    
+      <div class="card" data-name="gurukrupa photo studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#19 • Photography studio</span>
+          <div class="lead-name">GURUKRUPA PHOTO STUDIO</div>
+          <div class="lead-phone">📞 098246 81702</div>
+        </div>
+        <a href="https://wa.me/919824681702?text=Namaste%20GURUKRUPA%20PHOTO%20STUDIO%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20GURUKRUPA%20PHOTO%20STUDIO!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to GURUKRUPA PHOTO STUDIO</a>
+      </div>
+    
+      <div class="card" data-name="the br films" data-cat="wedding photographer">
+        <div class="card-top">
+          <span class="cat-tag">#20 • Wedding photographer</span>
+          <div class="lead-name">The BR Films</div>
+          <div class="lead-phone">📞 094096 33322</div>
+        </div>
+        <a href="https://wa.me/919409633322?text=Namaste%20The%20BR%20Films%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20The%20BR%20Films!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to The BR Films</a>
+      </div>
+    
+      <div class="card" data-name="snapilla studio | baby shoot in ahmedabad" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#21 • Photography studio</span>
+          <div class="lead-name">Snapilla Studio | Baby Shoot In Ahmedabad</div>
+          <div class="lead-phone">📞 087802 86850</div>
+        </div>
+        <a href="https://wa.me/918780286850?text=Namaste%20Snapilla%20Studio%20%7C%20Baby%20Shoot%20In%20Ahmedabad%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Snapilla%20Studio%20%7C%20Baby%20Shoot%20In%20Ahmedabad!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Snapilla Studio | Baby Shoot In Ahmedabad</a>
+      </div>
+    
+      <div class="card" data-name="disha modeling studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#22 • Photography studio</span>
+          <div class="lead-name">Disha Modeling Studio</div>
+          <div class="lead-phone">📞 098981 82197</div>
+        </div>
+        <a href="https://wa.me/919898182197?text=Namaste%20Disha%20Modeling%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Disha%20Modeling%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Disha Modeling Studio</a>
+      </div>
+    
+      <div class="card" data-name="rk studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#23 • Photography studio</span>
+          <div class="lead-name">RK Studio</div>
+          <div class="lead-phone">📞 087802 31115</div>
+        </div>
+        <a href="https://wa.me/918780231115?text=Namaste%20RK%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20RK%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to RK Studio</a>
+      </div>
+    
+      <div class="card" data-name="chandni photo studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#24 • Photography studio</span>
+          <div class="lead-name">Chandni Photo Studio</div>
+          <div class="lead-phone">📞 098258 86316</div>
+        </div>
+        <a href="https://wa.me/919825886316?text=Namaste%20Chandni%20Photo%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Chandni%20Photo%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Chandni Photo Studio</a>
+      </div>
+    
+      <div class="card" data-name="mahakali studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#25 • Photography studio</span>
+          <div class="lead-name">Mahakali studio</div>
+          <div class="lead-phone">📞 090167 18901</div>
+        </div>
+        <a href="https://wa.me/919016718901?text=Namaste%20Mahakali%20studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Mahakali%20studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Mahakali studio</a>
+      </div>
+    
+      <div class="card" data-name="bhoomi's art studio" data-cat="artist">
+        <div class="card-top">
+          <span class="cat-tag">#26 • Artist</span>
+          <div class="lead-name">Bhoomi's art studio</div>
+          <div class="lead-phone">📞 096016 75464</div>
+        </div>
+        <a href="https://wa.me/919601675464?text=Namaste%20Bhoomi's%20art%20studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Bhoomi's%20art%20studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Bhoomi's art studio</a>
+      </div>
+    
+      <div class="card" data-name="siddheshwary photo studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#27 • Photography studio</span>
+          <div class="lead-name">Siddheshwary Photo Studio</div>
+          <div class="lead-phone">📞 088661 00993</div>
+        </div>
+        <a href="https://wa.me/918866100993?text=Namaste%20Siddheshwary%20Photo%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Siddheshwary%20Photo%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Siddheshwary Photo Studio</a>
+      </div>
+    
+      <div class="card" data-name="shiv exposure | best photography & videography studio in ahmedabad" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#28 • Photography studio</span>
+          <div class="lead-name">SHIV EXPOSURE | Best Photography & Videography Studio in Ahmedabad</div>
+          <div class="lead-phone">📞 091734 09640</div>
+        </div>
+        <a href="https://wa.me/919173409640?text=Namaste%20SHIV%20EXPOSURE%20%7C%20Best%20Photography%20%26%20Videography%20Studio%20in%20Ahmedabad%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20SHIV%20EXPOSURE%20%7C%20Best%20Photography%20%26%20Videography%20Studio%20in%20Ahmedabad!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to SHIV EXPOSURE | Best Photography & Videography Studio in Ahmedabad</a>
+      </div>
+    
+      <div class="card" data-name="studio optishot" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#29 • Photography studio</span>
+          <div class="lead-name">Studio Optishot</div>
+          <div class="lead-phone">📞 098000 80026</div>
+        </div>
+        <a href="https://wa.me/919800080026?text=Namaste%20Studio%20Optishot%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Studio%20Optishot!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Studio Optishot</a>
+      </div>
+    
+      <div class="card" data-name="snapspiritstudio" data-cat="photography service">
+        <div class="card-top">
+          <span class="cat-tag">#30 • Photography service</span>
+          <div class="lead-name">Snapspiritstudio</div>
+          <div class="lead-phone">📞 084888 88494</div>
+        </div>
+        <a href="https://wa.me/918488888494?text=Namaste%20Snapspiritstudio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Snapspiritstudio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Snapspiritstudio</a>
+      </div>
+    
+      <div class="card" data-name="amar studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#31 • Photography studio</span>
+          <div class="lead-name">amar studio</div>
+          <div class="lead-phone">📞 098243 11289</div>
+        </div>
+        <a href="https://wa.me/919824311289?text=Namaste%20amar%20studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20amar%20studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to amar studio</a>
+      </div>
+    
+      <div class="card" data-name="the shutter space" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#32 • Photography studio</span>
+          <div class="lead-name">The shutter space</div>
+          <div class="lead-phone">📞 081413 34400</div>
+        </div>
+        <a href="https://wa.me/918141334400?text=Namaste%20The%20shutter%20space%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20The%20shutter%20space!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to The shutter space</a>
+      </div>
+    
+      <div class="card" data-name="aditi photo studio & xerox" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#33 • Photography studio</span>
+          <div class="lead-name">Aditi Photo Studio & Xerox</div>
+          <div class="lead-phone">📞 099093 54002</div>
+        </div>
+        <a href="https://wa.me/919909354002?text=Namaste%20Aditi%20Photo%20Studio%20%26%20Xerox%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Aditi%20Photo%20Studio%20%26%20Xerox!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Aditi Photo Studio & Xerox</a>
+      </div>
+    
+      <div class="card" data-name="radhika dance studio" data-cat="dance school">
+        <div class="card-top">
+          <span class="cat-tag">#34 • Dance school</span>
+          <div class="lead-name">Radhika Dance Studio</div>
+          <div class="lead-phone">📞 088491 96630</div>
+        </div>
+        <a href="https://wa.me/918849196630?text=Namaste%20Radhika%20Dance%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Radhika%20Dance%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Radhika Dance Studio</a>
+      </div>
+    
+      <div class="card" data-name="little giggles studio chandkheda" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#35 • Photography studio</span>
+          <div class="lead-name">Little Giggles Studio Chandkheda</div>
+          <div class="lead-phone">📞 090235 16436</div>
+        </div>
+        <a href="https://wa.me/919023516436?text=Namaste%20Little%20Giggles%20Studio%20Chandkheda%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Little%20Giggles%20Studio%20Chandkheda!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Little Giggles Studio Chandkheda</a>
+      </div>
+    
+      <div class="card" data-name="winlight dance studio" data-cat="dance company">
+        <div class="card-top">
+          <span class="cat-tag">#36 • Dance company</span>
+          <div class="lead-name">WINLIGHT DANCE STUDIO</div>
+          <div class="lead-phone">📞 070436 81096</div>
+        </div>
+        <a href="https://wa.me/917043681096?text=Namaste%20WINLIGHT%20DANCE%20STUDIO%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20WINLIGHT%20DANCE%20STUDIO!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to WINLIGHT DANCE STUDIO</a>
+      </div>
+    
+      <div class="card" data-name="jeet photo studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#37 • Photography studio</span>
+          <div class="lead-name">Jeet Photo Studio</div>
+          <div class="lead-phone">📞 099981 06161</div>
+        </div>
+        <a href="https://wa.me/919998106161?text=Namaste%20Jeet%20Photo%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Jeet%20Photo%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Jeet Photo Studio</a>
+      </div>
+    
+      <div class="card" data-name="raj digital studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#38 • Photography studio</span>
+          <div class="lead-name">Raj Digital Studio</div>
+          <div class="lead-phone">📞 094275 54450</div>
+        </div>
+        <a href="https://wa.me/919427554450?text=Namaste%20Raj%20Digital%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Raj%20Digital%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Raj Digital Studio</a>
+      </div>
+    
+      <div class="card" data-name="breez studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#39 • Photography studio</span>
+          <div class="lead-name">BREEZ STUDIO</div>
+          <div class="lead-phone">📞 076984 77787</div>
+        </div>
+        <a href="https://wa.me/917698477787?text=Namaste%20BREEZ%20STUDIO%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20BREEZ%20STUDIO!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to BREEZ STUDIO</a>
+      </div>
+    
+      <div class="card" data-name="studio 7 gift shop" data-cat="gift shop">
+        <div class="card-top">
+          <span class="cat-tag">#40 • Gift shop</span>
+          <div class="lead-name">STUDIO 7 GIFT SHOP</div>
+          <div class="lead-phone">📞 090544 46611</div>
+        </div>
+        <a href="https://wa.me/919054446611?text=Namaste%20STUDIO%207%20GIFT%20SHOP%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20STUDIO%207%20GIFT%20SHOP!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to STUDIO 7 GIFT SHOP</a>
+      </div>
+    
+      <div class="card" data-name="chandra digital studio" data-cat="photography studio">
+        <div class="card-top">
+          <span class="cat-tag">#41 • Photography studio</span>
+          <div class="lead-name">Chandra Digital Studio</div>
+          <div class="lead-phone">📞 098249 96899</div>
+        </div>
+        <a href="https://wa.me/919824996899?text=Namaste%20Chandra%20Digital%20Studio%20team!%20%F0%9F%91%8B%0A%0AI%20was%20looking%20at%20your%20Google%20listing%20in%20Chandkheda.%20You%20have%20great%20reviews%2C%20but%20I%20noticed%20you%20don't%20have%20a%20fast%20mobile%20portfolio%20site%20linked%20for%20client%20inquiries.%0A%0AAt%20Nexivo%2C%20we%20build%20sub-second%20loading%20React%20websites%20with%20direct%20WhatsApp%20booking%20starting%20at%20%E2%82%B97%2C000.%0A%0ACheck%20out%20our%20agency%20packages%20%26%20work%20here%3A%0A%F0%9F%91%89%20https%3A%2F%2Fwww.studionexivo.com%0A%0ALet%20me%20know%20if%20you'd%20like%20to%20get%20a%20high-speed%20website%20built%20for%20Chandra%20Digital%20Studio!" target="_blank" class="btn-wa">💬 Send WhatsApp Pitch to Chandra Digital Studio</a>
+      </div>
+    
+  </div>
+
+  <script>
+    function filterLeads() {
+      const q = document.getElementById('searchInput').value.toLowerCase();
+      const cards = document.querySelectorAll('.card');
+      cards.forEach(c => {
+        const name = c.getAttribute('data-name');
+        const cat = c.getAttribute('data-cat');
+        if (name.includes(q) || cat.includes(q)) {
+          c.style.display = 'flex';
+        } else {
+          c.style.display = 'none';
+        }
+      });
+    }
+  </script>
+</body>
+</html>
