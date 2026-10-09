@@ -1,0 +1,183 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --bg-dark: #060b19;
+  --bg-surface: #0e1628;
+  --brand-orange: #ff5500;
+  --brand-orange-glow: rgba(255, 85, 0, 0.35);
+  --brand-teal: #5dcaa5;
+  --brand-cyan: #378add;
+  --brand-violet: #8b5cf6;
+  --brand-accent: #00f5a0;
+  --text-offwhite: #f4f5f7;
+  --text-muted: #8c96a8;
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-orange: rgba(255, 85, 0, 0.3);
+}
+
+/* Lenis smooth scrolling reset */
+html.lenis, html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #060b19;
+}
+::-webkit-scrollbar-thumb {
+  background: #1c273c;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #ff5500;
+}
+
+/* Global setup */
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-offwhite);
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* Noise texture overlay for digital studio aesthetic */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  content: "";
+  opacity: 0.025;
+  pointer-events: none;
+  z-index: 999;
+  background: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* Grid overlay background */
+.bg-grid-pattern {
+  background-size: 40px 40px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+
+.bg-radial-gradient {
+  background: radial-gradient(circle at 50% 20%, rgba(255, 85, 0, 0.08) 0%, rgba(55, 138, 221, 0.05) 50%, transparent 80%);
+}
+
+/* Typography Headings: CollectUI Editorial Serif (Cormorant Garamond) */
+h1, h2, h3, h4, .font-display {
+  font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  letter-spacing: -0.025em;
+}
+
+.font-mono, code, pre, .tag-badge {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+/* Glassmorphic elements matching Jextures */
+.glass-badge {
+  background: rgba(14, 22, 40, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.glass-badge-orange {
+  background: rgba(255, 85, 0, 0.12);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 85, 0, 0.4);
+  box-shadow: 0 0 25px rgba(255, 85, 0, 0.2);
+}
+
+.glass-pill {
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+/* Iris / Portal Ring gradient background */
+.portal-ring {
+  background: conic-gradient(from 0deg, #ff5500, #378add, #8b5cf6, #00f5a0, #ff5500);
+  border-radius: 50%;
+  filter: blur(1px);
+}
+
+/* Glow effects */
+.glow-orange {
+  text-shadow: 0 0 24px rgba(255, 85, 0, 0.5);
+}
+
+.glow-teal {
+  text-shadow: 0 0 20px rgba(93, 202, 165, 0.4);
+}
+
+.box-glow-orange {
+  box-shadow: 0 0 35px rgba(255, 85, 0, 0.25);
+}
+
+/* Marquee infinite scroll ticker animation */
+@keyframes marquee {
+  0% { transform: translateX(0%); }
+  100% { transform: translateX(-50%); }
+}
+
+.animate-marquee {
+  display: flex;
+  width: 200%;
+  animation: marquee 25s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Custom selection */
+::selection {
+  background: rgba(255, 85, 0, 0.4);
+  color: #ffffff;
+}
+
+/* Light Theme Flip Utility */
+.light-mode-section {
+  background-color: #f4f5f7 !important;
+  color: #060b19 !important;
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
