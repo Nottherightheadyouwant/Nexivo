@@ -6,8 +6,8 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/prerender.js",
-    "bot": "PUPPETEER_CACHE_DIR=/opt/render/project/src/.cache/puppeteer node scripts/whatsapp-bot.js",
-    "postinstall": "PUPPETEER_CACHE_DIR=/opt/render/project/src/.cache/puppeteer npx puppeteer browsers install chrome",
+    "bot": "cross-env PUPPETEER_CACHE_DIR=/opt/render/project/src/.cache/puppeteer node scripts/whatsapp-bot.js",
+    "postinstall": "cross-env PUPPETEER_CACHE_DIR=/opt/render/project/src/.cache/puppeteer npx puppeteer browsers install chrome",
     "lint": "oxlint",
     "preview": "vite preview"
   },
@@ -29,6 +29,7 @@
     "@types/react-dom": "^19.2.7",
     "@vitejs/plugin-react": "^6.1.1",
     "oxlint": "^1.81.0",
-    "vite": "^8.3.0"
+    "vite": "^8.3.0",
+    "cross-env": "^7.0.3"
   }
 }
